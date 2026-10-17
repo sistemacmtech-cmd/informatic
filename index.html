@@ -257,6 +257,92 @@
       color: #06b6d4;
     }
 
+    /* ESTILOS DO CERTIFICADO OFICIAL */
+    .certificate-container {
+      background: #ffffff;
+      color: #1e293b;
+      border: 12px double #4f46e5;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      margin-top: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+    .certificate-header h1 {
+      font-size: 28px;
+      color: #1e1b4b;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 900;
+    }
+    .certificate-header p {
+      font-size: 12px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .certificate-body {
+      margin: 30px 0;
+    }
+    .student-name-input {
+      border: none;
+      border-bottom: 2px solid #4f46e5;
+      font-size: 24px;
+      font-weight: 800;
+      color: #4f46e5;
+      text-align: center;
+      padding: 6px;
+      width: 80%;
+      outline: none;
+      background: transparent;
+      margin: 15px 0;
+    }
+    .cert-text {
+      font-size: 15px;
+      color: #334155;
+      line-height: 1.8;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+    .cert-signatures {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 40px;
+      padding-top: 20px;
+    }
+    .sig-line {
+      border-top: 2px solid #94a3b8;
+      width: 220px;
+      padding-top: 8px;
+      font-size: 13px;
+      color: #1e293b;
+      font-weight: 700;
+    }
+    .cert-footer-info {
+      margin-top: 30px;
+      font-size: 10px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* ESTILOS DE IMPRESSÃO (A4 Paisagem) */
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      aside, .course-banner-container, .module-header-bar, h2, p, button, input.student-name-input { display: none !important; }
+      main { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+      .module-container { display: none !important; border: none !important; box-shadow: none !important; background: transparent !important; }
+      #mod7 { display: block !important; padding: 0 !important; }
+      .certificate-container { border: 10px double #4f46e5 !important; box-shadow: none !important; margin: 0 !important; width: 100% !important; page-break-inside: avoid; }
+      .print-student-name { display: block !important; font-size: 28px; font-weight: bold; color: #4f46e5; margin: 15px 0; }
+    }
+
     /* Estilos dos Quizzes Interativos */
     .interactive-quiz-card {
       background: #0f172a;
@@ -334,7 +420,7 @@
     <div class="brand">
       <h1>Informática Essencial & Prática</h1>
       <p>Formação Completa de Base Digital</p>
-      <div class="instructor-badge">⚡ Cmtech </div>
+      <div class="instructor-badge">⚡ Carlamitertech</div>
     </div>
 
     <div class="progress-box">
@@ -355,6 +441,7 @@
       <div class="nav-item" onclick="switchModule('mod4', this)"><input type="checkbox" onchange="updateProgress()"> 04. Pacote Office / Editores de Documentos</div>
       <div class="nav-item" onclick="switchModule('mod5', this)"><input type="checkbox" onchange="updateProgress()"> 05. Internet e Segurança Digital</div>
       <div class="nav-item" onclick="switchModule('mod6', this)"><input type="checkbox" id="chk-mod6" onchange="updateProgress()"> 06. Jogo Prático de Digitação & Desempenho</div>
+      <div class="nav-item" onclick="switchModule('mod7', this)"><input type="checkbox" id="chk-mod7" onchange="updateProgress()"> 🎓 Certificado do Curso Libre</div>
     </nav>
   </aside>
 
@@ -580,14 +667,12 @@
       <p>Treine a sua velocidade, precisão e familiaridade com o teclado. Escolha o modo de jogo, digite a palavra ou frase exibida e receba sua pontuação e feedback de desempenho instantaneamente!</p>
 
       <div class="typing-game-card">
-        <!-- Escolha de Modo -->
         <div class="typing-options">
           <button class="mode-btn active" onclick="setTypingMode('easy', this)">🌱 Modo Fácil (Palavras Básicas)</button>
           <button class="mode-btn" onclick="setTypingMode('tech', this)">💻 Modo Médio (Hardware & TI)</button>
           <button class="mode-btn" onclick="setTypingMode('phrases', this)">⚡ Modo Difícil (Frases & Atalhos)</button>
         </div>
 
-        <!-- Painel de Estatísticas -->
         <div class="typing-stats-grid">
           <div class="stat-card">
             <div class="val" id="tg-score">0</div>
@@ -607,13 +692,10 @@
           </div>
         </div>
 
-        <!-- Exibição da Palavra/Frase Alvo -->
         <div class="target-word-display" id="tg-target">Carregando jogo...</div>
 
-        <!-- Campo de Entrada -->
         <input type="text" id="tg-input" class="typing-input" placeholder="Clique aqui e comece a digitar..." autocomplete="off" oninput="handleTypingInput()">
 
-        <!-- Badge de Desempenho e Feedback -->
         <div class="performance-badge" id="tg-feedback">
           💡 Status: Comece a digitar no campo acima para iniciar o teste de velocidade!
         </div>
@@ -621,6 +703,57 @@
         <div style="text-align: center; margin-top: 20px;">
           <button class="btn-action" onclick="resetTypingGame()">🔄 Reiniciar Desafio de Digitação</button>
         </div>
+      </div>
+    </div>
+
+    <!-- UNIDADE 07: CERTIFICADO DO CURSO -->
+    <div id="mod7" class="module-container">
+      <div class="module-header-bar">
+        <span class="badge-tag">Conclusão • Emissão Oficial</span>
+      </div>
+      <h2>🎓 Certificado de Conclusão de Curso Livre</h2>
+      <p>Digite seu nome completo abaixo para gerar seu certificado com código de autenticidade único e legalidade conforme a Lei de Cursos Livres.</p>
+
+      <div style="margin-bottom: 20px; text-align: center;">
+        <label style="font-weight: 700; color: #a5b4fc; font-size: 14px; display: block; margin-bottom: 8px;">Digite seu Nome Completo para o Certificado:</label>
+        <input type="text" id="cert-student-input" class="student-name-input" placeholder="Seu Nome Completo Aqui" oninput="updateCertName(this.value)">
+      </div>
+
+      <!-- CARTÃO DO CERTIFICADO -->
+      <div class="certificate-container" id="cert-print-area">
+        <div class="certificate-header">
+          <h1>CERTIFICADO DE CONCLUSÃO</h1>
+          <p>Curso Livre de Formação Profissional em TI • Lei nº 9.394/96 - Art. 42</p>
+        </div>
+
+        <div class="certificate-body">
+          <p class="cert-text">Certificamos que o(a) aluno(a)</p>
+          <div id="cert-display-name" style="font-size: 26px; font-weight: 900; color: #4f46e5; margin: 15px 0; text-transform: uppercase;">[ SEU NOME COMPLETO ]</div>
+          <p class="cert-text">
+            concluiu com êxito o <strong>Curso de Informática Essencial & Prática</strong>, totalizando a carga horária de <strong>40 horas aula</strong>, adquirindo competências fundamentais em Hardware, Software, Sistemas Operacionais (Windows), Editores de Documentos, Internet e Segurança Digital.
+          </p>
+        </div>
+
+        <div class="cert-signatures">
+          <div class="sig-line">
+            <strong>Carlamitertech</strong><br>
+            Instrutora Responsável
+          </div>
+          <div class="sig-line">
+            <strong>sistemacmtech</strong><br>
+            Plataforma de Ensino Digital
+          </div>
+        </div>
+
+        <div class="cert-footer-info">
+          <span><strong>Código de Autenticação Livre:</strong> <span id="cert-code">CL-2026-89F3A7</span></span>
+          <span><strong>Data de Emissão:</strong> <span id="cert-date">17/10/2026</span></span>
+          <span><strong>Registro:</strong> Decreto Presidencial nº 5.154/04</span>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 28px;">
+        <button class="btn-action" style="padding: 14px 28px; font-size: 15px;" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
       </div>
     </div>
 
@@ -643,115 +776,86 @@
       document.getElementById('prog-pct').innerText = pct + '%';
     }
 
+    /* ATUALIZAÇÃO DO NOME E CÓDIGO DO CERTIFICADO */
+    function updateCertName(val) {
+      const display = document.getElementById('cert-display-name');
+      if (val.trim() === '') {
+        display.innerText = '[ SEU NOME COMPLETO ]';
+      } else {
+        display.innerText = val.toUpperCase();
+      }
+    }
+
+    function generateCertCode() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let code = 'CL-2026-';
+      for (let i = 0; i < 6; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById('cert-code').innerText = code;
+      const today = new Date();
+      document.getElementById('cert-date').innerText = today.toLocaleDateString('pt-BR');
+    }
+
     /* QUIZ MÓDULO 1 */
     const videoQuizData = [
       {
         question: "1. De acordo com o vídeo, como o termo 'hardware' é definido no contexto de computadores?",
-        options: [
-          "Os programas e o sistema operacional",
-          "Tudo o que é físico no computador",
-          "Apenas as redes de internet",
-          "O conjunto de códigos e instruções"
-        ],
+        options: [ "Os programas e o sistema operacional", "Tudo o que é físico no computador", "Apenas as redes de internet", "O conjunto de códigos e instruções" ],
         correct: 1,
         explanation: "No vídeo, é explicado expressamente que o Hardware descreve tudo o que é físico no computador."
       },
       {
         question: "2. Qual dos seguintes itens é citado no vídeo como um exemplo direto de hardware?",
-        options: [
-          "Um jogo de computador",
-          "O programa de edição de texto",
-          "O mouse, CPU e a impressora",
-          "O navegador de internet"
-        ],
+        options: [ "Um jogo de computador", "O programa de edição de texto", "O mouse, CPU e a impressora", "O navegador de internet" ],
         correct: 2,
         explanation: "O vídeo cita o mouse, a CPU e a impressora como componentes físicos (hardware)."
       },
       {
         question: "3. O que o vídeo estabelece como a principal função ou descrição do 'software'?",
-        options: [
-          "Representar os cabos e circuitos elétricos",
-          "A parte lógica que descreve programas e sistemas que o computador entende como instruções",
-          "A carcaça física do gabinete e monitor",
-          "O suporte físico da impressora"
-        ],
+        options: [ "Representar os cabos e circuitos elétricos", "A parte lógica que descreve programas e sistemas que o computador entende como instruções", "A carcaça física do gabinete e monitor", "O suporte físico da impressora" ],
         correct: 1,
         explanation: "O Software descreve a parte lógica, os programas e sistemas que o computador interpreta como instruções."
       },
       {
         question: "4. Como o vídeo descreve a natureza das instruções que formam o software?",
-        options: [
-          "Como peças plásticas encaixadas",
-          "Como um conjunto de várias linhas de códigos",
-          "Como componentes impressos na placa mãe",
-          "Como conexões físicas de webcam"
-        ],
+        options: [ "Como peças plásticas encaixadas", "Como um conjunto de várias linhas de códigos", "Como componentes impressos na placa mãe", "Como conexões físicas de webcam" ],
         correct: 1,
         explanation: "O conjunto de instruções que compõem o software é formado por várias linhas de código."
       },
       {
         question: "5. Qual exemplo prático de software é mencionado no vídeo?",
-        options: [
-          "Mouse e teclado",
-          "Jogos, programas de vídeos e edições de texto",
-          "Monitor e impressora",
-          "Placa mãe e processador"
-        ],
+        options: [ "Mouse e teclado", "Jogos, programas de vídeos e edições de texto", "Monitor e impressora", "Placa mãe e processador" ],
         correct: 1,
         explanation: "O vídeo cita jogos, programas de vídeo e edições de texto como exemplos claros de software."
       },
       {
         question: "6. Qual é a relação prática explicada no vídeo entre uma webcam e seu software correspondente?",
-        options: [
-          "A webcam é um software e o programa é o hardware",
-          "A webcam é o hardware e precisa do software para ser controlada (como ativar/desativar)",
-          "Não há nenhuma relação entre hardware e software na webcam",
-          "Ambos são peças físicas dentro do computador"
-        ],
+        options: [ "A webcam é um software e o programa é o hardware", "A webcam é o hardware e precisa do software para ser controlada (como ativar/desativar)", "Não há nenhuma relação entre hardware e software na webcam", "Ambos são peças físicas dentro do computador" ],
         correct: 1,
         explanation: "A webcam física é o hardware, mas ela necessita de um programa (software) para funcionar e ser controlada."
       },
       {
         question: "7. Segundo o conteúdo do vídeo, qual dos seguintes elementos se enquadra na categoria de hardware?",
-        options: [
-          "Impressora",
-          "Sistema operacional",
-          "Jogo de computador",
-          "Planilha eletrônica"
-        ],
+        options: [ "Impressora", "Sistema operacional", "Jogo de computador", "Planilha eletrônica" ],
         correct: 0,
         explanation: "A impressora é um componente físico tangível, portanto é um hardware."
       },
       {
         question: "8. De que maneira o computador interpreta os programas de software segundo a explicação apresentada?",
-        options: [
-          "Como impulsos de toque na tela",
-          "Como instruções lógicas a serem seguidas para controlar o funcionamento de algo",
-          "Como peças de reposição mecânicas",
-          "Como sinais de vídeo impresso"
-        ],
+        options: [ "Como impulsos de toque na tela", "Como instruções lógicas a serem seguidas para controlar o funcionamento de algo", "Como peças de reposição mecânicas", "Como sinais de vídeo impresso" ],
         correct: 1,
         explanation: "O software fornece o conjunto de instruções lógicas que o computador entende e executa."
       },
       {
         question: "9. Qual dos seguintes elementos representa a parte lógica discutida no vídeo?",
-        options: [
-          "Processador",
-          "Mouse",
-          "Sistemas e Programas",
-          "Gabinete"
-        ],
+        options: [ "Processador", "Mouse", "Sistemas e Programas", "Gabinete" ],
         correct: 2,
         explanation: "Os programas e sistemas representam a parte lógica (intangível) do computador."
       },
       {
         question: "10. Qual alternativa resume corretamente a divisão fundamental apresentada no vídeo?",
-        options: [
-          "Hardware é a parte lógica e software é a parte física",
-          "Hardware é a parte física e software é a parte lógica",
-          "Hardware e software são a mesma coisa",
-          "Software substitui a necessidade do hardware"
-        ],
+        options: [ "Hardware é a parte lógica e software é a parte física", "Hardware é a parte física e software é a parte lógica", "Hardware e software são a mesma coisa", "Software substitui a necessidade do hardware" ],
         correct: 1,
         explanation: "A regra básica do vídeo é: Hardware é a parte física e Software é a parte lógica."
       }
@@ -985,15 +1089,8 @@
 
     /* LÓGICA DO JOGO DE DIGITAÇÃO (MÓDULO 06) */
     const typingWordBanks = {
-      easy: [
-        "computador", "teclado", "mouse", "janela", "pasta", "sistema", "arquivo",
-        "internet", "programa", "aluno", "curso", "pratica", "tela", "dados"
-      ],
-      tech: [
-        "Processador", "Memoria RAM", "Placa-Mae", "Placa de Video", "Gabinete",
-        "Driver de Video", "Sistema Operacional", "Windows Eleven", "Rede Sem Fio",
-        "Antivirus", "Hardware", "Software", "Navegador Web"
-      ],
+      easy: [ "computador", "teclado", "mouse", "janela", "pasta", "sistema", "arquivo", "internet", "programa", "aluno", "curso", "pratica", "tela", "dados" ],
+      tech: [ "Processador", "Memoria RAM", "Placa-Mae", "Placa de Video", "Gabinete", "Driver de Video", "Sistema Operacional", "Windows Eleven", "Rede Sem Fio", "Antivirus", "Hardware", "Software", "Navegador Web" ],
       phrases: [
         "Ctrl + C serve para copiar um texto selecionado.",
         "O sistema operacional gerencia todos os recursos de hardware.",
@@ -1038,7 +1135,6 @@
 
       tgTotalStrokes++;
 
-      // Checa se a digitação até o momento está certa
       if (currentTargetWord.startsWith(val)) {
         inputEl.className = 'typing-input correct';
       } else {
@@ -1046,7 +1142,6 @@
         tgErrorStrokes++;
       }
 
-      // Se completou a palavra/frase exatamente
       if (val === currentTargetWord) {
         tgScore += currentTargetWord.length * 10;
         tgCompletedCount++;
@@ -1067,14 +1162,12 @@
       document.getElementById('tg-score').innerText = tgScore;
       document.getElementById('tg-count').innerText = tgCompletedCount;
 
-      // Precisão
       let accuracy = 100;
       if (tgTotalStrokes > 0) {
         accuracy = Math.max(0, Math.round(((tgTotalStrokes - tgErrorStrokes) / tgTotalStrokes) * 100));
       }
       document.getElementById('tg-accuracy').innerText = accuracy + '%';
 
-      // Velocidade PPM (Palavras Por Minuto)
       let wpm = 0;
       if (tgStartTime) {
         const elapsedMinutes = (new Date() - tgStartTime) / 60000;
@@ -1084,7 +1177,6 @@
       }
       document.getElementById('tg-wpm').innerText = wpm;
 
-      // Avaliação de Desempenho
       const feedbackEl = document.getElementById('tg-feedback');
       if (wpm < 15) {
         feedbackEl.innerHTML = '🟢 <strong>Nível Iniciante:</strong> Continue praticando para ganhar mais agilidade nos dedos!';
@@ -1117,11 +1209,10 @@
     renderQuestion();
     renderQuestion2();
     resetTypingGame();
+    generateCertCode();
   </script>
 </body>
 </html>
 
  
 Área de anexos
-Visualizar o vídeo Aprenda a usar o Windows para INICIANTES do YouTubeVisualizar o vídeo Aprenda a usar o Windows para INICIANTES do YouTube
-
