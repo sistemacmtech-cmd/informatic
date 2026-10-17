@@ -373,14 +373,14 @@
       font-weight: 600;
     }
 
-    /* ESTILOS DE IMPRESSÃO (A4 Paisagem) */
+    /* ESTILOS DE IMPRESSÃO CORRIGIDOS (A4 Paisagem Limpo) */
     @media print {
       body { background: #fff !important; color: #000 !important; }
-      aside, .course-banner-container, .module-header-bar, h2, p, button, input.student-name-input { display: none !important; }
-      main { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
-      .module-container { display: none !important; border: none !important; box-shadow: none !important; background: transparent !important; }
-      #mod7 { display: block !important; padding: 0 !important; }
-      .certificate-container { border: 12px double #3730a3 !important; background: #fff !important; box-shadow: none !important; margin: 0 !important; width: 100% !important; page-break-inside: avoid; }
+      aside, .course-banner-container, .module-header-bar, h2, p, button, input.student-name-input, label, .interactive-quiz-card, .typing-game-card { display: none !important; }
+      main { margin: 0 !important; padding: 0 !important; max-width: 100% !important; width: 100% !important; }
+      .module-container { display: none !important; border: none !important; box-shadow: none !important; background: transparent !important; padding: 0 !important; }
+      #mod7 { display: block !important; padding: 0 !important; margin: 0 !important; }
+      .certificate-container { border: 12px double #3730a3 !important; background: #fff !important; box-shadow: none !important; margin: 0 auto !important; width: 100% !important; max-width: 100% !important; page-break-inside: avoid; position: absolute; left: 0; top: 0; }
     }
 
     /* Estilos dos Quizzes Interativos */
@@ -1237,7 +1237,7 @@
 
       document.getElementById('tg-score').innerText = '0';
       document.getElementById('tg-wpm').innerText = '0';
-      document.getElementById('tg-accuracy').innerText = '100%</strong>';
+      document.getElementById('tg-accuracy').innerText = '100%';
       document.getElementById('tg-count').innerText = '0';
       document.getElementById('tg-feedback').innerHTML = '💡 Status: Comece a digitar no campo acima para iniciar o teste de velocidade!';
 
