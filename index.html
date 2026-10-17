@@ -10,24 +10,25 @@
     &quot;short_name&quot;: &quot;InfoEssencial&quot;,
     &quot;start_url&quot;: &quot;.&quot;,
     &quot;display&quot;: &quot;standalone&quot;,
-    &quot;background_color&quot;: &quot;#090d16&quot;,
-    &quot;theme_color&quot;: &quot;#38bdf8&quot;
+    &quot;background_color&quot;: &quot;#0b0f19&quot;,
+    &quot;theme_color&quot;: &quot;#6366f1&quot;
   }">
-  <meta name="theme-color" content="#090d16">
+  <meta name="theme-color" content="#0b0f19">
 
   <style>
     :root {
-      --bg-dark: #090d16;
+      /* Paleta Moderna - Dark Indigo & Slate Cyberpunk */
+      --bg-dark: #0b0f19;
       --card-bg: #111827;
       --card-border: #1f2937;
-      --primary: #38bdf8;
-      --primary-hover: #0ea5e9;
-      --accent: #818cf8;
-      --success: #34d399;
-      --warning: #fbbf24;
-      --danger: #f87171;
-      --text-main: #f9fafb;
-      --text-muted: #9ca3af;
+      --primary: #818cf8;
+      --primary-hover: #6366f1;
+      --accent: #06b6d4;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
       --sidebar-width: 320px;
     }
 
@@ -37,8 +38,8 @@
     /* Sidebar Lateral */
     aside {
       width: var(--sidebar-width);
-      background: var(--card-bg);
-      border-right: 1px solid var(--card-border);
+      background: #0f172a;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       flex-direction: column;
       position: fixed;
@@ -49,45 +50,31 @@
 
     .brand {
       padding: 24px;
-      background: linear-gradient(135deg, #0284c7, #4f46e5);
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
       color: #fff;
     }
     .brand h1 { font-size: 18px; font-weight: 800; line-height: 1.3; letter-spacing: -0.5px; }
     .brand p { font-size: 12px; opacity: 0.9; margin-top: 6px; }
     .instructor-badge {
       display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255, 255, 255, 0.2); padding: 5px 12px;
-      border-radius: 20px; font-size: 11px; font-weight: 700; margin-top: 12px; backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.25); padding: 5px 12px;
+      border-radius: 20px; font-size: 11px; font-weight: 700; margin-top: 12px; backdrop-filter: blur(8px);
     }
 
-    .progress-box { padding: 16px 24px; background: #1f2937; border-bottom: 1px solid var(--card-border); }
+    .progress-box { padding: 16px 24px; background: #161e2e; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
     .progress-info { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; }
-    .progress-bar { height: 8px; background: #374151; border-radius: 4px; overflow: hidden; }
-    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease; }
+    .progress-bar { height: 8px; background: #1e293b; border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #6366f1, #10b981); transition: width 0.4s ease; }
 
     .nav-list { padding: 12px 0; flex: 1; }
-    .module-group-title { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; padding: 14px 24px 6px 24px; }
+    .module-group-title { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #64748b; padding: 14px 24px 6px 24px; }
     .nav-item {
       display: flex; align-items: center; gap: 12px; padding: 12px 24px;
-      font-size: 13px; font-weight: 500; color: var(--text-main); cursor: pointer; transition: all 0.2s; border-left: 3px solid transparent;
+      font-size: 13px; font-weight: 500; color: #cbd5e1; cursor: pointer; transition: all 0.2s; border-left: 3px solid transparent;
     }
-    .nav-item:hover { background: rgba(56, 189, 248, 0.08); color: var(--primary); }
-    .nav-item.active { background: rgba(56, 189, 248, 0.12); color: var(--primary); font-weight: 700; border-left-color: var(--primary); }
+    .nav-item:hover { background: rgba(99, 102, 241, 0.08); color: var(--primary); }
+    .nav-item.active { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; font-weight: 700; border-left-color: var(--primary); }
     .nav-item input[type="checkbox"] { accent-color: var(--success); cursor: pointer; width: 16px; height: 16px; }
-
-    .btn-bonus-sidebar {
-      margin: 12px 24px 6px; padding: 12px; background: linear-gradient(135deg, #8b5cf6, #6366f1); color: #fff;
-      border: none; border-radius: 10px; font-weight: 800; font-size: 12px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3); transition: transform 0.2s;
-    }
-    .btn-bonus-sidebar:hover { transform: translateY(-2px); }
-
-    .btn-certificate {
-      margin: 10px 24px 24px; padding: 14px; background: linear-gradient(135deg, #059669, #10b981); color: #fff;
-      border: none; border-radius: 10px; font-weight: 800; font-size: 13px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); transition: transform 0.2s;
-    }
-    .btn-certificate:hover { transform: translateY(-2px); }
 
     /* Área Principal */
     main { margin-left: var(--sidebar-width); flex: 1; padding: 40px; max-width: 1050px; }
@@ -99,7 +86,7 @@
       border-radius: 16px;
       overflow: hidden;
       margin-bottom: 28px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
     .course-banner-img {
       width: 100%;
@@ -110,28 +97,30 @@
     }
 
     .module-container {
-      display: none; background: var(--card-bg); border: 1px solid var(--card-border);
-      border-radius: 16px; padding: 36px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      display: none; background: #111827; border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px; padding: 36px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
     .module-container.active { display: block; }
 
     .module-header-bar {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 24px; border-bottom: 1px solid var(--card-border); padding-bottom: 16px;
+      margin-bottom: 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 16px;
     }
 
     .badge-tag {
-      display: inline-block; background: rgba(56, 189, 248, 0.15); color: var(--primary);
-      font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px;
+      display: inline-block; background: rgba(129, 140, 248, 0.12); color: #a5b4fc;
+      font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(129, 140, 248, 0.2);
     }
 
     h2 { font-size: 26px; color: var(--text-main); margin-bottom: 16px; font-weight: 800; letter-spacing: -0.5px; }
-    h3 { font-size: 18px; color: var(--primary); margin: 24px 0 12px 0; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; }
+    h3 { font-size: 18px; color: #a5b4fc; margin: 24px 0 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 6px; }
     p { line-height: 1.8; color: var(--text-muted); margin-bottom: 16px; font-size: 15px; }
+    ul { margin-left: 20px; margin-bottom: 16px; color: var(--text-muted); line-height: 1.8; }
+    li { margin-bottom: 8px; }
 
     .content-photo-card {
-      background: #1f2937;
-      border: 1px solid var(--card-border);
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       overflow: hidden;
       margin: 20px 0;
@@ -146,19 +135,19 @@
       padding: 14px 18px;
       font-size: 13px;
       line-height: 1.6;
-      color: #d1d5db;
-      background: #111827;
-      border-top: 1px solid var(--card-border);
+      color: #cbd5e1;
+      background: #0f172a;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Estilos do Quiz Interativo Mod 1 (10 Perguntas) */
+    /* Estilos do Quiz Interativo Mod 1 */
     .interactive-quiz-card {
       background: #0f172a;
-      border: 1px solid #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 24px;
       margin-top: 28px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     }
     .quiz-meta-bar {
       display: flex;
@@ -168,7 +157,7 @@
       font-size: 13px;
       font-weight: 700;
       color: var(--text-muted);
-      border-bottom: 1px solid #1e293b;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding-bottom: 12px;
     }
     .quiz-meta-bar span strong { color: var(--primary); }
@@ -177,7 +166,7 @@
       border-radius: 12px;
       padding: 20px;
       margin-bottom: 20px;
-      border: 1px solid #334155;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .q-title {
       font-size: 16px;
@@ -200,9 +189,9 @@
       transition: all 0.2s ease;
     }
     .opt-btn:hover:not(:disabled) {
-      background: rgba(56, 189, 248, 0.15);
+      background: rgba(99, 102, 241, 0.15);
       border-color: var(--primary);
-      color: var(--primary);
+      color: #a5b4fc;
     }
     .opt-btn.correct {
       background: #064e3b !important;
@@ -224,14 +213,14 @@
     }
     .feedback-box.show-correct {
       display: block;
-      background: rgba(52, 211, 153, 0.15);
-      border: 1px solid #34d399;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
       color: #a7f3d0;
     }
     .feedback-box.show-incorrect {
       display: block;
-      background: rgba(248, 113, 113, 0.15);
-      border: 1px solid #f87171;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
       color: #fecaca;
     }
     .quiz-ctrls {
@@ -241,17 +230,18 @@
       margin-top: 20px;
     }
     .btn-action {
-      background: var(--primary);
-      color: #090d16;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #ffffff;
       border: none;
       padding: 10px 20px;
       border-radius: 8px;
       font-weight: 800;
       font-size: 13px;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
     }
-    .btn-action:hover { transform: translateY(-2px); background: var(--primary-hover); }
+    .btn-action:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4); }
     .btn-retry {
       background: #f59e0b;
       color: #090d16;
@@ -263,10 +253,6 @@
       cursor: pointer;
       display: none;
     }
-
-    /* Certificado e Botões Globais */
-    .btn-nav { background: var(--primary); color: #090d16; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; }
-    .btn-nav:hover { background: var(--primary-hover); }
   </style>
 </head>
 <body>
@@ -292,13 +278,10 @@
     <nav class="nav-list">
       <div class="module-group-title">Conteúdos Essenciais</div>
       <div class="nav-item active" onclick="switchModule('mod1', this)"><input type="checkbox" id="chk-mod1" onchange="updateProgress()"> 01. Fundamentos & Hardware/Software</div>
-      <div class="nav-item" onclick="switchModule('mod2', this)"><input type="checkbox" onchange="updateProgress()"> 02. Sistema Operacional (Windows/Linux)</div>
-      <div class="nav-item" onclick="switchModule('mod3', this)"><input type="checkbox" onchange="updateProgress()"> 03. Digitação & Periféricos</div>
-      <div class="nav-item" onclick="switchModule('mod4', this)"><input type="checkbox" onchange="updateProgress()"> 04. Microsoft Word / Google Docs</div>
-      <div class="nav-item" onclick="switchModule('mod5', this)"><input type="checkbox" onchange="updateProgress()"> 05. Microsoft Excel / Google Planilhas</div>
-      <div class="nav-item" onclick="switchModule('mod6', this)"><input type="checkbox" onchange="updateProgress()"> 06. PowerPoint / Google Apresentações</div>
-      <div class="nav-item" onclick="switchModule('mod7', this)"><input type="checkbox" onchange="updateProgress()"> 07. Internet, E-mail & Nuvem</div>
-      <div class="nav-item" onclick="switchModule('mod8', this)"><input type="checkbox" onchange="updateProgress()"> 08. Segurança da Informação</div>
+      <div class="nav-item" onclick="switchModule('mod2', this)"><input type="checkbox" onchange="updateProgress()"> 02. Noções de Hardware & Conhecimento do Aparelho</div>
+      <div class="nav-item" onclick="switchModule('mod3', this)"><input type="checkbox" onchange="updateProgress()"> 03. Sistema Operacional (Windows)</div>
+      <div class="nav-item" onclick="switchModule('mod4', this)"><input type="checkbox" onchange="updateProgress()"> 04. Pacote Office / Editores de Documentos</div>
+      <div class="nav-item" onclick="switchModule('mod5', this)"><input type="checkbox" onchange="updateProgress()"> 05. Internet e Segurança Digital</div>
     </nav>
   </aside>
 
@@ -351,6 +334,139 @@
           <button id="btn-next-q" class="btn-action" style="display:none;" onclick="nextQuestion()">Próxima Pergunta ➔</button>
         </div>
       </div>
+    </div>
+
+    <!-- UNIDADE 02 -->
+    <div id="mod2" class="module-container">
+      <div class="module-header-bar">
+        <span class="badge-tag">Unidade 02 • Componentes & Operação</span>
+      </div>
+      <h2>02. Noções de Hardware e Conhecimento do Aparelho</h2>
+
+      <h3>Componentes Físicos</h3>
+      <p>Entenda o papel de cada parte essencial que compõe a estrutura física de um computador:</p>
+      <ul>
+        <li><strong>CPU (Unidade Central de Processamento):</strong> Considerada o "cérebro" do computador, é responsável por processar dados e executar tarefas do sistema.</li>
+        <li><strong>Monitor:</strong> A tela responsável por exibir a interface visual e as respostas dos programas.</li>
+        <li><strong>Teclado e Mouse:</strong> Principais periféricos de entrada para digitação de textos e navegação por cliques.</li>
+        <li><strong>Computadores de Mesa (Desktop) vs. Notebooks:</strong> Desktops possuem componentes separados (gabinete, monitor, periféricos) e oferecem facilidade de manutenção. Notebooks integram todos os componentes em uma estrutura portátil única.</li>
+      </ul>
+
+      <h3>Operação Básica</h3>
+      <p>Aprenda o fluxo correto para garantir a durabilidade dos componentes e a integridade dos seus dados:</p>
+      <ul>
+        <li><strong>Ligar:</strong> Pressionar o botão de ligar (Power) no gabinete ou notebook.</li>
+        <li><strong>Desligar:</strong> Sempre utilize a opção "Desligar" do menu do sistema operacional para evitar a perda de arquivos e corrupção de dados.</li>
+        <li><strong>Reiniciar:</strong> Recomendado para aplicar atualizações ou resolver travamentos temporários de programas.</li>
+      </ul>
+
+      <h3>Uso de Periféricos</h3>
+      <p>Domine os comandos físicos essenciais no dia a dia:</p>
+      <ul>
+        <li><strong>Clique simples (botão esquerdo):</strong> Seleciona objetos, botões e arquivos.</li>
+        <li><strong>Clique duplo:</strong> Abre pastas, programas e arquivos.</li>
+        <li><strong>Clique com o botão direito:</strong> Exibe menus contextuais com opções rápidas (copiar, colar, renomear).</li>
+        <li><strong>Arrastar:</strong> Clique e segure para mover arquivos e seleções pela tela.</li>
+        <li><strong>Digitação:</strong> Utilização da postura adequada das mãos e conhecimento do teclado alfanumérico e numérico.</li>
+      </ul>
+    </div>
+
+    <!-- UNIDADE 03 -->
+    <div id="mod3" class="module-container">
+      <div class="module-header-bar">
+        <span class="badge-tag">Unidade 03 • Sistema Operacional</span>
+      </div>
+      <h2>03. Sistema Operacional (Windows)</h2>
+
+      <h3>Área de Trabalho (Desktop)</h3>
+      <p>Aprenda a gerenciar seu espaço de trabalho visual e organizar seus arquivos de forma eficiente:</p>
+      <ul>
+        <li>Organização visual de ícones e atalhos na tela principal.</li>
+        <li>Criação, organização e renomeação de pastas para categorizar seus documentos.</li>
+        <li>Gerenciamento de diretórios e navegação pelo Explorador de Arquivos.</li>
+      </ul>
+
+      <h3>Configurações</h3>
+      <p>Ajustes essenciais para a personalização e o bom desempenho da máquina:</p>
+      <ul>
+        <li>Criação e gerenciamento de contas de usuário.</li>
+        <li>Noções básicas de monitoramento de desempenho e gerenciamento de tarefas.</li>
+      </ul>
+
+      <h3>Ferramentas do Sistema & Atalhos</h3>
+      <p>Utilização dos utilitários nativos e comandos rápidos via teclado:</p>
+      <ul>
+        <li><strong>Bloco de Notas:</strong> Edição simples de textos sem formatação complexa.</li>
+        <li><strong>Paint:</strong> Edição e criação básica de imagens e capturas de tela.</li>
+        <li><strong>Atalhos Teclado Rápidos:</strong>
+          <ul>
+            <li><code>Ctrl + C</code>: Copiar seleção</li>
+            <li><code>Ctrl + V</code>: Colar seleção</li>
+            <li><code>Ctrl + X</code>: Recortar seleção</li>
+            <li><code>Ctrl + Z</code>: Desfazer última ação</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- UNIDADE 04 -->
+    <div id="mod4" class="module-container">
+      <div class="module-header-bar">
+        <span class="badge-tag">Unidade 04 • Produtividade</span>
+      </div>
+      <h2>04. Pacote Office / Editores de Documentos</h2>
+
+      <h3>Word (Editor de Textos)</h3>
+      <p>Crie e edite documentos profissionais com clareza e estrutura:</p>
+      <ul>
+        <li>Formatação completa de texto (fonte, tamanho, alinhamento, espaçamento e margens).</li>
+        <li>Elaboração de documentos administrativos, ofícios, cartas formais e currículos estruturados.</li>
+      </ul>
+
+      <h3>Excel (Planilhas Eletrônicas)</h3>
+      <p>Organize dados e automatize contas matemáticas:</p>
+      <ul>
+        <li>Criação de tabelas organizadas em linhas e colunas.</li>
+        <li>Aplicação de fórmulas e cálculos básicos (SOMA, SUBTRAÇÃO, MÉDIA).</li>
+        <li>Geração de gráficos visuais a partir de planilhas de dados.</li>
+      </ul>
+
+      <h3>PowerPoint (Apresentações)</h3>
+      <p>Desenvolva apresentações visuais atraentes:</p>
+      <ul>
+        <li>Montagem e estruturação de slides para reuniões ou trabalhos acadêmicos/escolares.</li>
+        <li>Inserção de textos, imagens, formas e transições de tela.</li>
+      </ul>
+    </div>
+
+    <!-- UNIDADE 05 -->
+    <div id="mod5" class="module-container">
+      <div class="module-header-bar">
+        <span class="badge-tag">Unidade 05 • Conectividade & Segurança</span>
+      </div>
+      <h2>05. Internet e Segurança Digital</h2>
+
+      <h3>Navegação na Web</h3>
+      <p>Aprenda a explorar a internet de maneira ágil e objetiva:</p>
+      <ul>
+        <li>Utilização de navegadores (Chrome, Edge, Firefox).</li>
+        <li>Realização de pesquisas refinadas em motores de busca como o Google.</li>
+      </ul>
+
+      <h3>Correio Eletrônico (E-mail)</h3>
+      <p>Comunicação formal e troca de arquivos na rede:</p>
+      <ul>
+        <li>Criação e configuração de contas de e-mail.</li>
+        <li>Envio, resposta, encaminhamento de mensagens e anexação de arquivos/documentos.</li>
+      </ul>
+
+      <h3>Segurança Digital</h3>
+      <p>Práticas fundamentais de proteção contra ameaças virtuais:</p>
+      <ul>
+        <li>Noções sobre vírus, malwares e identificação de golpes virtuais (phishing).</li>
+        <li>Criação e gerenciamento de senhas fortes e seguras.</li>
+        <li>Boas práticas para uma navegação protegida em redes públicas e privadas.</li>
+      </ul>
     </div>
 
   </main>
@@ -549,7 +665,7 @@
         // Fim do quiz
         document.getElementById('quiz-question-box').innerHTML = `
           <div style="text-align:center; padding: 20px;">
-            <h3 style="color:#34d399; font-size: 22px; margin-bottom: 12px;">🎉 Parabéns! Quiz Concluído!</h3>
+            <h3 style="color:#10b981; font-size: 22px; margin-bottom: 12px;">🎉 Parabéns! Quiz Concluído!</h3>
             <p>Você completou todas as 10 perguntas do primeiro vídeo com sucesso!</p>
             <button class="btn-action" style="margin-top:15px;" onclick="resetFullQuiz()">🔄 Refazer Todo o Quiz</button>
           </div>
@@ -574,5 +690,3 @@
   </script>
 </body>
 </html>
-
- 
