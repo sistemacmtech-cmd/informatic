@@ -118,59 +118,6 @@
     ul { margin-left: 20px; margin-bottom: 16px; color: var(--text-muted); line-height: 1.8; }
     li { margin-bottom: 8px; }
 
-    /* Estilo do Acordeão (Abrir ao Clicar) */
-    .pdf-accordion {
-      background: #0f172a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      margin: 20px 0;
-      overflow: hidden;
-    }
-    .pdf-accordion summary {
-      padding: 18px 24px;
-      font-size: 15px;
-      font-weight: 700;
-      color: #f8fafc;
-      background: #1e293b;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      user-select: none;
-      transition: background 0.2s;
-    }
-    .pdf-accordion summary:hover {
-      background: rgba(99, 102, 241, 0.15);
-      color: var(--primary);
-    }
-    .pdf-accordion-content {
-      padding: 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: #0f172a;
-    }
-
-    /* Tabelas estilizadas para a listagem de hardware */
-    .hardware-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0;
-      font-size: 14px;
-    }
-    .hardware-table th, .hardware-table td {
-      border: 1px solid #334155;
-      padding: 12px;
-      text-align: left;
-    }
-    .hardware-table th {
-      background: #1e293b;
-      color: #f8fafc;
-      font-weight: 700;
-    }
-    .hardware-table td {
-      color: var(--text-muted);
-      background: #0b0f19;
-    }
-
     .content-photo-card {
       background: #1e293b;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -193,7 +140,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Estilos do Quiz Interativo Mod 1 */
+    /* Estilos dos Quizzes Interativos */
     .interactive-quiz-card {
       background: #0f172a;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -331,7 +278,7 @@
     <nav class="nav-list">
       <div class="module-group-title">Conteúdos Essenciais</div>
       <div class="nav-item active" onclick="switchModule('mod1', this)"><input type="checkbox" id="chk-mod1" onchange="updateProgress()"> 01. Fundamentos & Hardware/Software</div>
-      <div class="nav-item" onclick="switchModule('mod2', this)"><input type="checkbox" onchange="updateProgress()"> 02. Noções de Hardware & Conhecimento do Aparelho</div>
+      <div class="nav-item" onclick="switchModule('mod2', this)"><input type="checkbox" id="chk-mod2" onchange="updateProgress()"> 02. Sistema Operacional & Exemplos Básicos de Informática</div>
       <div class="nav-item" onclick="switchModule('mod3', this)"><input type="checkbox" onchange="updateProgress()"> 03. Sistema Operacional (Windows)</div>
       <div class="nav-item" onclick="switchModule('mod4', this)"><input type="checkbox" onchange="updateProgress()"> 04. Pacote Office / Editores de Documentos</div>
       <div class="nav-item" onclick="switchModule('mod5', this)"><input type="checkbox" onchange="updateProgress()"> 05. Internet e Segurança Digital</div>
@@ -366,7 +313,7 @@
       <p><strong>Hardware:</strong> Refere-se a toda a parte física e tangível da máquina (Placa-Mãe, Processador, Memória RAM, SSD, teclado, mouse, impressora e webcam).</p>
       <p><strong>Software:</strong> Refere-se à parte lógica e intangível, composta pelos programas, sistemas e instruções que o computador executa (Windows, editores de texto, jogos).</p>
 
-      <!-- QUIZ INTERATIVO COMPLETO DO VÍDEO (10 PERGUNTAS COM RETRY) -->
+      <!-- QUIZ MÓDULO 1 -->
       <h3>Questionário de Avaliação e Fixação (10 Perguntas)</h3>
       <p style="font-size: 13px;">Responda às questões do vídeo abaixo. Se errar alguma questão, você pode tentar quantas vezes quiser até acertar!</p>
 
@@ -392,89 +339,43 @@
     <!-- UNIDADE 02 -->
     <div id="mod2" class="module-container">
       <div class="module-header-bar">
-        <span class="badge-tag">Unidade 02 • Componentes & Operação</span>
+        <span class="badge-tag">Unidade 02 • Sistema Operacional & Exemplos</span>
       </div>
-      <h2>02. Noções de Hardware e Conhecimento do Aparelho</h2>
-      <p>Clique abaixo para abrir o conteúdo completo da apostila oficial de introdução ao hardware:</p>
+      <h2>02. Sistema Operacional & Exemplos Básicos de Informática</h2>
+      <p>Compreenda o papel essencial do sistema operacional como ponte de comunicação e gerenciamento de recursos entre o hardware e o software.</p>
 
-      <!-- APOSTILA OCULTA QUE ABRE AO CLICAR -->
-      <details class="pdf-accordion">
-        <summary>📄 Abrir Apostila Oficial: Introdução ao Hardware <span>▼</span></summary>
-        <div class="pdf-accordion-content">
-          <p>Conceitos fundamentais da arquitetura de computadores e sistemas eletrônicos[span_0](start_span)[span_0](end_span).</p>
-          <p><strong>O que é Hardware?</strong><br>O hardware é a parte física de um aparelho eletrônico — tudo o que você consegue tocar, ver e manusear. Sem ele, o software (os programas e sistemas) não tem onde rodar; sem o software, o hardware é apenas um conjunto inerte de peças metálicas e plásticas[span_1](start_span)[span_1](end_span).</p>
+      <div class="content-photo-card">
+        <video controls poster="1000370246.jpg">
+          <source src="1000371738.mp4" type="video/mp4">
+          Seu navegador não suporta a exibição de vídeos em HTML5.
+        </video>
+        <div class="content-photo-caption"><strong>Módulo 02 - Vídeo Explicativo:</strong> O que é um sistema operacional, exemplos práticos e noções de informática básica.</div>
+      </div>
 
-          <h3>Principais Classificações do Hardware</h3>
-          <p>O hardware divide-se em categorias conforme a função que desempenha no aparelho[span_2](start_span)[span_2](end_span):</p>
+      <h3>O Papel do Sistema Operacional</h3>
+      <p>O sistema operacional é o programa mais importante executado ao ligar o computador, atuando como intermediário para traduzir linguagens e gerenciar os recursos de hardware (como memória RAM e processador) de forma segura e eficiente.</p>
 
-          <table class="hardware-table">
-            <thead>
-              <tr>
-                <th>Categoria</th>
-                <th>Função Principal</th>
-                <th>Exemplos</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Dispositivos de Entrada</strong></td>
-                <td>Enviam dados e comandos para dentro do aparelho[span_3](start_span)[span_3](end_span).</td>
-                <td>Teclado, mouse, microfone, scanner e webcam[span_4](start_span)[span_4](end_span).</td>
-              </tr>
-              <tr>
-                <td><strong>Dispositivos de Saída</strong></td>
-                <td>Exibem ou devolvem o resultado do processamento para o usuário[span_5](start_span)[span_5](end_span).</td>
-                <td>Monitor, alto-falantes e impressora[span_6](start_span)[span_6](end_span).</td>
-              </tr>
-              <tr>
-                <td><strong>Dispositivos Mistos (E/S)</strong></td>
-                <td>Realizam as duas funções simultaneamente ou alternadamente[span_7](start_span)[span_7](end_span).</td>
-                <td>Touchscreen, pendrive, SSD, HD e headset[span_8](start_span)[span_8](end_span).</td>
-              </tr>
-              <tr>
-                <td><strong>Processamento e Controle</strong></td>
-                <td>O "cérebro" do aparelho, responsável por calcular e gerenciar as ordens[span_9](start_span)[span_9](end_span).</td>
-                <td>Unidade Central de Processamento (CPU / Processador)[span_10](start_span)[span_10](end_span).</td>
-              </tr>
-              <tr>
-                <td><strong>Armazenamento</strong></td>
-                <td>Guardam dados de forma permanente ou temporária[span_11](start_span)[span_11](end_span).</td>
-                <td>Memória RAM (temporária), HD e SSD (permanentes)[span_12](start_span)[span_12](end_span).</td>
-              </tr>
-            </tbody>
-          </table>
+      <!-- QUIZ MÓDULO 2 -->
+      <h3>Questionário de Avaliação e Fixação - Vídeo 02 (10 Perguntas)</h3>
+      <p style="font-size: 13px;">Responda às questões sobre o segundo vídeo. Teste seus conhecimentos e pratique quantas vezes precisar!</p>
 
-          <h3>Como o Aparelho Funciona na Prática</h3>
-          <p>O fluxo básico de funcionamento de um dispositivo eletrônico segue quatro etapas interligadas[span_13](start_span)[span_13](end_span):</p>
-          <ul>
-            <li><strong>1. Entrada:</strong> Você digita uma tecla ou clica no mouse[span_14](start_span)[span_14](end_span).</li>
-            <li><strong>2. Processamento:</strong> O processador (CPU) recebe esse sinal elétrico e faz os cálculos necessários[span_15](start_span)[span_15](end_span).</li>
-            <li><strong>3. Armazenamento:</strong> Os dados podem ser guardados na memória RAM ou salvos no HD/SSD[span_16](start_span)[span_16](end_span).</li>
-            <li><strong>4. Saída:</strong> O resultado aparece no monitor ou em som nos alto-falantes[span_17](start_span)[span_17](end_span).</li>
-          </ul>
-
-          <h3>Exercício Prático de Fixação</h3>
-          <p><strong>Questão de Revisão:</strong> Qual é a diferença fundamental entre uma memória volátil (como a RAM) e uma unidade de armazenamento permanente (como o SSD) durante o fluxo operacional do computador?[span_18](start_span)[span_18](end_span)</p>
+      <div class="interactive-quiz-card">
+        <div class="quiz-meta-bar">
+          <span>Questão <strong id="q2-curr-num">1</strong> de <strong>10</strong></span>
+          <span>Acertos: <strong id="q2-score">0</strong>/10</span>
         </div>
-      </details>
 
-      <h3>Operação Básica</h3>
-      <p>Aprenda o fluxo correto para garantir a durabilidade dos componentes e a integridade dos seus dados:</p>
-      <ul>
-        <li><strong>Ligar:</strong> Pressionar o botão de ligar (Power) no gabinete ou notebook.</li>
-        <li><strong>Desligar:</strong> Sempre utilize a opção "Desligar" do menu do sistema operacional para evitar a perda de arquivos e corrupção de dados.</li>
-        <li><strong>Reiniciar:</strong> Recomendado para aplicar atualizações ou resolver travamentos temporários de programas.</li>
-      </ul>
+        <div id="quiz2-question-box" class="q-box">
+          <div class="q-title" id="q2-text">Carregando pergunta...</div>
+          <div class="opt-list" id="q2-options"></div>
+          <div id="q2-feedback" class="feedback-box"></div>
+        </div>
 
-      <h3>Uso de Periféricos</h3>
-      <p>Domine os comandos físicos essenciais no dia a dia:</p>
-      <ul>
-        <li><strong>Clique simples (botão esquerdo):</strong> Seleciona objetos, botões e arquivos.</li>
-        <li><strong>Clique duplo:</strong> Abre pastas, programas e arquivos.</li>
-        <li><strong>Clique com o botão direito:</strong> Exibe menus contextuais com opções rápidas (copiar, colar, renomear).</li>
-        <li><strong>Arrastar:</strong> Clique e segure para mover arquivos e seleções pela tela.</li>
-        <li><strong>Digitação:</strong> Utilização da postura adequada das mãos e conhecimento do teclado alfanumérico e numérico.</li>
-      </ul>
+        <div class="quiz-ctrls">
+          <button id="btn2-retry-q" class="btn-retry" onclick="retryQuestion2()">🔄 Tentar esta Pergunta Novamente</button>
+          <button id="btn2-next-q" class="btn-action" style="display:none;" onclick="nextQuestion2()">Próxima Pergunta ➔</button>
+        </div>
+      </div>
     </div>
 
     <!-- UNIDADE 03 -->
@@ -594,7 +495,7 @@
       document.getElementById('prog-pct').innerText = pct + '%';
     }
 
-    /* QUIZ COMPLETO - 10 PERGUNTAS DO VÍDEO COM PERMISSÃO DE REPETIÇÃO ILIMITADA */
+    /* QUIZ MÓDULO 1 */
     const videoQuizData = [
       {
         question: "1. De acordo com o vídeo, como o termo 'hardware' é definido no contexto de computadores?",
@@ -715,7 +616,7 @@
       const q = videoQuizData[currentQIdx];
       document.getElementById('q-curr-num').innerText = currentQIdx + 1;
       document.getElementById('q-text').innerText = q.question;
-     
+    
       const optContainer = document.getElementById('q-options');
       optContainer.innerHTML = '';
 
@@ -737,8 +638,8 @@
 
     function handleAnswer(selectedIdx) {
       const q = videoQuizData[currentQIdx];
-      const optButtons = document.querySelectorAll('.opt-btn');
-     
+      const optButtons = document.querySelectorAll('#mod1 .opt-btn');
+    
       optButtons.forEach(btn => btn.disabled = true);
 
       const fb = document.getElementById('q-feedback');
@@ -768,7 +669,6 @@
       if (currentQIdx < videoQuizData.length) {
         renderQuestion();
       } else {
-        // Fim do quiz
         document.getElementById('quiz-question-box').innerHTML = `
           <div style="text-align:center; padding: 20px;">
             <h3 style="color:#10b981; font-size: 22px; margin-bottom: 12px;">🎉 Parabéns! Quiz Concluído!</h3>
@@ -791,8 +691,208 @@
       renderQuestion();
     }
 
-    // Inicialização
+
+    /* QUIZ MÓDULO 2 (10 PERGUNTAS SOBRE O SEGUNDO VÍDEO) */
+    const videoQuizData2 = [
+      {
+        question: "1. O que o vídeo define como o software mais importante e essencial logo ao ligar o computador?",
+        options: [
+          "O navegador de internet",
+          "O editor de textos Word",
+          "O sistema operacional",
+          "O antivírus"
+        ],
+        correct: 2,
+        explanation: "O vídeo aponta o sistema operacional como o software mais importante e a principal ponte entre o usuário e a máquina."
+      },
+      {
+        question: "2. Como o sistema operacional é descrito em termos de sua função para o usuário?",
+        options: [
+          "Uma ponte que liga o usuário ao computador",
+          "Uma peça física de substituição da placa-mãe",
+          "Um cabo de rede de alta velocidade",
+          "Um dispositivo de armazenamento externo"
+        ],
+        correct: 0,
+        explanation: "O sistema operacional é entendido como uma ponte que liga o usuário ao computador."
+      },
+      {
+        question: "3. Qual é a função descrita para o sistema operacional em relação às linguagens?",
+        options: [
+          "Traduzir a linguagem do computador para uma linguagem que os humanos consigam entender",
+          "Traduzir apenas idiomas estrangeiros para o português",
+          "Imprimir documentos em formato PDF",
+          "Criar códigos de programação avançados automaticamente"
+        ],
+        correct: 0,
+        explanation: "Ele é responsável por traduzir a linguagem do computador em algo compreensível para os humanos, gerenciando recursos."
+      },
+      {
+        question: "4. Quais exemplos de sistemas operacionais para computadores pessoais são citados no vídeo?",
+        options: [
+          "Android e iOS",
+          "Windows, Linux e Mac OS",
+          "Google Chrome e Mozilla Firefox",
+          "Word, Excel e PowerPoint"
+        ],
+        correct: 1,
+        explanation: "O vídeo cita o Windows, o Linux e o Mac OS como sistemas operacionais para computadores pessoais."
+      },
+      {
+        question: "5. Quais sistemas operacionais móveis voltados para smartphones são mencionados no vídeo?",
+        options: [
+          "Windows Phone e MS-DOS",
+          "iOS e Android",
+          "Linux Ubuntu e Fedora",
+          "Mac OS e Windows 11"
+        ],
+        correct: 1,
+        explanation: "O vídeo menciona o iOS (Apple) e o Android (Google) para smartphones."
+      },
+      {
+        question: "6. Quais são os dois objetivos básicos fundamentais dos sistemas operacionais citados no vídeo?",
+        options: [
+          "Impressão e digitalização",
+          "Abstração e gerência de recursos",
+          "Formatação e particionamento",
+          "Navegação e segurança web"
+        ],
+        correct: 1,
+        explanation: "Os sistemas operacionais possuem dois objetivos básicos: abstração e gerência de recursos."
+      },
+      {
+        question: "7. O que o conceito de 'Abstração' resolve dentro do sistema operacional segundo o vídeo?",
+        options: [
+          "A grande variedade de hardwares diferentes no mercado (como múltiplos mouses, telas e teclados)",
+          "A falta de espaço no disco rígido",
+          "A lentidão da conexão com a internet",
+          "A quantidade de vírus no sistema"
+        ],
+        correct: 0,
+        explanation: "A abstração resolve o problema de lidar com a enorme variedade de hardwares diferentes existentes no mercado."
+      },
+      {
+        question: "8. Por que não é possível instalar o sistema operacional iOS da Apple em um celular da Samsung?",
+        options: [
+          "Porque o iOS é desenvolvido para uma configuração específica de hardware da Apple",
+          "Porque a bateria do celular Samsung iria descarregar",
+          "Porque o Android bloqueia qualquer outra instalação",
+          "Porque a tela da Samsung é sensível ao toque"
+        ],
+        correct: 0,
+        explanation: "O iOS é desenvolvido para uma configuração específica de hardware, o que impede sua instalação direta em hardwares diferentes."
+      },
+      {
+        question: "9. O que é o 'Driver' mencionado no vídeo?",
+        options: [
+          "Um programa antivírus",
+          "Um manual fornecido pelos desenvolvedores de hardware para que o sistema operacional entenda como ele funciona",
+          "O cabo de alimentação da fonte",
+          "Um jogo de corrida para computador"
+        ],
+        correct: 1,
+        explanation: "O driver é a espécie de manual fornecida pelos fabricantes de hardware para que o sistema operacional saiba operar o componente."
+      },
+      {
+        question: "10. Qual é a diferença na forma de trabalho entre o sistema operacional e aplicativos como o Word ou Excel?",
+        options: [
+          "O sistema operacional trabalha de forma assíncrona (ligado todo o tempo de uso), enquanto aplicativos são abertos e fechados conforme a necessidade",
+          "O Word gerencia a memória RAM e o sistema operacional digita textos",
+          "Não há diferença operacional entre eles",
+          "Os aplicativos rodam sem precisar de energia elétrica"
+        ],
+        correct: 0,
+        explanation: "O sistema operacional opera de forma contínua/assíncrona desde que o computador é ligado até ser desligado, diferentemente dos aplicativos específicos."
+      }
+    ];
+
+    let currentQ2Idx = 0;
+    let quiz2Score = 0;
+
+    function renderQuestion2() {
+      const q = videoQuizData2[currentQ2Idx];
+      document.getElementById('q2-curr-num').innerText = currentQ2Idx + 1;
+      document.getElementById('q2-text').innerText = q.question;
+    
+      const optContainer = document.getElementById('q2-options');
+      optContainer.innerHTML = '';
+
+      q.options.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'opt-btn';
+        btn.innerText = optText;
+        btn.onclick = () => handleAnswer2(idx);
+        optContainer.appendChild(btn);
+      });
+
+      const fb = document.getElementById('q2-feedback');
+      fb.className = 'feedback-box';
+      fb.style.display = 'none';
+
+      document.getElementById('btn2-retry-q').style.display = 'none';
+      document.getElementById('btn2-next-q').style.display = 'none';
+    }
+
+    function handleAnswer2(selectedIdx) {
+      const q = videoQuizData2[currentQ2Idx];
+      const optButtons = document.querySelectorAll('#mod2 .opt-btn');
+    
+      optButtons.forEach(btn => btn.disabled = true);
+
+      const fb = document.getElementById('q2-feedback');
+
+      if (selectedIdx === q.correct) {
+        optButtons[selectedIdx].classList.add('correct');
+        fb.className = 'feedback-box show-correct';
+        fb.innerHTML = `<strong>✨ Resposta Correta!</strong><br>${q.explanation}`;
+        quiz2Score++;
+        document.getElementById('q2-score').innerText = quiz2Score;
+        document.getElementById('btn2-next-q').style.display = 'inline-block';
+      } else {
+        optButtons[selectedIdx].classList.add('incorrect');
+        optButtons[q.correct].classList.add('correct');
+        fb.className = 'feedback-box show-incorrect';
+        fb.innerHTML = `<strong>❌ Resposta Incorreta!</strong><br>${q.explanation}<br><em>Não se preocupe! Clique no botão abaixo para tentar novamente esta pergunta.</em>`;
+        document.getElementById('btn2-retry-q').style.display = 'inline-block';
+      }
+    }
+
+    function retryQuestion2() {
+      renderQuestion2();
+    }
+
+    function nextQuestion2() {
+      currentQ2Idx++;
+      if (currentQ2Idx < videoQuizData2.length) {
+        renderQuestion2();
+      } else {
+        document.getElementById('quiz2-question-box').innerHTML = `
+          <div style="text-align:center; padding: 20px;">
+            <h3 style="color:#10b981; font-size: 22px; margin-bottom: 12px;">🎉 Parabéns! Quiz do Vídeo 02 Concluído!</h3>
+            <p>Você completou todas as 10 perguntas do segundo vídeo com sucesso!</p>
+            <button class="btn-action" style="margin-top:15px;" onclick="resetFullQuiz2()">🔄 Refazer Todo o Quiz</button>
+          </div>
+        `;
+        document.getElementById('btn2-next-q').style.display = 'none';
+        document.getElementById('btn2-retry-q').style.display = 'none';
+        document.getElementById('chk-mod2').checked = true;
+        updateProgress();
+      }
+    }
+
+    function resetFullQuiz2() {
+      currentQ2Idx = 0;
+      quiz2Score = 0;
+      document.getElementById('q2-score').innerText = 0;
+      document.getElementById('quiz2-question-box').className = 'q-box';
+      renderQuestion2();
+    }
+
+    // Inicialização dos Quizzes
     renderQuestion();
+    renderQuestion2();
   </script>
 </body>
 </html>
+
+ 
