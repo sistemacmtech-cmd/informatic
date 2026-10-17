@@ -118,6 +118,47 @@
     ul { margin-left: 20px; margin-bottom: 16px; color: var(--text-muted); line-height: 1.8; }
     li { margin-bottom: 8px; }
 
+    /* Estilo para exibição do material em PDF / Apostila */
+    .pdf-viewer-card {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    .pdf-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+    .pdf-title { font-size: 16px; font-weight: 700; color: #f8fafc; }
+    .pdf-badge { background: rgba(6, 182, 212, 0.15); color: #22d3ee; font-size: 11px; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(6, 182, 212, 0.3); }
+
+    /* Tabelas estilizadas para a listagem de hardware */
+    .hardware-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .hardware-table th, .hardware-table td {
+      border: 1px solid #334155;
+      padding: 12px;
+      text-align: left;
+    }
+    .hardware-table th {
+      background: #1e293b;
+      color: #f8fafc;
+      font-weight: 700;
+    }
+    .hardware-table td {
+      color: var(--text-muted);
+      background: #0b0f19;
+    }
+
     .content-photo-card {
       background: #1e293b;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -343,30 +384,86 @@
       </div>
       <h2>02. Noções de Hardware e Conhecimento do Aparelho</h2>
 
-      <h3>O que é Hardware?</h3>
-      <p>O hardware é a parte física de um aparelho eletrônico - tudo o que você consegue tocar, ver e manusear[span_2](start_span)[span_2](end_span). Sem ele, o software (os programas e sistemas) não tem onde rodar; sem o software, o hardware é apenas um conjunto inerte de peças metálicas e plásticas[span_3](start_span)[span_3](end_span).</p>
+      <!-- CARTÃO DE EXIBIÇÃO DA APOSTILA OFICIAL (PDF) -->
+      <div class="pdf-viewer-card">
+        <div class="pdf-header">
+          <span class="pdf-title">📄 Apostila Oficial: Introdução ao Hardware</span>
+          <span class="pdf-badge">Material de Apoio Integrado</span>
+        </div>
+        
+        <p>Conceitos fundamentais da arquitetura de computadores e sistemas eletrônicos[span_0](start_span)[span_0](end_span).</p>
+        <p><strong>O que é Hardware?</strong><br>O hardware é a parte física de um aparelho eletrônico — tudo o que você consegue tocar, ver e manusear. Sem ele, o software (os programas e sistemas) não tem onde rodar; sem o software, o hardware é apenas um conjunto inerte de peças metálicas e plásticas[span_1](start_span)[span_1](end_span).</p>
 
-      <h3>Principais Classificações do Hardware</h3>
-      <p>O hardware divide-se em categorias conforme a função que desempenha no aparelho[span_4](start_span)[span_4](end_span):</p>
+        <h3>Principais Classificações do Hardware</h3>
+        <p>O hardware divide-se em categorias conforme a função que desempenha no aparelho[span_2](start_span)[span_2](end_span):</p>
+
+        <table class="hardware-table">
+          <thead>
+            <tr>
+              <th>Categoria</th>
+              <th>Função Principal</th>
+              <th>Exemplos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Dispositivos de Entrada</strong></td>
+              <td>Enviam dados e comandos para dentro do aparelho[span_3](start_span)[span_3](end_span).</td>
+              <td>Teclado, mouse, microfone, scanner e webcam[span_4](start_span)[span_4](end_span).</td>
+            </tr>
+            <tr>
+              <td><strong>Dispositivos de Saída</strong></td>
+              <td>Exibem ou devolvem o resultado do processamento para o usuário[span_5](start_span)[span_5](end_span).</td>
+              <td>Monitor, alto-falantes e impressora[span_6](start_span)[span_6](end_span).</td>
+            </tr>
+            <tr>
+              <td><strong>Dispositivos Mistos (E/S)</strong></td>
+              <td>Realizam as duas funções simultaneamente ou alternadamente[span_7](start_span)[span_7](end_span).</td>
+              <td>Touchscreen, pendrive, SSD, HD e headset[span_8](start_span)[span_8](end_span).</td>
+            </tr>
+            <tr>
+              <td><strong>Processamento e Controle</strong></td>
+              <td>O "cérebro" do aparelho, responsável por calcular e gerenciar as ordens[span_9](start_span)[span_9](end_span).</td>
+              <td>Unidade Central de Processamento (CPU / Processador)[span_10](start_span)[span_10](end_span).</td>
+            </tr>
+            <tr>
+              <td><strong>Armazenamento</strong></td>
+              <td>Guardam dados de forma permanente ou temporária[span_11](start_span)[span_11](end_span).</td>
+              <td>Memória RAM (temporária), HD e SSD (permanentes)[span_12](start_span)[span_12](end_span).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Como o Aparelho Funciona na Prática</h3>
+        <p>O fluxo básico de funcionamento de um dispositivo eletrônico segue quatro etapas interligadas[span_13](start_span)[span_13](end_span):</p>
+        <ul>
+          <li><strong>1. Entrada:</strong> Você digita uma tecla ou clica no mouse[span_14](start_span)[span_14](end_span).</li>
+          <li><strong>2. Processamento:</strong> O processador (CPU) recebe esse sinal elétrico e faz os cálculos necessários[span_15](start_span)[span_15](end_span).</li>
+          <li><strong>3. Armazenamento:</strong> Os dados podem ser guardados na memória RAM ou salvos no HD/SSD[span_16](start_span)[span_16](end_span).</li>
+          <li><strong>4. Saída:</strong> O resultado aparece no monitor ou em som nos alto-falantes[span_17](start_span)[span_17](end_span).</li>
+        </ul>
+
+        <h3>Exercício Prático de Fixação</h3>
+        <p><strong>Questão de Revisão:</strong> Qual é a diferença fundamental entre uma memória volátil (como a RAM) e uma unidade de armazenamento permanente (como o SSD) durante o fluxo operacional do computador?[span_18](start_span)[span_18](end_span)</p>
+      </div>
+
+      <h3>Operação Básica</h3>
+      <p>Aprenda o fluxo correto para garantir a durabilidade dos componentes e a integridade dos seus dados:</p>
       <ul>
-        <li><strong>Dispositivos de Entrada:</strong> Enviam dados e comandos para dentro do aparelho. Exemplos: Teclado, mouse, microfone, scanner e webcam[span_5](start_span)[span_5](end_span).</li>
-        <li><strong>Dispositivos de Saída:</strong> Exibem ou devolvem o resultado do processamento para o usuário. Exemplos: Monitor, alto-falantes e impressora[span_6](start_span)[span_6](end_span).</li>
-        <li><strong>Dispositivos Mistos (E/S):</strong> Realizam as duas funções simultaneamente ou alternadamente. Exemplos: Touchscreen, pendrive, SSD, HD e headset[span_7](start_span)[span_7](end_span).</li>
-        <li><strong>Processamento e Controle:</strong> O "cérebro" do aparelho, responsável por calcular e gerenciar as ordens. Exemplos: Unidade Central de Processamento (CPU/Processador)[span_8](start_span)[span_8](end_span).</li>
-        <li><strong>Armazenamento:</strong> Guardam dados de forma permanente ou temporária. Exemplos: Memória RAM (temporária), HD e SSD (permanentes)[span_9](start_span)[span_9](end_span).</li>
+        <li><strong>Ligar:</strong> Pressionar o botão de ligar (Power) no gabinete ou notebook.</li>
+        <li><strong>Desligar:</strong> Sempre utilize a opção "Desligar" do menu do sistema operacional para evitar a perda de arquivos e corrupção de dados.</li>
+        <li><strong>Reiniciar:</strong> Recomendado para aplicar atualizações ou resolver travamentos temporários de programas.</li>
       </ul>
 
-      <h3>Como o Aparelho Funciona na Prática</h3>
-      <p>O fluxo básico de funcionamento de um dispositivo eletrônico segue quatro etapas interligadas[span_10](start_span)[span_10](end_span):</p>
+      <h3>Uso de Periféricos</h3>
+      <p>Domine os comandos físicos essenciais no dia a dia:</p>
       <ul>
-        <li><strong>1. Entrada:</strong> Você digita uma tecla ou clica no mouse[span_11](start_span)[span_11](end_span).</li>
-        <li><strong>2. Processamento:</strong> O processador (CPU) recebe esse sinal elétrico e faz os cálculos necessários[span_12](start_span)[span_12](end_span).</li>
-        <li><strong>3. Armazenamento:</strong> Os dados podem ser guardados na memória RAM ou salvos no HD/SSD[span_13](start_span)[span_13](end_span).</li>
-        <li><strong>4. Saída:</strong> O resultado aparece no monitor ou em som nos alto-falantes[span_14](start_span)[span_14](end_span).</li>
+        <li><strong>Clique simples (botão esquerdo):</strong> Seleciona objetos, botões e arquivos.</li>
+        <li><strong>Clique duplo:</strong> Abre pastas, programas e arquivos.</li>
+        <li><strong>Clique com o botão direito:</strong> Exibe menus contextuais com opções rápidas (copiar, colar, renomear).</li>
+        <li><strong>Arrastar:</strong> Clique e segure para mover arquivos e seleções pela tela.</li>
+        <li><strong>Digitação:</strong> Utilização da postura adequada das mãos e conhecimento do teclado alfanumérico e numérico.</li>
       </ul>
-
-      <h3>Exercício Prático de Fixação</h3>
-      <p><strong>Questão de Revisão:</strong> Qual é a diferença fundamental entre uma memória volátil (como a RAM) e uma unidade de armazenamento permanente (como o SSD) durante o fluxo operacional do computador?[span_15](start_span)[span_15](end_span)</p>
     </div>
 
     <!-- UNIDADE 03 -->
