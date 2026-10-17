@@ -158,9 +158,7 @@
       text-decoration: none;
       transition: background 0.2s;
     }
-    .btn-youtube-link:hover {
-      background: #dc2626;
-    }
+    .btn-youtube-link:hover { background: #dc2626; }
 
     .video-info-box {
       background: #0f172a;
@@ -169,10 +167,94 @@
       padding: 20px;
       margin-bottom: 24px;
     }
-    .video-info-box h4 {
-      color: #818cf8;
-      font-size: 16px;
-      margin-bottom: 10px;
+    .video-info-box h4 { color: #818cf8; font-size: 16px; margin-bottom: 10px; }
+
+    /* ESTILOS DO JOGO DE DIGITAÇÃO */
+    .typing-game-card {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .typing-options {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .mode-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .mode-btn:hover { background: rgba(99, 102, 241, 0.2); border-color: var(--primary); color: #fff; }
+    .mode-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+    .typing-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+    .stat-card .val { font-size: 24px; font-weight: 900; color: #a5b4fc; }
+    .stat-card .lbl { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+
+    .target-word-display {
+      background: #1e293b;
+      border: 2px dashed rgba(129, 140, 248, 0.3);
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+    .typing-input {
+      width: 100%;
+      background: #0f172a;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 18px;
+      color: #fff;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .typing-input:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(99, 102, 241, 0.3); }
+    .typing-input.correct { border-color: var(--success); background: rgba(16, 185, 129, 0.1); }
+    .typing-input.error { border-color: var(--danger); background: rgba(239, 68, 68, 0.1); }
+
+    .performance-badge {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 16px;
+      padding: 10px;
+      border-radius: 8px;
+      background: #161e2e;
+      color: #06b6d4;
     }
 
     /* Estilos dos Quizzes Interativos */
@@ -228,66 +310,21 @@
       border-color: var(--primary);
       color: #a5b4fc;
     }
-    .opt-btn.correct {
-      background: #064e3b !important;
-      border-color: #34d399 !important;
-      color: #a7f3d0 !important;
-    }
-    .opt-btn.incorrect {
-      background: #7f1d1d !important;
-      border-color: #f87171 !important;
-      color: #fecaca !important;
-    }
+    .opt-btn.correct { background: #064e3b !important; border-color: #34d399 !important; color: #a7f3d0 !important; }
+    .opt-btn.incorrect { background: #7f1d1d !important; border-color: #f87171 !important; color: #fecaca !important; }
     .feedback-box {
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      line-height: 1.6;
-      display: none;
+      margin-top: 16px; padding: 14px; border-radius: 8px; font-size: 13px; line-height: 1.6; display: none;
     }
-    .feedback-box.show-correct {
-      display: block;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid #10b981;
-      color: #a7f3d0;
-    }
-    .feedback-box.show-incorrect {
-      display: block;
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid #ef4444;
-      color: #fecaca;
-    }
-    .quiz-ctrls {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 20px;
-    }
+    .feedback-box.show-correct { display: block; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #a7f3d0; }
+    .feedback-box.show-incorrect { display: block; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #fecaca; }
+    .quiz-ctrls { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; }
     .btn-action {
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      color: #ffffff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 13px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; border: none; padding: 10px 20px;
+      border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
     }
     .btn-action:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4); }
-    .btn-retry {
-      background: #f59e0b;
-      color: #090d16;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 13px;
-      cursor: pointer;
-      display: none;
-    }
+    .btn-retry { background: #f59e0b; color: #090d16; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; display: none; }
   </style>
 </head>
 <body>
@@ -313,10 +350,11 @@
     <nav class="nav-list">
       <div class="module-group-title">Conteúdos Essenciais</div>
       <div class="nav-item active" onclick="switchModule('mod1', this)"><input type="checkbox" id="chk-mod1" onchange="updateProgress()"> 01. Fundamentos & Hardware/Software</div>
-      <div class="nav-item" onclick="switchModule('mod2', this)"><input type="checkbox" id="chk-mod2" onchange="updateProgress()"> 02. Sistema Operacional & Exemplos Básicos de Informática</div>
+      <div class="nav-item" onclick="switchModule('mod2', this)"><input type="checkbox" id="chk-mod2" onchange="updateProgress()"> 02. Sistema Operacional & Exemplos Básicos</div>
       <div class="nav-item" onclick="switchModule('mod3', this)"><input type="checkbox" onchange="updateProgress()"> 03. Sistema Operacional (Windows)</div>
       <div class="nav-item" onclick="switchModule('mod4', this)"><input type="checkbox" onchange="updateProgress()"> 04. Pacote Office / Editores de Documentos</div>
       <div class="nav-item" onclick="switchModule('mod5', this)"><input type="checkbox" onchange="updateProgress()"> 05. Internet e Segurança Digital</div>
+      <div class="nav-item" onclick="switchModule('mod6', this)"><input type="checkbox" id="chk-mod6" onchange="updateProgress()"> 06. Jogo Prático de Digitação & Desempenho</div>
     </nav>
   </aside>
 
@@ -430,7 +468,6 @@
         </div>
       </div>
 
-      <!-- Resumo sobre o conteúdo do vídeo do YouTube -->
       <div class="video-info-box">
         <h4>📌 O que você vai aprender neste vídeo:</h4>
         <p>Este tutorial em vídeo é um <strong>guia prático e completo voltado para iniciantes</strong> que desejam aprender a utilizar o sistema operacional Windows do zero. No vídeo, são abordados os seguintes tópicos centrais:</p>
@@ -532,6 +569,59 @@
         <li>Criação e gerenciamento de senhas fortes e seguras.</li>
         <li>Boas práticas para uma navegação protegida em redes públicas e privadas.</li>
       </ul>
+    </div>
+
+    <!-- UNIDADE 06: JOGO DE DIGITAÇÃO -->
+    <div id="mod6" class="module-container">
+      <div class="module-header-bar">
+        <span class="badge-tag">Unidade 06 • Treinamento Prático & Agilidade</span>
+      </div>
+      <h2>06. Jogo Funcional de Treinamento de Digitação</h2>
+      <p>Treine a sua velocidade, precisão e familiaridade com o teclado. Escolha o modo de jogo, digite a palavra ou frase exibida e receba sua pontuação e feedback de desempenho instantaneamente!</p>
+
+      <div class="typing-game-card">
+        <!-- Escolha de Modo -->
+        <div class="typing-options">
+          <button class="mode-btn active" onclick="setTypingMode('easy', this)">🌱 Modo Fácil (Palavras Básicas)</button>
+          <button class="mode-btn" onclick="setTypingMode('tech', this)">💻 Modo Médio (Hardware & TI)</button>
+          <button class="mode-btn" onclick="setTypingMode('phrases', this)">⚡ Modo Difícil (Frases & Atalhos)</button>
+        </div>
+
+        <!-- Painel de Estatísticas -->
+        <div class="typing-stats-grid">
+          <div class="stat-card">
+            <div class="val" id="tg-score">0</div>
+            <div class="lbl">Pontos</div>
+          </div>
+          <div class="stat-card">
+            <div class="val" id="tg-wpm">0</div>
+            <div class="lbl">Velocidade (PPM)</div>
+          </div>
+          <div class="stat-card">
+            <div class="val" id="tg-accuracy">100%</div>
+            <div class="lbl">Precisão</div>
+          </div>
+          <div class="stat-card">
+            <div class="val" id="tg-count">0</div>
+            <div class="lbl">Concluídas</div>
+          </div>
+        </div>
+
+        <!-- Exibição da Palavra/Frase Alvo -->
+        <div class="target-word-display" id="tg-target">Carregando jogo...</div>
+
+        <!-- Campo de Entrada -->
+        <input type="text" id="tg-input" class="typing-input" placeholder="Clique aqui e comece a digitar..." autocomplete="off" oninput="handleTypingInput()">
+
+        <!-- Badge de Desempenho e Feedback -->
+        <div class="performance-badge" id="tg-feedback">
+          💡 Status: Comece a digitar no campo acima para iniciar o teste de velocidade!
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <button class="btn-action" onclick="resetTypingGame()">🔄 Reiniciar Desafio de Digitação</button>
+        </div>
+      </div>
     </div>
 
   </main>
@@ -718,9 +808,7 @@
       }
     }
 
-    function retryQuestion() {
-      renderQuestion();
-    }
+    function retryQuestion() { renderQuestion(); }
 
     function nextQuestion() {
       currentQIdx++;
@@ -750,115 +838,65 @@
     }
 
 
-    /* QUIZ MÓDULO 2 (10 PERGUNTAS SOBRE O SEGUNDO VÍDEO) */
+    /* QUIZ MÓDULO 2 */
     const videoQuizData2 = [
       {
         question: "1. O que o vídeo define como o software mais importante e essencial logo ao ligar o computador?",
-        options: [
-          "O navegador de internet",
-          "O editor de textos Word",
-          "O sistema operacional",
-          "O antivírus"
-        ],
+        options: [ "O navegador de internet", "O editor de textos Word", "O sistema operacional", "O antivírus" ],
         correct: 2,
         explanation: "O vídeo aponta o sistema operacional como o software mais importante e a principal ponte entre o usuário e a máquina."
       },
       {
         question: "2. Como o sistema operacional é descrito em termos de sua função para o usuário?",
-        options: [
-          "Uma ponte que liga o usuário ao computador",
-          "Uma peça física de substituição da placa-mãe",
-          "Um cabo de rede de alta velocidade",
-          "Um dispositivo de armazenamento externo"
-        ],
+        options: [ "Uma ponte que liga o usuário ao computador", "Uma peça física de substituição da placa-mãe", "Um cabo de rede de alta velocidade", "Um dispositivo de armazenamento externo" ],
         correct: 0,
         explanation: "O sistema operacional é entendido como uma ponte que liga o usuário ao computador."
       },
       {
         question: "3. Qual é a função descrita para o sistema operacional em relação às linguagens?",
-        options: [
-          "Traduzir a linguagem do computador para uma linguagem que os humanos consigam entender",
-          "Traduzir apenas idiomas estrangeiros para o português",
-          "Imprimir documentos em formato PDF",
-          "Criar códigos de programação avançados automaticamente"
-        ],
+        options: [ "Traduzir a linguagem do computador para uma linguagem que os humanos consigam entender", "Traduzir apenas idiomas estrangeiros para o português", "Imprimir documentos em formato PDF", "Criar códigos de programação avançados automaticamente" ],
         correct: 0,
         explanation: "Ele é responsável por traduzir a linguagem do computador em algo compreensível para os humanos, gerenciando recursos."
       },
       {
         question: "4. Quais exemplos de sistemas operacionais para computadores pessoais são citados no vídeo?",
-        options: [
-          "Android e iOS",
-          "Windows, Linux e Mac OS",
-          "Google Chrome e Mozilla Firefox",
-          "Word, Excel e PowerPoint"
-        ],
+        options: [ "Android e iOS", "Windows, Linux e Mac OS", "Google Chrome e Mozilla Firefox", "Word, Excel e PowerPoint" ],
         correct: 1,
         explanation: "O vídeo cita o Windows, o Linux e o Mac OS como sistemas operacionais para computadores pessoais."
       },
       {
         question: "5. Quais sistemas operacionais móveis voltados para smartphones são mencionados no vídeo?",
-        options: [
-          "Windows Phone e MS-DOS",
-          "iOS e Android",
-          "Linux Ubuntu e Fedora",
-          "Mac OS e Windows 11"
-        ],
+        options: [ "Windows Phone e MS-DOS", "iOS e Android", "Linux Ubuntu e Fedora", "Mac OS e Windows 11" ],
         correct: 1,
         explanation: "O vídeo menciona o iOS (Apple) e o Android (Google) para smartphones."
       },
       {
         question: "6. Quais são os dois objetivos básicos fundamentais dos sistemas operacionais citados no vídeo?",
-        options: [
-          "Impressão e digitalização",
-          "Abstração e gerência de recursos",
-          "Formatação e particionamento",
-          "Navegação e segurança web"
-        ],
+        options: [ "Impressão e digitalização", "Abstração e gerência de recursos", "Formatação e particionamento", "Navegação e segurança web" ],
         correct: 1,
         explanation: "Os sistemas operacionais possuem dois objetivos básicos: abstração e gerência de recursos."
       },
       {
         question: "7. O que o conceito de 'Abstração' resolve dentro do sistema operacional segundo o vídeo?",
-        options: [
-          "A grande variedade de hardwares diferentes no mercado (como múltiplos mouses, telas e teclados)",
-          "A falta de espaço no disco rígido",
-          "A lentidão da conexão com a internet",
-          "A quantidade de vírus no sistema"
-        ],
+        options: [ "A grande variedade de hardwares diferentes no mercado (como múltiplos mouses, telas e teclados)", "A falta de espaço no disco rígido", "A lentidão da conexão com a internet", "A quantidade de vírus no sistema" ],
         correct: 0,
         explanation: "A abstração resolve o problema de lidar com a enorme variedade de hardwares diferentes existentes no mercado."
       },
       {
         question: "8. Por que não é possível instalar o sistema operacional iOS da Apple em um celular da Samsung?",
-        options: [
-          "Porque o iOS é desenvolvido para uma configuração específica de hardware da Apple",
-          "Porque a bateria do celular Samsung iria descarregar",
-          "Porque o Android bloqueia qualquer outra instalação",
-          "Porque a tela da Samsung é sensível ao toque"
-        ],
+        options: [ "Porque o iOS é desenvolvido para uma configuração específica de hardware da Apple", "Porque a bateria do celular Samsung iria descarregar", "Porque o Android bloqueia qualquer outra instalação", "Porque a tela da Samsung é sensível ao toque" ],
         correct: 0,
         explanation: "O iOS é desenvolvido para uma configuração específica de hardware, o que impede sua instalação direta em hardwares diferentes."
       },
       {
         question: "9. O que é o 'Driver' mencionado no vídeo?",
-        options: [
-          "Um programa antivírus",
-          "Um manual fornecido pelos desenvolvedores de hardware para que o sistema operacional entenda como ele funciona",
-          "O cabo de alimentação da fonte",
-          "Um jogo de corrida para computador"
-        ],
+        options: [ "Um programa antivírus", "Um manual fornecido pelos desenvolvedores de hardware para que o sistema operacional entenda como ele funciona", "O cabo de alimentação da fonte", "Um jogo de corrida para computador" ],
         correct: 1,
         explanation: "O driver é a espécie de manual fornecida pelos fabricantes de hardware para que o sistema operacional saiba operar o componente."
       },
       {
         question: "10. Qual é a diferença na forma de trabalho entre o sistema operacional e aplicativos como o Word ou Excel?",
-        options: [
-          "O sistema operacional trabalha de forma assíncrona (ligado todo o tempo de uso), enquanto aplicativos são abertos e fechados conforme a necessidade",
-          "O Word gerencia a memória RAM e o sistema operacional digita textos",
-          "Não há diferença operacional entre eles",
-          "Os aplicativos rodam sem precisar de energia elétrica"
-        ],
+        options: [ "O sistema operacional trabalha de forma assíncrona (ligado todo o tempo de uso), enquanto aplicativos são abertos e fechados conforme a necessidade", "O Word gerencia a memória RAM e o sistema operacional digita textos", "Não há diferença operacional entre eles", "Os aplicativos rodam sem precisar de energia elétrica" ],
         correct: 0,
         explanation: "O sistema operacional opera de forma contínua/assíncrona desde que o computador é ligado até ser desligado, diferentemente dos aplicativos específicos."
       }
@@ -915,9 +953,7 @@
       }
     }
 
-    function retryQuestion2() {
-      renderQuestion2();
-    }
+    function retryQuestion2() { renderQuestion2(); }
 
     function nextQuestion2() {
       currentQ2Idx++;
@@ -946,9 +982,141 @@
       renderQuestion2();
     }
 
-    // Inicialização dos Quizzes
+
+    /* LÓGICA DO JOGO DE DIGITAÇÃO (MÓDULO 06) */
+    const typingWordBanks = {
+      easy: [
+        "computador", "teclado", "mouse", "janela", "pasta", "sistema", "arquivo",
+        "internet", "programa", "aluno", "curso", "pratica", "tela", "dados"
+      ],
+      tech: [
+        "Processador", "Memoria RAM", "Placa-Mae", "Placa de Video", "Gabinete",
+        "Driver de Video", "Sistema Operacional", "Windows Eleven", "Rede Sem Fio",
+        "Antivirus", "Hardware", "Software", "Navegador Web"
+      ],
+      phrases: [
+        "Ctrl + C serve para copiar um texto selecionado.",
+        "O sistema operacional gerencia todos os recursos de hardware.",
+        "Segurança digital exige a criação de senhas fortes.",
+        "O Excel e uma ferramenta excelente para planilhas e relatorios.",
+        "Ctrl + Z desfaz a ultima acao realizada no sistema."
+      ]
+    };
+
+    let currentTypingMode = 'easy';
+    let currentTargetWord = '';
+    let tgScore = 0;
+    let tgCompletedCount = 0;
+    let tgTotalStrokes = 0;
+    let tgErrorStrokes = 0;
+    let tgStartTime = null;
+
+    function setTypingMode(mode, btnElement) {
+      currentTypingMode = mode;
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+      if(btnElement) btnElement.classList.add('active');
+      resetTypingGame();
+    }
+
+    function nextTypingTarget() {
+      const bank = typingWordBanks[currentTypingMode];
+      const randomIndex = Math.floor(Math.random() * bank.length);
+      currentTargetWord = bank[randomIndex];
+      document.getElementById('tg-target').innerText = currentTargetWord;
+      const inputEl = document.getElementById('tg-input');
+      inputEl.value = '';
+      inputEl.className = 'typing-input';
+    }
+
+    function handleTypingInput() {
+      const inputEl = document.getElementById('tg-input');
+      const val = inputEl.value;
+
+      if (!tgStartTime && val.length > 0) {
+        tgStartTime = new Date();
+      }
+
+      tgTotalStrokes++;
+
+      // Checa se a digitação até o momento está certa
+      if (currentTargetWord.startsWith(val)) {
+        inputEl.className = 'typing-input correct';
+      } else {
+        inputEl.className = 'typing-input error';
+        tgErrorStrokes++;
+      }
+
+      // Se completou a palavra/frase exatamente
+      if (val === currentTargetWord) {
+        tgScore += currentTargetWord.length * 10;
+        tgCompletedCount++;
+       
+        updateTypingStats();
+        nextTypingTarget();
+
+        if (tgCompletedCount >= 5) {
+          document.getElementById('chk-mod6').checked = true;
+          updateProgress();
+        }
+      } else {
+        updateTypingStats();
+      }
+    }
+
+    function updateTypingStats() {
+      document.getElementById('tg-score').innerText = tgScore;
+      document.getElementById('tg-count').innerText = tgCompletedCount;
+
+      // Precisão
+      let accuracy = 100;
+      if (tgTotalStrokes > 0) {
+        accuracy = Math.max(0, Math.round(((tgTotalStrokes - tgErrorStrokes) / tgTotalStrokes) * 100));
+      }
+      document.getElementById('tg-accuracy').innerText = accuracy + '%';
+
+      // Velocidade PPM (Palavras Por Minuto)
+      let wpm = 0;
+      if (tgStartTime) {
+        const elapsedMinutes = (new Date() - tgStartTime) / 60000;
+        if (elapsedMinutes > 0) {
+          wpm = Math.round((tgScore / 10) / elapsedMinutes);
+        }
+      }
+      document.getElementById('tg-wpm').innerText = wpm;
+
+      // Avaliação de Desempenho
+      const feedbackEl = document.getElementById('tg-feedback');
+      if (wpm < 15) {
+        feedbackEl.innerHTML = '🟢 <strong>Nível Iniciante:</strong> Continue praticando para ganhar mais agilidade nos dedos!';
+      } else if (wpm >= 15 && wpm < 35) {
+        feedbackEl.innerHTML = '⚡ <strong>Nível Bom:</strong> Sua velocidade está crescendo! Mantenha a precisão.';
+      } else if (wpm >= 35 && wpm < 55) {
+        feedbackEl.innerHTML = '🚀 <strong>Nível Avançado:</strong> Excelente ritmo de digitação! Você está quase um profissional.';
+      } else {
+        feedbackEl.innerHTML = '👑 <strong>Nível Mestre:</strong> Incrível! Você digita super rápido e com muita precisão!';
+      }
+    }
+
+    function resetTypingGame() {
+      tgScore = 0;
+      tgCompletedCount = 0;
+      tgTotalStrokes = 0;
+      tgErrorStrokes = 0;
+      tgStartTime = null;
+
+      document.getElementById('tg-score').innerText = '0';
+      document.getElementById('tg-wpm').innerText = '0';
+      document.getElementById('tg-accuracy').innerText = '100%';
+      document.getElementById('tg-count').innerText = '0';
+      document.getElementById('tg-feedback').innerHTML = '💡 Status: Comece a digitar no campo acima para iniciar o teste de velocidade!';
+
+      nextTypingTarget();
+    }
+
+    // Inicialização
     renderQuestion();
     renderQuestion2();
+    resetTypingGame();
   </script>
 </body>
 </html>
