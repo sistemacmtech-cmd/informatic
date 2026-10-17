@@ -118,42 +118,70 @@
     ul { margin-left: 20px; margin-bottom: 16px; color: var(--text-muted); line-height: 1.8; }
     li { margin-bottom: 8px; }
 
-    /* Botão de PDF Estilizado */
-    .pdf-download-card {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
-      border: 1px dashed var(--primary);
+    /* Pasta/Arquivo Virtual Interativo */
+    .folder-container-card {
+      background: #161e2e;
+      border: 1px solid rgba(129, 140, 248, 0.3);
       border-radius: 12px;
-      padding: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .folder-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
     }
-    .pdf-download-info h4 { color: #f8fafc; font-size: 15px; margin-bottom: 4px; }
-    .pdf-download-info p { font-size: 13px; margin: 0; color: var(--text-muted); }
-    .btn-pdf {
+    .folder-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .folder-title span { font-size: 20px; }
+    .btn-folder-action {
       background: linear-gradient(135deg, #6366f1, #06b6d4);
       color: #fff;
       border: none;
-      padding: 10px 18px;
+      padding: 8px 16px;
       border-radius: 8px;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      white-space: nowrap;
+      gap: 6px;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
     }
-    .btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5); }
+    .btn-folder-action:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); }
 
-    /* Estilos de Impressão Otimizados para PDF */
+    /* Janela Oculta de Visualização da Pasta/PDF */
+    .folder-viewer-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 20px;
+      display: none;
+      margin-top: 12px;
+    }
+    .folder-viewer-box.show { display: block; }
+    .folder-viewer-content {
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+    .folder-viewer-content h4 { color: var(--primary); margin-bottom: 10px; }
+    .folder-viewer-content ul { margin-top: 8px; margin-bottom: 12px; }
+
+    /* Estilos de Impressão/PDF Otimizados */
     @media print {
       body { background: #fff !important; color: #000 !important; display: block !important; }
-      aside, .course-banner-container, .interactive-quiz-card, .pdf-download-card, .module-header-bar { display: none !important; }
+      aside, .course-banner-container, .interactive-quiz-card, .folder-container-card, .module-header-bar { display: none !important; }
       .module-container { display: block !important; background: #fff !important; border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; width: 100% !important; }
       main { margin: 0 !important; padding: 20px !important; max-width: 100% !important; }
       h2 { color: #000 !important; font-size: 22px !important; border-bottom: 2px solid #333; padding-bottom: 8px; }
@@ -209,7 +237,7 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .opt-btn:hover:not(:disabled) {
+    .opt-btn.hover:not(:disabled) {
       background: rgba(99, 102, 241, 0.15);
       border-color: var(--primary);
       color: #a5b4fc;
@@ -364,45 +392,45 @@
       </div>
       <h2>02. Noções de Hardware e Conhecimento do Aparelho</h2>
 
-      <!-- CARTÃO COM BOTÃO PARA GERAR O PDF DO TEXTO EXPLICATIVO -->
-      <div class="pdf-download-card">
-        <div class="pdf-download-info">
-          <h4>📄 Apostila em PDF: Guia Completo de Hardware</h4>
-          <p>Clique para abrir o texto explicativo estruturado e salvá-lo em formato PDF.</p>
+      <!-- PASTA VIRTUAL DE MATERIAL (ZIP / PDF) -->
+      <div class="folder-container-card">
+        <div class="folder-header">
+          <div class="folder-title">
+            <span>📁</span> <span>Pasta de Materiais: Apostila_Hardware.zip / .pdf</span>
+          </div>
+          <div>
+            <button class="btn-folder-action" onclick="toggleFolderViewer()">📂 Abrir Conteúdo da Pasta</button>
+            <button class="btn-folder-action" onclick="window.print()" style="background: linear-gradient(135deg, #10b981, #059669);">📥 Baixar / Salvar PDF</button>
+          </div>
         </div>
-        <button class="btn-pdf" onclick="window.print()">📥 Abrir / Salvar em PDF</button>
+
+        <!-- Janela interna que abre o texto detalhado da pasta -->
+        <div id="folder-viewer" class="folder-viewer-box">
+          <div class="folder-viewer-content">
+            <h4>📄 Guia Detalhado de Hardware (Conteúdo Interno)</h4>
+            <p><strong>O hardware</strong> é a parte física de um aparelho eletrônico — tudo o que você consegue tocar, ver e manusear. Sem ele, o software (os programas e sistemas) não tem onde rodar; sem o software, o hardware é apenas um conjunto inerte de peças metálicas e plásticas.</p>
+            
+            <p><strong>Principais Classificações do Hardware:</strong></p>
+            <ul>
+              <li><strong>Dispositivos de Entrada:</strong> Enviam dados e comandos para dentro do aparelho (Ex: Teclado, mouse, microfone, scanner e webcam).</li>
+              <li><strong>Dispositivos de Saída:</strong> Exibem ou devolvem o resultado do processamento para o usuário (Ex: Monitor, alto-falantes e impressora).</li>
+              <li><strong>Dispositivos de Entrada e Saída (Misto):</strong> Realizam as duas funções simultaneamente ou alternadamente (Ex: Touchscreen, pendrive, SSD, HD e headset).</li>
+              <li><strong>Processamento e Controle:</strong> O "cérebro" do aparelho, responsável por calcular e gerenciar as ordens (Ex: CPU / Processador).</li>
+              <li><strong>Armazenamento:</strong> Guardam dados de forma permanente ou temporária (Ex: Memória RAM, HD e SSD).</li>
+            </ul>
+
+            <p><strong>Como o Aparelho Funciona na Prática (Fluxo de 4 etapas):</strong></p>
+            <ol style="margin-left: 20px; color: var(--text-muted);">
+              <li><strong>Entrada:</strong> Você digita uma tecla ou clica no mouse.</li>
+              <li><strong>Processamento:</strong> O processador (CPU) recebe o sinal elétrico e faz os cálculos necessários.</li>
+              <li><strong>Armazenamento:</strong> Os dados podem ser guardados na memória RAM ou salvos no HD/SSD.</li>
+              <li><strong>Saída:</strong> O resultado aparece no monitor ou em som nos alto-falantes.</li>
+            </ol>
+          </div>
+        </div>
       </div>
 
-      <p>O hardware é a parte física de um aparelho eletrônico — tudo o que você consegue tocar, ver e manusear. Sem ele, o software (os programas e sistemas) não tem onde rodar; sem o software, o hardware é apenas um conjunto inerte de peças metálicas e plásticas.</p>
-
-      <h3>Principais Classificações do Hardware</h3>
-      <p>O hardware divide-se em categorias conforme a função que desempenha no aparelho:</p>
-      <ul>
-        <li><strong>Dispositivos de Entrada:</strong> Enviam dados e comandos para dentro do aparelho.
-          <br><em>Exemplos: Teclado, mouse, microfone, scanner e webcam.</em>
-        </li>
-        <li><strong>Dispositivos de Saída:</strong> Exibem ou devolvem o resultado do processamento para o usuário.
-          <br><em>Exemplos: Monitor, alto-falantes e impressora.</em>
-        </li>
-        <li><strong>Dispositivos de Entrada e Saída (Misto):</strong> Realizam as duas funções simultaneamente ou alternadamente.
-          <br><em>Exemplos: Tela sensível ao toque (touchscreen), pendrive, SSD, HD e headset (fone + microfone).</em>
-        </li>
-        <li><strong>Processamento e Controle:</strong> O "cérebro" do aparelho, responsável por calcular e gerenciar as ordens.
-          <br><em>Exemplo: Unidade Central de Processamento (CPU / Processador).</em>
-        </li>
-        <li><strong>Armazenamento:</strong> Guardam dados de forma permanente ou temporária.
-          <br><em>Exemplos: Memória RAM (temporária/volátil), disco rígido (HD) e unidades de estado sólido (SSD) (permanentes).</em>
-        </li>
-      </ul>
-
-      <h3>Como o Aparelho Funciona na Prática</h3>
-      <p>O fluxo básico de funcionamento de um dispositivo eletrônico segue quatro etapas interligadas:</p>
-      <ul>
-        <li><strong>1. Entrada:</strong> Você digita uma tecla ou clica no mouse.</li>
-        <li><strong>2. Processamento:</strong> O processador (CPU) recebe esse sinal elétrico e faz os cálculos necessários.</li>
-        <li><strong>3. Armazenamento:</strong> Os dados podem ser guardados na memória RAM ou salvos no HD/SSD.</li>
-        <li><strong>4. Saída:</strong> O resultado aparece no monitor ou em som nos alto-falantes.</li>
-      </ul>
+      <p>O hardware é a estrutura tangível dos dispositivos. Abaixo encontram-se os tópicos práticos abordados nesta unidade:</p>
 
       <h3>Componentes Físicos & Operação</h3>
       <ul>
@@ -518,6 +546,11 @@
       document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
       document.getElementById(modId).classList.add('active');
       if(element) element.classList.add('active');
+    }
+
+    function toggleFolderViewer() {
+      const viewer = document.getElementById('folder-viewer');
+      viewer.classList.toggle('show');
     }
 
     function updateProgress() {
