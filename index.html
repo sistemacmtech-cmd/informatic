@@ -1,1259 +1,1609 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso de Informática | sistemacmtech</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tone Bass Pro Studio - Digital Audio Platform</title>
+    
+    <!-- Configurações PWA / Mobile Home Screen Icons & Ocultar Barra do Link/Navegador -->
+    <link rel="icon" type="image/jpeg" href="1000375071.jpg">
+    <link rel="apple-touch-icon" href="1000375071.jpg">
+    <meta name="theme-color" content="#0a0b0e">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ToneBassPro">
+    
+    <!-- Web App Manifest Incorporado (Inline Data URI for Standalone Mode) -->
+    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Tone%20Bass%20Pro%20Studio%22%2C%22short_name%22%3A%22ToneBassPro%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2308090c%22%2C%22theme_color%22%3A%22%230a0b0e%22%2C%22icons%22%3A%5B%7B%22src%22%3A%221000375071.jpg%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fjpeg%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
 
-  <link rel="manifest" href="data:application/manifest+json;charset=utf-8,{
-    &quot;name&quot;: &quot;Curso de Informática sistemacmtech;,
-    &quot;short_name&quot;: &quot;InfoEssencial&quot;,
-    &quot;start_url&quot;: &quot;.&quot;,
-    &quot;display&quot;: &quot;standalone&quot;,
-    &quot;background_color&quot;: &quot;#0b0f19&quot;,
-    &quot;theme_color&quot;: &quot;#6366f1&quot;
-  }">
-  <meta name="theme-color" content="#0b0f19">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg-dark: #0b0f19;
-      --card-bg: #111827;
-      --card-border: #1f2937;
-      --primary: #818cf8;
-      --primary-hover: #6366f1;
-      --accent: #06b6d4;
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --sidebar-width: 320px;
-    }
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#eab308',
+                            cyan: '#06b6d4',
+                            dark: '#0a0b0e',
+                            rack: '#12141a',
+                            panel: '#181b22',
+                            border: '#282d37',
+                            accent: '#3b82f6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-    body { background-color: var(--bg-dark); color: var(--text-main); display: flex; min-height: 100vh; }
+    <style>
+        body {
+            background-color: #08090c;
+            color: #e2e8f0;
+            user-select: none;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    /* Sidebar Lateral */
-    aside {
-      width: var(--sidebar-width);
-      background: #0f172a;
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      top: 0; bottom: 0; left: 0;
-      z-index: 100;
-      overflow-y: auto;
-    }
+        /* Metallic & Rack Panel Effects */
+        .rack-panel {
+            background: linear-gradient(180deg, #1c2029 0%, #111319 100%);
+            border: 1px solid #2a303d;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 10px 25px -5px rgba(0,0,0,0.8);
+        }
 
-    .brand {
-      padding: 24px;
-      background: linear-gradient(135deg, #4f46e5, #06b6d4);
-      color: #fff;
-    }
-    .brand h1 { font-size: 18px; font-weight: 800; line-height: 1.3; letter-spacing: -0.5px; }
-    .brand p { font-size: 12px; opacity: 0.9; margin-top: 6px; }
-    .instructor-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(0, 0, 0, 0.25); padding: 5px 12px;
-      border-radius: 20px; font-size: 11px; font-weight: 700; margin-top: 12px; backdrop-filter: blur(8px);
-    }
+        .sansamp-metal {
+            background: radial-gradient(circle at 50% 0%, #20242f 0%, #0d0f13 100%);
+            border: 2px solid #ca8a04;
+            box-shadow: inset 0 0 20px rgba(202, 138, 4, 0.15), 0 8px 30px rgba(0,0,0,0.9);
+        }
 
-    .progress-box { padding: 16px 24px; background: #161e2e; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-    .progress-info { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; }
-    .progress-bar { height: 8px; background: #1e293b; border-radius: 4px; overflow: hidden; }
-    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #6366f1, #10b981); transition: width 0.4s ease; }
+        .pedal-box {
+            background: linear-gradient(180deg, #181c24 0%, #0e1015 100%);
+            border: 1px solid #2b3240;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1);
+        }
 
-    .nav-list { padding: 12px 0; flex: 1; }
-    .module-group-title { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #64748b; padding: 14px 24px 6px 24px; }
-    .nav-item {
-      display: flex; align-items: center; gap: 12px; padding: 12px 24px;
-      font-size: 13px; font-weight: 500; color: #cbd5e1; cursor: pointer; transition: all 0.2s; border-left: 3px solid transparent;
-    }
-    .nav-item:hover { background: rgba(99, 102, 241, 0.08); color: var(--primary); }
-    .nav-item.active { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; font-weight: 700; border-left-color: var(--primary); }
-    .nav-item input[type="checkbox"] { accent-color: var(--success); cursor: pointer; width: 16px; height: 16px; }
+        /* Hardware Knobs */
+        .knob-wrapper {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
 
-    /* Área Principal */
-    main { margin-left: var(--sidebar-width); flex: 1; padding: 40px; max-width: 1050px; }
+        .knob {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #4b5263 0%, #1a1d24 70%, #0c0d10 100%);
+            border: 2px solid #090a0c;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.3);
+            cursor: pointer;
+            position: relative;
+            transform: rotate(-135deg);
+            transition: transform 0.05s ease-out;
+            touch-action: none;
+        }
 
-    .course-banner-container {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 28px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-    .course-banner-img {
-      width: 100%;
-      max-height: 380px;
-      object-fit: cover;
-      display: block;
-      background: #000;
-    }
+        .knob::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 12px;
+            background-color: #eab308;
+            border-radius: 2px;
+            box-shadow: 0 0 6px rgba(234, 179, 8, 0.9);
+        }
 
-    .module-container {
-      display: none; background: #111827; border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px; padding: 36px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    }
-    .module-container.active { display: block; }
+        .knob-cyan::after {
+            background-color: #06b6d4;
+            box-shadow: 0 0 6px rgba(6, 182, 212, 0.9);
+        }
 
-    .module-header-bar {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 16px;
-    }
+        .knob-silver::after {
+            background-color: #f3f4f6;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+        }
 
-    .badge-tag {
-      display: inline-block; background: rgba(129, 140, 248, 0.12); color: #a5b4fc;
-      font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(129, 140, 248, 0.2);
-    }
+        /* LED Indicator Lights */
+        .led-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #1a0000;
+            border: 1px solid #000;
+            transition: all 0.2s ease;
+        }
+        .led-indicator.active-amber {
+            background-color: #ffaa00;
+            box-shadow: 0 0 10px #ffaa00, inset 0 -1px 3px rgba(0,0,0,0.5);
+        }
+        .led-indicator.active-cyan {
+            background-color: #00f0ff;
+            box-shadow: 0 0 10px #00f0ff, inset 0 -1px 3px rgba(0,0,0,0.5);
+        }
+        .led-indicator.active-red {
+            background-color: #ff2222;
+            box-shadow: 0 0 12px #ff2222, inset 0 -1px 3px rgba(0,0,0,0.5);
+        }
+        .led-indicator.active-green {
+            background-color: #10b981;
+            box-shadow: 0 0 10px #10b981, inset 0 -1px 3px rgba(0,0,0,0.5);
+        }
 
-    h2 { font-size: 26px; color: var(--text-main); margin-bottom: 16px; font-weight: 800; letter-spacing: -0.5px; }
-    h3 { font-size: 18px; color: #a5b4fc; margin: 24px 0 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 6px; }
-    p { line-height: 1.8; color: var(--text-muted); margin-bottom: 16px; font-size: 15px; }
-    ul { margin-left: 20px; margin-bottom: 16px; color: var(--text-muted); line-height: 1.8; }
-    li { margin-bottom: 8px; }
+        /* Precision Meter Needle */
+        .vu-needle {
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 2px;
+            height: 58px;
+            background: #dc2626;
+            transform-origin: bottom center;
+            transform: rotate(-45deg);
+            transition: transform 0.06s ease-out;
+            box-shadow: 0 0 3px rgba(0,0,0,0.6);
+        }
 
-    .content-photo-card {
-      background: #1e293b;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 20px 0;
-    }
-    .content-photo-card video {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-      display: block;
-    }
-    .content-photo-caption {
-      padding: 14px 18px;
-      font-size: 13px;
-      line-height: 1.6;
-      color: #cbd5e1;
-      background: #0f172a;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+        /* Hardware Stomp Switch */
+        .stomp-switch {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #9ca3af 0%, #374151 70%, #111827 100%);
+            border: 3px solid #030712;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.8), inset 0 2px 3px rgba(255,255,255,0.7);
+            cursor: pointer;
+            transition: transform 0.05s, box-shadow 0.05s;
+        }
+        .stomp-switch:active {
+            transform: scale(0.92);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.9);
+        }
 
-    .btn-youtube-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #ef4444;
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .btn-youtube-link:hover { background: #dc2626; }
+        /* Custom EQ Fader Tracks */
+        .eq-fader-track {
+            position: relative;
+            width: 8px;
+            height: 150px;
+            background: #090b0e;
+            border-radius: 4px;
+            border: 1px solid #1f242e;
+            box-shadow: inset 0 0 6px #000;
+        }
 
-    .video-info-box {
-      background: #0f172a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 24px;
-    }
-    .video-info-box h4 { color: #818cf8; font-size: 16px; margin-bottom: 10px; }
+        .eq-fader-thumb {
+            position: absolute;
+            width: 26px;
+            height: 16px;
+            left: -9px;
+            background: linear-gradient(180deg, #4b5563 0%, #111827 100%);
+            border: 1px solid #6b7280;
+            border-radius: 3px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.3);
+            cursor: pointer;
+            touch-action: none;
+        }
+        .eq-fader-thumb::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #06b6d4;
+            transform: translateY(-50%);
+            box-shadow: 0 0 4px #06b6d4;
+        }
 
-    /* ESTILOS DO JOGO DE DIGITAÇÃO */
-    .typing-game-card {
-      background: #0f172a;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 28px;
-      margin-top: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-    .typing-options {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    .mode-btn {
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #cbd5e1;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .mode-btn:hover { background: rgba(99, 102, 241, 0.2); border-color: var(--primary); color: #fff; }
-    .mode-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
-
-    .typing-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-    .stat-card {
-      background: #1e293b;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      padding: 14px;
-      text-align: center;
-    }
-    .stat-card .val { font-size: 24px; font-weight: 900; color: #a5b4fc; }
-    .stat-card .lbl { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
-
-    .target-word-display {
-      background: #1e293b;
-      border: 2px dashed rgba(129, 140, 248, 0.3);
-      border-radius: 12px;
-      padding: 28px;
-      text-align: center;
-      font-size: 26px;
-      font-weight: 800;
-      color: #f8fafc;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-    }
-    .typing-input {
-      width: 100%;
-      background: #0f172a;
-      border: 2px solid #334155;
-      border-radius: 10px;
-      padding: 16px 20px;
-      font-size: 18px;
-      color: #fff;
-      outline: none;
-      transition: all 0.2s;
-    }
-    .typing-input:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(99, 102, 241, 0.3); }
-    .typing-input.correct { border-color: var(--success); background: rgba(16, 185, 129, 0.1); }
-    .typing-input.error { border-color: var(--danger); background: rgba(239, 68, 68, 0.1); }
-
-    .performance-badge {
-      text-align: center;
-      font-size: 14px;
-      font-weight: 700;
-      margin-top: 16px;
-      padding: 10px;
-      border-radius: 8px;
-      background: #161e2e;
-      color: #06b6d4;
-    }
-
-    /* ESTILOS DO CERTIFICADO COM MARCA D'ÁGUA */
-    .certificate-container {
-      background: linear-gradient(135deg, #fdfbf7 0%, #f4f1ea 100%);
-      color: #1e293b;
-      border: 14px double #3730a3;
-      border-radius: 16px;
-      padding: 50px 40px;
-      text-align: center;
-      position: relative;
-      margin-top: 24px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
-      overflow: hidden;
-    }
-
-    /* Marca d'água corporativa sistemacmtech */
-    .certificate-container::before {
-      content: "sistemacmtech";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-25deg);
-      font-size: 92px;
-      font-weight: 900;
-      color: rgba(79, 70, 229, 0.05);
-      white-space: nowrap;
-      pointer-events: none;
-      z-index: 0;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-    }
-
-    .certificate-content-wrapper {
-      position: relative;
-      z-index: 1;
-    }
-
-    .certificate-badge-seal {
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, #d97706, #b45309);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      margin: 0 auto 15px auto;
-      box-shadow: 0 4px 10px rgba(180, 83, 9, 0.4);
-      border: 3px solid #fef3c7;
-    }
-    .certificate-header h1 {
-      font-size: 28px;
-      color: #1e1b4b;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-weight: 900;
-      margin-bottom: 6px;
-    }
-    .certificate-header p {
-      font-size: 11px;
-      color: #475569;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 700;
-    }
-    .certificate-body {
-      margin: 35px 0;
-    }
-    .student-name-input {
-      border: none;
-      border-bottom: 3px solid #4f46e5;
-      font-size: 26px;
-      font-weight: 800;
-      color: #312e81;
-      text-align: center;
-      padding: 8px;
-      width: 85%;
-      outline: none;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 6px;
-      margin: 15px 0;
-    }
-    .cert-text {
-      font-size: 15px;
-      color: #334155;
-      line-height: 1.9;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .cert-signatures {
-      display: flex;
-      justify-content: center;
-      margin-top: 45px;
-      padding-top: 20px;
-    }
-    .sig-line {
-      border-top: 2px solid #64748b;
-      width: 320px;
-      padding-top: 8px;
-      font-size: 13px;
-      color: #0f172a;
-      font-weight: 700;
-      line-height: 1.6;
-      text-align: center;
-    }
-    .cert-footer-info {
-      margin-top: 40px;
-      font-size: 10px;
-      color: #475569;
-      border-top: 1px solid #cbd5e1;
-      padding-top: 14px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-weight: 600;
-    }
-
-    /* ESTILOS DE IMPRESSÃO CORRIGIDOS (A4 Paisagem Limpo) */
-    @media print {
-      body { background: #fff !important; color: #000 !important; }
-      aside, .course-banner-container, .module-header-bar, h2, p, button, input.student-name-input, label, .interactive-quiz-card, .typing-game-card { display: none !important; }
-      main { margin: 0 !important; padding: 0 !important; max-width: 100% !important; width: 100% !important; }
-      .module-container { display: none !important; border: none !important; box-shadow: none !important; background: transparent !important; padding: 0 !important; }
-      #mod7 { display: block !important; padding: 0 !important; margin: 0 !important; }
-      .certificate-container { border: 12px double #3730a3 !important; background: #fff !important; box-shadow: none !important; margin: 0 auto !important; width: 100% !important; max-width: 100% !important; page-break-inside: avoid; position: absolute; left: 0; top: 0; }
-    }
-
-    /* Estilos dos Quizzes Interativos */
-    .interactive-quiz-card {
-      background: #0f172a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 24px;
-      margin-top: 28px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    }
-    .quiz-meta-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-muted);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 12px;
-    }
-    .quiz-meta-bar span strong { color: var(--primary); }
-    .q-box {
-      background: #1e293b;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .q-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: #f8fafc;
-      margin-bottom: 16px;
-      line-height: 1.5;
-    }
-    .opt-list { display: flex; flex-direction: column; gap: 10px; }
-    .opt-btn {
-      background: #0f172a;
-      border: 1px solid #334155;
-      color: #e2e8f0;
-      padding: 12px 16px;
-      border-radius: 8px;
-      text-align: left;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .opt-btn:hover:not(:disabled) {
-      background: rgba(99, 102, 241, 0.15);
-      border-color: var(--primary);
-      color: #a5b4fc;
-    }
-    .opt-btn.correct { background: #064e3b !important; border-color: #34d399 !important; color: #a7f3d0 !important; }
-    .opt-btn.incorrect { background: #7f1d1d !important; border-color: #f87171 !important; color: #fecaca !important; }
-    .feedback-box {
-      margin-top: 16px; padding: 14px; border-radius: 8px; font-size: 13px; line-height: 1.6; display: none;
-    }
-    .feedback-box.show-correct { display: block; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #a7f3d0; }
-    .feedback-box.show-incorrect { display: block; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #fecaca; }
-    .quiz-ctrls { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; }
-    .btn-action {
-      background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; border: none; padding: 10px 20px;
-      border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    }
-    .btn-action:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4); }
-    .btn-retry { background: #f59e0b; color: #090d16; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; display: none; }
-  </style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #08090c; }
+        ::-webkit-scrollbar-thumb { background: #1e232d; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2e3545; }
+    </style>
 </head>
-<body>
 
-  <!-- Sidebar Lateral -->
-  <aside>
-    <div class="brand">
-      <h1>Informática basica sistemacmtech</h1>
-      <p>Formação Completa de Base Digital</p>
-      <div class="instructor-badge">⚡ sistemacmtech</div>
-    </div>
+<body class="min-h-screen flex flex-col font-sans antialiased text-slate-200">
 
-    <div class="progress-box">
-      <div class="progress-info">
-        <span>Progresso das Aulas</span>
-        <span id="prog-pct">0%</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="prog-bar"></div>
-      </div>
-    </div>
-
-    <nav class="nav-list">
-      <div class="module-group-title">Conteúdos Essenciais</div>
-      <div class="nav-item active" onclick="switchModule('mod1', this)"><input type="checkbox" id="chk-mod1" onchange="updateProgress()"> 01. Fundamentos & Hardware/Software</div>
-      <div class="nav-item" onclick="switchModule('mod2', this)"><input type="checkbox" id="chk-mod2" onchange="updateProgress()"> 02. Sistema Operacional & Exemplos Básicos</div>
-      <div class="nav-item" onclick="switchModule('mod3', this)"><input type="checkbox" onchange="updateProgress()"> 03. Sistema Operacional (Windows)</div>
-      <div class="nav-item" onclick="switchModule('mod4', this)"><input type="checkbox" onchange="updateProgress()"> 04. Pacote Office / Editores de Documentos</div>
-      <div class="nav-item" onclick="switchModule('mod5', this)"><input type="checkbox" onchange="updateProgress()"> 05. Internet e Segurança Digital</div>
-      <div class="nav-item" onclick="switchModule('mod6', this)"><input type="checkbox" id="chk-mod6" onchange="updateProgress()"> 06. Jogo Prático de Digitação & Desempenho</div>
-      <div class="nav-item" onclick="switchModule('mod7', this)"><input type="checkbox" id="chk-mod7" onchange="updateProgress()"> 🎓 Certificado do Curso</div>
-    </nav>
-  </aside>
-
-  <!-- Conteúdo Principal -->
-  <main>
-
-    <!-- CAPA DO CURSO -->
-    <div class="course-banner-container">
-      <img id="course-cover-img" src="1000370246.jpg" class="course-banner-img" alt="Capa Oficial do Curso de Informática">
-    </div>
-
-    <!-- UNIDADE 01 -->
-    <div id="mod1" class="module-container active">
-      <div class="module-header-bar">
-        <span class="badge-tag">Unidade 01 • Teoria & Prática no Computador</span>
-      </div>
-      <h2>01. Fundamentos e Hardware/Software</h2>
-      <p>Compreenda o funcionamento físico e lógico do computador para operar a máquina com segurança e diagnosticar o ambiente de trabalho.</p>
-
-      <div class="content-photo-card">
-        <video controls poster="1000370246.jpg">
-          <source src="fundamentos_hardware_software.mp4" type="video/mp4">
-          Seu navegador não suporta a exibição de vídeos em HTML5.
-        </video>
-        <div class="content-photo-caption"><strong>Módulo 01 - Vídeo Explicativo:</strong> Fundamentos, Hardware, Software e o conceito da parte física e lógica do computador.</div>
-      </div>
-
-      <h3>Diferença entre Hardware e Software</h3>
-      <p><strong>Hardware:</strong> Refere-se à toda a parte física e tangível da máquina (Placa-Mãe, Processador, Memória RAM, SSD, teclado, mouse, impressora e webcam).</p>
-      <p><strong>Software:</strong> Refere-se à parte lógica e intangível, composta pelos programas, sistemas e instruções que o computador executa (Windows, editores de texto, jogos).</p>
-
-      <!-- QUIZ MÓDULO 1 -->
-      <h3>Questionário de Avaliação e Fixação (10 Perguntas)</h3>
-      <p style="font-size: 13px;">Responda às questões do vídeo abaixo. Se errar alguma questão, você pode tentar quantas vezes quiser até acertar!</p>
-
-      <div class="interactive-quiz-card">
-        <div class="quiz-meta-bar">
-          <span>Questão <strong id="q-curr-num">1</strong> de <strong>10</strong></span>
-          <span>Acertos: <strong id="q-score">0</strong>/10</span>
-        </div>
-
-        <div id="quiz-question-box" class="q-box">
-          <div class="q-title" id="q-text">Carregando pergunta...</div>
-          <div class="opt-list" id="q-options"></div>
-          <div id="q-feedback" class="feedback-box"></div>
-        </div>
-
-        <div class="quiz-ctrls">
-          <button id="btn-retry-q" class="btn-retry" onclick="retryQuestion()">🔄 Tentar esta Pergunta Novamente</button>
-          <button id="btn-next-q" class="btn-action" style="display:none;" onclick="nextQuestion()">Próxima Pergunta ➔</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- UNIDADE 02 -->
-    <div id="mod2" class="module-container">
-      <div class="module-header-bar">
-        <span class="badge-tag">Unidade 02 • Sistema Operacional & Exemplos</span>
-      </div>
-      <h2>02. Sistema Operacional & Exemplos Básicos de Informática</h2>
-      <p>Compreenda o papel essencial do sistema operacional como ponte de comunicação e gerenciamento de recursos entre o hardware e o software.</p>
-
-      <div class="content-photo-card">
-        <video controls poster="1000370246.jpg">
-          <source src="1000371738.mp4" type="video/mp4">
-          Seu navegador não suporta a exibição de vídeos em HTML5.
-        </video>
-        <div class="content-photo-caption"><strong>Módulo 02 - Vídeo Explicativo:</strong> O que é um sistema operacional, exemplos práticos e noções de informática básica.</div>
-      </div>
-
-      <h3>O Papel do Sistema Operacional</h3>
-      <p>O sistema operacional é o programa mais importante executado ao ligar o computador, atuando como intermediário para traduzir linguagens e gerenciar os recursos de hardware (como memória RAM e processador) de forma segura e eficiente.</p>
-
-      <!-- QUIZ MÓDULO 2 -->
-      <h3>Questionário de Avaliação e Fixação - Vídeo 02 (10 Perguntas)</h3>
-      <p style="font-size: 13px;">Responda às questões sobre o segundo vídeo. Teste seus conhecimentos e pratique quantas vezes precisar!</p>
-
-      <div class="interactive-quiz-card">
-        <div class="quiz-meta-bar">
-          <span>Questão <strong id="q2-curr-num">1</strong> de <strong>10</strong></span>
-          <span>Acertos: <strong id="q2-score">0</strong>/10</span>
-        </div>
-
-        <div id="quiz2-question-box" class="q-box">
-          <div class="q-title" id="q2-text">Carregando pergunta...</div>
-          <div class="opt-list" id="q2-options"></div>
-          <div id="q2-feedback" class="feedback-box"></div>
-        </div>
-
-        <div class="quiz-ctrls">
-          <button id="btn2-retry-q" class="btn-retry" onclick="retryQuestion2()">🔄 Tentar esta Pergunta Novamente</button>
-          <button id="btn2-next-q" class="btn-action" style="display:none;" onclick="nextQuestion2()">Próxima Pergunta ➔</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- UNIDADE 03 -->
-    <div id="mod3" class="module-container">
-      <div class="module-header-bar">
-        <span class="badge-tag">Unidade 03 • Sistema Operacional</span>
-      </div>
-      <h2>03. Sistema Operacional (Windows)</h2>
-
-      <div class="content-photo-card">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
-          <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" src="https://www.youtube.com/embed/RuRexm2367A" title="Aprenda a usar o Windows para INICIANTES" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="content-photo-caption">
-          <span><strong>Vídeo da Aula:</strong> Aprenda a usar o Windows para INICIANTES</span>
-          <a href="https://youtu.be/RuRexm2367A?is=EcH408szbevpCN1V" target="_blank" class="btn-youtube-link">▶ Assistir no YouTube</a>
-        </div>
-      </div>
-
-      <div class="video-info-box">
-        <h4>📌 O que você vai aprender neste vídeo:</h4>
-        <p>Este tutorial em vídeo é um <strong>guia prático e completo voltado para iniciantes</strong> que desejam aprender a utilizar o sistema operacional Windows do zero. No vídeo, são abordados os seguintes tópicos centrais:</p>
-        <ul>
-          <li><strong>Primeiros Passos:</strong> Conhecendo a Área de Trabalho (Desktop), a Barra de Tarefas e o Menu Iniciar.</li>
-          <li><strong>Navegação de Arquivos:</strong> Como abrir e utilizar o Explorador de Arquivos para localizar pastas, fotos e documentos.</li>
-          <li><strong>Gerenciamento de Pastas:</strong> Como criar novas pastas, renomear arquivos, copiar, colar e organizar seus documentos.</li>
-          <li><strong>Ferramentas Nativa do Windows:</strong> Apresentação das principais ferramentas e aplicativos que já vêm embutidos no sistema.</li>
-          <li><strong>Dicas Práticas:</strong> Utilização de atalhos e comandos para facilitar o uso diário do computador com agilidade e simplicidade.</li>
-        </ul>
-      </div>
-
-      <h3>Área de Trabalho (Desktop)</h3>
-      <p>Aprenda a gerenciar seu espaço de trabalho visual e organizar seus arquivos de forma eficiente:</p>
-      <ul>
-        <li>Organização visual de ícones e atalhos na tela principal.</li>
-        <li>Criação, organização e renomeação de pastas para categorizar seus documentos.</li>
-        <li>Gerenciamento de diretórios e navegação pelo Explorador de Arquivos.</li>
-      </ul>
-
-      <h3>Configurações</h3>
-      <p>Ajustes essenciais para a personalização e o bom desempenho da máquina:</p>
-      <ul>
-        <li>Criação e gerenciamento de contas de usuário.</li>
-        <li>Noções básicas de monitoramento de desempenho e gerenciamento de tarefas.</li>
-      </ul>
-
-      <h3>Ferramentas do Sistema & Atalhos</h3>
-      <p>Utilização dos utilitários nativos e comandos rápidos via teclado:</p>
-      <ul>
-        <li><strong>Bloco de Notas:</strong> Edição simples de textos sem formatação complexa.</li>
-        <li><strong>Paint:</strong> Edição e criação básica de imagens e capturas de tela.</li>
-        <li><strong>Atalhos Teclado Rápidos:</strong>
-          <ul>
-            <li><code>Ctrl + C</code>: Copiar seleção</li>
-            <li><code>Ctrl + V</code>: Colar seleção</li>
-            <li><code>Ctrl + X</code>: Recortar seleção</li>
-            <li><code>Ctrl + Z</code>: Desfazer última ação</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
-    <!-- UNIDADE 04 -->
-    <div id="mod4" class="module-container">
-      <div class="module-header-bar">
-        <span class="badge-tag">Unidade 04 • Produtividade</span>
-      </div>
-      <h2>04. Pacote Office / Editores de Documentos</h2>
-
-      <h3>Word (Editor de Textos)</h3>
-      <p>Crie e edite documentos profissionais com clareza e estrutura:</p>
-      <ul>
-        <li>Formatação completa de texto (fonte, tamanho, alinhamento, espaçamento e margens).</li>
-        <li>Elaboração de documentos administrativos, ofícios, cartas formais e currículos estruturados.</li>
-      </ul>
-
-      <h3>Excel (Planilhas Eletrônicas)</h3>
-      <p>Organize dados e automatize contas matemáticas:</p>
-      <ul>
-        <li>Criação de tabelas organizadas em linhas e colunas.</li>
-        <li>Aplicação de fórmulas e cálculos básicos (SOMA, SUBTRAÇÃO, MÉDIA).</li>
-        <li>Geração de gráficos visuais a partir de planilhas de dados.</li>
-      </ul>
-
-      <h3>PowerPoint (Apresentações)</h3>
-      <p>Desenvolva apresentações visuais atraentes:</p>
-      <ul>
-        <li>Montagem e estruturação de slides para reuniões ou trabalhos acadêmicos/escolares.</li>
-        <li>Inserção de textos, imagens, formas e transições de tela.</li>
-      </ul>
-    </div>
-
-    <!-- UNIDADE 05 -->
-    <div id="mod5" class="module-container">
-      <div class="module-header-bar">
-        <span class="badge-tag">Unidade 05 • Conectividade & Segurança</span>
-      </div>
-      <h2>05. Internet e Segurança Digital</h2>
-
-      <h3>Navegação na Web</h3>
-      <p>Aprenda a explorar a internet de maneira ágil e objetiva:</p>
-      <ul>
-        <li>Utilização de navegadores (Chrome, Edge, Firefox).</li>
-        <li>Realização de pesquisas refinadas em motores de busca como o Google.</li>
-      </ul>
-
-      <h3>Correio Eletrônico (E-mail)</h3>
-      <p>Comunicação formal e troca de arquivos na rede:</p>
-      <ul>
-        <li>Criação e configuração de contas de e-mail.</li>
-        <li>Envio, resposta, encaminhamento de mensagens e anexação de arquivos/documentos.</li>
-      </ul>
-
-      <h3>Segurança Digital</h3>
-      <p>Práticas fundamentais de proteção contra ameaças virtuais:</p>
-      <ul>
-        <li>Noções sobre vírus, malwares e identificação de golpes virtuais (phishing).</li>
-        <li>Criação e gerenciamento de senhas fortes e seguras.</li>
-        <li>Boas práticas para uma navegação protegida em redes públicas e privadas.</li>
-      </ul>
-    </div>
-
-    <!-- UNIDADE 06: JOGO DE DIGITAÇÃO -->
-    <div id="mod6" class="module-container">
-      <div class="module-header-bar">
-        <span class="badge-tag">Unidade 06 • Treinamento Prático & Agilidade</span>
-      </div>
-      <h2>06. Jogo Funcional de Treinamento de Digitação</h2>
-      <p>Treine a sua velocidade, precisão e familiaridade com o teclado. Escolha o modo de jogo, digite a palavra ou frase exibida e receba sua pontuação e feedback de desempenho instantaneamente!</p>
-
-      <div class="typing-game-card">
-        <div class="typing-options">
-          <button class="mode-btn active" onclick="setTypingMode('easy', this)">🌱 Modo Fácil (Palavras Básicas)</button>
-          <button class="mode-btn" onclick="setTypingMode('tech', this)">💻 Modo Médio (Hardware & TI)</button>
-          <button class="mode-btn" onclick="setTypingMode('phrases', this)">⚡ Modo Difícil (Frases & Atalhos)</button>
-        </div>
-
-        <div class="typing-stats-grid">
-          <div class="stat-card">
-            <div class="val" id="tg-score">0</div>
-            <div class="lbl">Pontos</div>
-          </div>
-          <div class="stat-card">
-            <div class="val" id="tg-wpm">0</div>
-            <div class="lbl">Velocidade (PPM)</div>
-          </div>
-          <div class="stat-card">
-            <div class="val" id="tg-accuracy">100%</div>
-            <div class="lbl">Precisão</div>
-          </div>
-          <div class="stat-card">
-            <div class="val" id="tg-count">0</div>
-            <div class="lbl">Concluídas</div>
-          </div>
-        </div>
-
-        <div class="target-word-display" id="tg-target">Carregando jogo...</div>
-
-        <input type="text" id="tg-input" class="typing-input" placeholder="Clique aqui e comece a digitar..." autocomplete="off" oninput="handleTypingInput()">
-
-        <div class="performance-badge" id="tg-feedback">
-          💡 Status: Comece a digitar no campo acima para iniciar o teste de velocidade!
-        </div>
-
-        <div style="text-align: center; margin-top: 20px;">
-          <button class="btn-action" onclick="resetTypingGame()">🔄 Reiniciar Desafio de Digitação</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- UNIDADE 07: CERTIFICADO DO CURSO -->
-    <div id="mod7" class="module-container">
-      <div class="module-header-bar">
-        <span class="badge-tag">Conclusão • Emissão Oficial</span>
-      </div>
-      <h2>🎓 Certificado do Curso Informática Básica</h2>
-      <p>Digite seu nome completo abaixo para gerar seu certificado oficial profissional com código de autenticidade único.</p>
-
-      <div style="margin-bottom: 20px; text-align: center;">
-        <label style="font-weight: 700; color: #a5b4fc; font-size: 14px; display: block; margin-bottom: 8px;">Digite seu Nome Completo para o Certificado:</label>
-        <input type="text" id="cert-student-input" class="student-name-input" placeholder="Seu Nome Completo Aqui" oninput="updateCertName(this.value)">
-      </div>
-
-      <!-- CARTÃO DO CERTIFICADO PROFISSIONAL COM MARCA D'ÁGUA -->
-      <div class="certificate-container" id="cert-print-area">
-        <div class="certificate-content-wrapper">
-          <div class="certificate-badge-seal">★</div>
-          <div class="certificate-header">
-            <h1>CERTIFICADO DO CURSO INFORMÁTICA BÁSICA</h1>
-            <p>Formação Profissional • Lei nº 9.394/96 - Art. 42 / Decreto nº 5.154/04</p>
-          </div>
-
-          <div class="certificate-body">
-            <p class="cert-text">Certificamos com reconhecimento e mérito que o(a) aluno(a)</p>
-            <div id="cert-display-name" style="font-size: 28px; font-weight: 900; color: #312e81; margin: 15px 0; text-transform: uppercase; letter-spacing: 1px;">[ SEU NOME COMPLETO ]</div>
-            <p class="cert-text">
-              concluiu com êxito e aproveitamento exemplar o <strong>Curso de Informática Básica</strong>, com carga horária total de <strong>40 horas aula</strong>. O(a) discente demonstrou domínio técnico e prático nos fundamentos de Hardware, Software, Operação de Sistemas Operacionais (Windows), Editores de Documentos do Pacote Office, Ferramentas de Internet e Diretrizes de Segurança Digital.
-            </p>
-          </div>
-
-          <div class="cert-signatures">
-            <div class="sig-line">
-              <strong>sistemacmtech</strong><br>
-              Plataforma de Ensino Digital
+    <!-- Top Navigation Header -->
+    <header class="w-full bg-brand-dark/95 border-b border-brand-border backdrop-blur sticky top-0 z-50 px-4 lg:px-8 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-600 to-amber-400 flex items-center justify-center shadow-lg shadow-yellow-500/20 text-black">
+                <i class="fa-solid fa-guitar text-xl"></i>
             </div>
-          </div>
-
-          <div class="cert-footer-info">
-            <span><strong>Código de Autenticação:</strong> <span id="cert-code">CL-2026-89F3A7</span></span>
-            <span><strong>Data de Conclusão:</strong> <span id="cert-date">17/10/2026</span></span>
-            <span><strong>Modalidade:</strong> Curso Livre Certificado</span>
-          </div>
+            <div>
+                <h1 class="text-xl font-black font-orbitron tracking-wider text-white flex items-center gap-2">
+                    TONE BASS <span class="text-xs px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-500 border border-yellow-500/30">PRO STUDIO</span>
+                </h1>
+                <p class="text-[11px] text-slate-400 font-medium">Modelador de Baixo, DSP Engine & Plataforma de Produção</p>
+            </div>
         </div>
-      </div>
 
-      <div style="text-align: center; margin-top: 28px;">
-        <button class="btn-action" style="padding: 14px 28px; font-size: 15px;" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
-      </div>
+        <!-- Master Live Monitor, Input/Output & Settings Toggle -->
+        <div class="flex items-center gap-3 md:gap-6">
+            <!-- Low Latency Live Monitor Switch -->
+            <button id="btn-live-monitor" class="px-4 py-2 rounded-lg font-orbitron font-bold text-xs tracking-wider flex items-center gap-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all shadow-md active:scale-95">
+                <span id="led-live-monitor" class="led-indicator"></span>
+                <span id="txt-live-monitor">MONITORAMENTO AO VIVO</span>
+            </button>
+
+            <!-- Master Gain Sliders -->
+            <div class="hidden lg:flex items-center gap-4 bg-brand-panel/80 px-4 py-1.5 rounded-lg border border-brand-border">
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-bold text-slate-400 font-mono">INPUT</span>
+                    <input type="range" id="master-input-gain" min="0" max="2" step="0.01" value="1" class="w-16 accent-yellow-500 cursor-pointer">
+                </div>
+                <div class="h-4 w-px bg-slate-700"></div>
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-bold text-slate-400 font-mono">MASTER</span>
+                    <input type="range" id="master-output-gain" min="0" max="2" step="0.01" value="1" class="w-16 accent-cyan-500 cursor-pointer">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Studio Dashboard Container -->
+    <div class="flex-1 max-w-[1600px] w-full mx-auto p-3 lg:p-6 flex flex-col gap-6">
+
+        <!-- RACK SECTION 1: SANSAMP BASS DRIVER DI & VU ANALYZER & TUNER -->
+        <section class="rack-panel p-4 lg:p-6 rounded-2xl relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+
+                <!-- Analog VU Meter & Bass Chromatic Tuner -->
+                <div class="lg:col-span-4 bg-black/60 p-4 rounded-xl border border-brand-border flex flex-col justify-between items-center relative overflow-hidden">
+                    <div class="w-full flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
+                        <span class="text-xs font-bold text-yellow-500 font-orbitron tracking-widest"><i class="fa-solid fa-gauge-high mr-1"></i> ANALISADOR VU & CLIP</span>
+                        <div id="clip-indicator" class="flex items-center gap-1">
+                            <span class="text-[9px] font-bold text-red-500">CLIP</span>
+                            <span id="led-clip" class="led-indicator"></span>
+                        </div>
+                    </div>
+
+                    <!-- Vintage VU Dial -->
+                    <div class="relative w-52 h-28 bg-amber-100/90 border-2 border-amber-900/60 rounded-t-full overflow-hidden flex justify-center items-end shadow-inner my-1">
+                        <div class="absolute top-3 w-full px-5 flex justify-between text-[9px] font-extrabold text-amber-950 font-mono">
+                            <span>-20</span>
+                            <span>-10</span>
+                            <span>-5</span>
+                            <span>0</span>
+                            <span class="text-red-700">+3dB</span>
+                        </div>
+                        <div class="absolute bottom-2 text-[8px] font-black text-amber-900 font-orbitron tracking-widest">TONE BASS PRO ANALYZER</div>
+                        <div id="vu-needle" class="vu-needle"></div>
+                    </div>
+
+                    <!-- Chromatic Bass Tuner -->
+                    <div class="w-full bg-slate-950/90 p-3 rounded-lg border border-slate-800 flex items-center justify-between px-4 mt-2">
+                        <div>
+                            <span class="text-[9px] text-slate-500 block font-bold font-mono">AFINADOR</span>
+                            <span id="tuner-note" class="text-2xl font-black font-orbitron text-yellow-500">--</span>
+                        </div>
+                        <div id="tuner-tuning-bar" class="flex items-center gap-1">
+                            <span id="tune-flat" class="w-2 h-4 rounded bg-slate-800"></span>
+                            <span id="tune-perfect" class="w-3 h-6 rounded bg-emerald-500 opacity-20"></span>
+                            <span id="tune-sharp" class="w-2 h-4 rounded bg-slate-800"></span>
+                        </div>
+                        <div class="text-right">
+                            <span id="tuner-freq" class="text-xs font-bold text-slate-300 font-mono block">0.0 Hz</span>
+                            <span id="tuner-cents" class="text-[10px] text-slate-500 font-mono">0 cents</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SANSAMP BASS DRIVER DI MODEL -->
+                <div class="lg:col-span-8 sansamp-metal p-5 rounded-xl flex flex-col justify-between relative">
+                    <div class="flex justify-between items-center border-b border-yellow-600/30 pb-3 mb-3">
+                        <div>
+                            <h2 class="text-lg lg:text-xl font-black font-orbitron text-yellow-500 tracking-wider">
+                                SANSAMP BASS DRIVER DI <span class="text-xs text-slate-400 font-normal font-sans">(Modelo Analógico de Tubo)</span>
+                            </h2>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <!-- Mid Shift Switch -->
+                            <button id="btn-mid-shift" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-yellow-600/40 text-[10px] font-bold font-mono text-yellow-500 transition">
+                                MID SHIFT: <span id="txt-mid-shift">500 Hz</span>
+                            </button>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold font-orbitron text-slate-300">ENGAGE</span>
+                                <span id="led-sansamp" class="led-indicator active-red"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SansAmp Controls Grid -->
+                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-3 text-center my-2">
+                        <!-- DRIVE -->
+                        <div class="flex flex-col items-center">
+                            <label class="text-[11px] font-bold text-slate-300 mb-1.5 font-orbitron">DRIVE</label>
+                            <div class="knob-wrapper">
+                                <div class="knob" id="knob-drive" data-param="drive" data-min="0" data-max="100" data-val="45"></div>
+                            </div>
+                            <span class="text-[10px] text-yellow-500 font-mono mt-1.5" id="val-drive">45%</span>
+                        </div>
+
+                        <!-- PRESENCE -->
+                        <div class="flex flex-col items-center">
+                            <label class="text-[11px] font-bold text-slate-300 mb-1.5 font-orbitron">PRESENCE</label>
+                            <div class="knob-wrapper">
+                                <div class="knob" id="knob-presence" data-param="presence" data-min="0" data-max="100" data-val="55"></div>
+                            </div>
+                            <span class="text-[10px] text-yellow-500 font-mono mt-1.5" id="val-presence">55%</span>
+                        </div>
+
+                        <!-- BLEND -->
+                        <div class="flex flex-col items-center">
+                            <label class="text-[11px] font-bold text-slate-300 mb-1.5 font-orbitron">BLEND</label>
+                            <div class="knob-wrapper">
+                                <div class="knob" id="knob-blend" data-param="blend" data-min="0" data-max="100" data-val="85"></div>
+                            </div>
+                            <span class="text-[10px] text-yellow-500 font-mono mt-1.5" id="val-blend">85%</span>
+                        </div>
+
+                        <!-- BASS -->
+                        <div class="flex flex-col items-center">
+                            <label class="text-[11px] font-bold text-slate-300 mb-1.5 font-orbitron">BASS</label>
+                            <div class="knob-wrapper">
+                                <div class="knob" id="knob-bass" data-param="bass" data-min="-12" data-max="12" data-val="3"></div>
+                            </div>
+                            <span class="text-[10px] text-yellow-500 font-mono mt-1.5" id="val-bass">+3 dB</span>
+                        </div>
+
+                        <!-- TREBLE -->
+                        <div class="flex flex-col items-center">
+                            <label class="text-[11px] font-bold text-slate-300 mb-1.5 font-orbitron">TREBLE</label>
+                            <div class="knob-wrapper">
+                                <div class="knob" id="knob-treble" data-param="treble" data-min="-12" data-max="12" data-val="2"></div>
+                            </div>
+                            <span class="text-[10px] text-yellow-500 font-mono mt-1.5" id="val-treble">+2 dB</span>
+                        </div>
+
+                        <!-- LEVEL -->
+                        <div class="flex flex-col items-center">
+                            <label class="text-[11px] font-bold text-slate-300 mb-1.5 font-orbitron">LEVEL</label>
+                            <div class="knob-wrapper">
+                                <div class="knob" id="knob-level" data-param="level" data-min="0" data-max="100" data-val="70"></div>
+                            </div>
+                            <span class="text-[10px] text-yellow-500 font-mono mt-1.5" id="val-level">70%</span>
+                        </div>
+                    </div>
+
+                    <!-- Foot Switch Bypass -->
+                    <div class="flex justify-center items-center gap-3 mt-3 pt-2 border-t border-slate-800">
+                        <button id="switch-sansamp" class="stomp-switch"></button>
+                        <span class="text-[10px] font-bold tracking-widest text-slate-400 font-orbitron">PREAMP BYPASS / ENGAGE</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RACK SECTION 2: 10-BAND GRAPHIC EQ & FREQUENCY SPECTRUM CANVAS -->
+        <section class="rack-panel p-4 lg:p-6 rounded-2xl relative">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-3">
+                    <span id="led-eq" class="led-indicator active-cyan"></span>
+                    <div>
+                        <h2 class="text-base font-black font-orbitron text-white tracking-wider">10-BAND BASS SPECTRUM EQUALIZER</h2>
+                        <p class="text-xs text-slate-400">Modelador de Frequências de Precisão & Analisador em Tempo Real</p>
+                    </div>
+                </div>
+
+                <!-- Presets & Controls -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-[10px] font-bold text-slate-400 font-orbitron mr-1">PRESETS DE FÁBRICA:</span>
+                    <button class="eq-preset-btn px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-slate-300 text-xs font-semibold border border-slate-700 transition" data-preset="flat">Flat</button>
+                    <button class="eq-preset-btn px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-slate-300 text-xs font-semibold border border-slate-700 transition" data-preset="slap">Slap Precision</button>
+                    <button class="eq-preset-btn px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-slate-300 text-xs font-semibold border border-slate-700 transition" data-preset="vintage">Vintage Tube</button>
+                    <button class="eq-preset-btn px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-slate-300 text-xs font-semibold border border-slate-700 transition" data-preset="modern">Modern Metal</button>
+                    <button class="eq-preset-btn px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-slate-300 text-xs font-semibold border border-slate-700 transition" data-preset="sub">Sub Bass</button>
+
+                    <button id="btn-eq-toggle" class="ml-2 px-3 py-1 rounded bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-xs font-orbitron transition">
+                        EQ LIGADO
+                    </button>
+                </div>
+            </div>
+
+            <!-- Spectrum Visualizer & Faders Grid Split -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <!-- Live Frequency Canvas -->
+                <div class="lg:col-span-4 bg-slate-950 p-2 rounded-xl border border-slate-800 h-full flex flex-col justify-between">
+                    <span class="text-[10px] font-bold font-mono text-cyan-400 mb-1 block px-2">CURVA DE RESPOSTA DSP</span>
+                    <canvas id="eq-canvas" class="w-full h-36 rounded bg-slate-900/60"></canvas>
+                </div>
+
+                <!-- 10 Faders -->
+                <div id="eq-faders-container" class="lg:col-span-8 grid grid-cols-5 sm:grid-cols-10 gap-2 sm:gap-3 justify-items-center py-3 px-2 bg-black/40 rounded-xl border border-slate-800/80">
+                    <!-- Faders generated via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- RACK SECTION 3: MODULAR PEDALBOARD (Compressor, Auto-Wah, Chorus, Octaver, IR Cab Sim) -->
+        <section class="bg-slate-950 p-4 lg:p-6 rounded-2xl border border-brand-border">
+            <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-2">
+                <h2 class="text-base font-black font-orbitron text-yellow-500 tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-cubes text-sm"></i> STACK DE PEDAIS DE EFEITO MODULARES
+                </h2>
+                <span class="text-xs text-slate-400 font-mono">Processadores Dinâmicos & Simulador de Gabinete IR</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+
+                <!-- PEDAL 1: OPTO COMPRESSOR -->
+                <div class="pedal-box p-4 rounded-xl flex flex-col justify-between items-center text-center relative border-t-4 border-blue-500">
+                    <div class="flex justify-between items-center w-full mb-2">
+                        <span class="text-[11px] font-black font-orbitron text-blue-400">OPTO COMPRESSOR</span>
+                        <span id="led-comp" class="led-indicator"></span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 my-2 w-full">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[9px] text-slate-400 font-bold">SUSTAIN</span>
+                            <div class="knob-wrapper">
+                                <div class="knob knob-silver" id="knob-comp-sustain" data-param="comp-sustain" data-min="1" data-max="20" data-val="6"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[9px] text-slate-400 font-bold">ATTACK</span>
+                            <div class="knob-wrapper">
+                                <div class="knob knob-silver" id="knob-comp-attack" data-param="comp-attack" data-min="1" data-max="100" data-val="25"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="switch-comp" class="stomp-switch mt-2"></button>
+                </div>
+
+                <!-- PEDAL 2: AUTO-WAH / ENVELOPE FILTER -->
+                <div class="pedal-box p-4 rounded-xl flex flex-col justify-between items-center text-center relative border-t-4 border-emerald-500">
+                    <div class="flex justify-between items-center w-full mb-2">
+                        <span class="text-[11px] font-black font-orbitron text-emerald-400">AUTO-WAH FILTER</span>
+                        <span id="led-filter" class="led-indicator"></span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 my-2 w-full">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[9px] text-slate-400 font-bold">SENSE</span>
+                            <div class="knob-wrapper">
+                                <div class="knob knob-silver" id="knob-filter-sense" data-param="filter-sense" data-min="200" data-max="2000" data-val="800"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[9px] text-slate-400 font-bold">RESO</span>
+                            <div class="knob-wrapper">
+                                <div class="knob knob-silver" id="knob-filter-reso" data-param="filter-reso" data-min="1" data-max="15" data-val="6"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="switch-filter" class="stomp-switch mt-2"></button>
+                </div>
+
+                <!-- PEDAL 3: STEREO BASS CHORUS -->
+                <div class="pedal-box p-4 rounded-xl flex flex-col justify-between items-center text-center relative border-t-4 border-purple-500">
+                    <div class="flex justify-between items-center w-full mb-2">
+                        <span class="text-[11px] font-black font-orbitron text-purple-400">STEREO CHORUS</span>
+                        <span id="led-chorus" class="led-indicator"></span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 my-2 w-full">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[9px] text-slate-400 font-bold">RATE</span>
+                            <div class="knob-wrapper">
+                                <div class="knob knob-silver" id="knob-chorus-rate" data-param="chorus-rate" data-min="0.1" data-max="5" data-val="1.2"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[9px] text-slate-400 font-bold">DEPTH</span>
+                            <div class="knob-wrapper">
+                                <div class="knob knob-silver" id="knob-chorus-depth" data-param="chorus-depth" data-min="0" data-max="100" data-val="50"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="switch-chorus" class="stomp-switch mt-2"></button>
+                </div>
+
+                <!-- PEDAL 4: OCTAVER SUB-HARMONIC -->
+                <div class="pedal-box p-4 rounded-xl flex flex-col justify-between items-center text-center relative border-t-4 border-amber-500">
+                    <div class="flex justify-between items-center w-full mb-2">
+                        <span class="text-[11px] font-black font-orbitron text-amber-400">SUB OCTAVER</span>
+                        <span id="led-octave" class="led-indicator"></span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 my-2 w-full">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[9px] text-slate-400 font-bold">OCT -1</span>
+                            <div class="knob-wrapper">
+                                <div class="knob knob-silver" id="knob-octave-sub" data-param="octave-sub" data-min="0" data-max="100" data-val="40"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[9px] text-slate-400 font-bold">DRY MIX</span>
+                            <div class="knob-wrapper">
+                                <div class="knob knob-silver" id="knob-octave-dry" data-param="octave-dry" data-min="0" data-max="100" data-val="80"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="switch-octave" class="stomp-switch mt-2"></button>
+                </div>
+
+                <!-- PEDAL 5: CABINET IR SIMULATOR -->
+                <div class="pedal-box p-4 rounded-xl flex flex-col justify-between items-center text-center relative border-t-4 border-red-500">
+                    <div class="flex justify-between items-center w-full mb-2">
+                        <span class="text-[11px] font-black font-orbitron text-red-400">GABINETE IR SIM</span>
+                        <span id="led-cab" class="led-indicator active-red"></span>
+                    </div>
+
+                    <div class="w-full my-3 flex flex-col gap-2">
+                        <label class="text-[9px] text-slate-400 font-bold">PERFIL DE RESPOSTA</label>
+                        <select id="select-cab" class="bg-black text-yellow-500 font-orbitron text-[11px] p-2 rounded border border-slate-700 outline-none cursor-pointer text-center">
+                            <option value="8x10">Ampeg SVT 8x10</option>
+                            <option value="4x10">Markbass 4x10</option>
+                            <option value="2x12">Darkglass 2x12</option>
+                            <option value="1x15">Bassman 1x15</option>
+                            <option value="direct">Direct Box (Flat)</option>
+                        </select>
+                    </div>
+
+                    <button id="switch-cab" class="stomp-switch mt-2"></button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PLATFORM SUITE: LOOPER, RECORD & EXPORT, JAM TRACKS PLAYER, METRONOME -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Bass Looper & HD Recorder -->
+            <div class="lg:col-span-6 rack-panel p-5 rounded-2xl flex flex-col justify-between">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-2 mb-4">
+                    <h3 class="text-sm font-bold font-orbitron text-white flex items-center gap-2">
+                        <i class="fa-solid fa-circle-dot text-red-500"></i> GRAVADOR HD & LOOPER DE BAIXO
+                    </h3>
+                    <span id="looper-status" class="text-xs font-mono font-bold text-slate-400">PRONTO</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Recorder Controls -->
+                    <div class="bg-black/50 p-3 rounded-xl border border-slate-800 flex flex-col justify-between">
+                        <span class="text-[10px] font-bold text-slate-400 font-orbitron block mb-2">GRAVAÇÃO MASTER (MP3)</span>
+                        <div class="flex items-center gap-2 mb-3">
+                            <button id="btn-record-master" class="flex-1 py-2 rounded bg-red-600 hover:bg-red-500 text-white font-bold text-xs font-orbitron transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-record-vinyl"></i> GRAVAR
+                            </button>
+                            <button id="btn-stop-master" disabled class="px-3 py-2 rounded bg-slate-800 text-slate-500 font-bold text-xs font-orbitron">
+                                PARAR
+                            </button>
+                        </div>
+                        <a id="download-recording" class="hidden w-full py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs font-orbitron rounded text-center transition">
+                            <i class="fa-solid fa-download mr-1"></i> BAIXAR AUDIO MP3
+                        </a>
+                    </div>
+
+                    <!-- Looper Controls -->
+                    <div class="bg-black/50 p-3 rounded-xl border border-slate-800 flex flex-col justify-between">
+                        <span class="text-[10px] font-bold text-slate-400 font-orbitron block mb-2">LOOPER RÁPIDO</span>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button id="btn-looper-rec" class="py-2 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold text-[10px] font-orbitron">REC/OVER</button>
+                            <button id="btn-looper-play" class="py-2 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] font-orbitron">PLAY</button>
+                            <button id="btn-looper-clear" class="col-span-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[10px] font-orbitron">LIMPAR LOOP</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jam Tracks Player & Metronome -->
+            <div class="lg:col-span-6 rack-panel p-5 rounded-2xl flex flex-col justify-between">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-2 mb-4">
+                    <h3 class="text-sm font-bold font-orbitron text-white flex items-center gap-2">
+                        <i class="fa-solid fa-drum text-yellow-500"></i> JAM TRACKS PLAYER & METRÔNOMO
+                    </h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-mono font-bold text-cyan-400" id="metronome-bpm-val">120 BPM</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Jam Player -->
+                    <div class="bg-black/50 p-3 rounded-xl border border-slate-800 flex flex-col justify-between">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-bold text-slate-400 font-orbitron">BACKING TRACKS</span>
+                            <button onclick="document.getElementById('jam-file-input').click()" class="text-[10px] font-bold text-yellow-500 hover:underline">
+                                + Carregar MP3
+                            </button>
+                            <input type="file" id="jam-file-input" accept="audio/*" class="hidden">
+                        </div>
+                        <audio id="jam-player" controls class="w-full h-8 accent-yellow-500 mb-2"></audio>
+                        <div class="flex items-center justify-between gap-2 text-[10px] font-mono text-slate-400">
+                            <span>Velocidade:</span>
+                            <input type="range" id="jam-speed" min="0.5" max="1.5" step="0.05" value="1" class="w-24 accent-yellow-500">
+                            <span id="txt-jam-speed">1.0x</span>
+                        </div>
+                    </div>
+
+                    <!-- Metronome -->
+                    <div class="bg-black/50 p-3 rounded-xl border border-slate-800 flex flex-col justify-between">
+                        <span class="text-[10px] font-bold text-slate-400 font-orbitron block mb-2">METRÔNOMO DIGITAL</span>
+                        <div class="flex items-center gap-2 mb-2">
+                            <input type="range" id="metronome-bpm" min="40" max="220" value="120" class="flex-1 accent-cyan-500">
+                            <button id="btn-tap-tempo" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[10px] font-bold text-cyan-400 rounded border border-slate-700">TAP</button>
+                        </div>
+                        <button id="btn-toggle-metronome" class="w-full py-2 bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-xs font-orbitron rounded transition">
+                            INICIAR METRÔNOMO
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
     </div>
 
-  </main>
+    <!-- RODAPÉ CLEAN COM APENAS OS BOTÕES/LINKS DE POLÍTICA E TERMOS -->
+    <footer class="w-full bg-slate-950 border-t border-brand-border mt-12 py-6 px-4 lg:px-8 text-slate-400 text-xs">
+        <div class="max-w-[1600px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-500 text-xs">
+                    <i class="fa-solid fa-guitar"></i>
+                </div>
+                <span class="text-slate-300 font-semibold text-xs">© Tone Bass Pro Studio</span>
+            </div>
 
-  <script>
-    function switchModule(modId, element) {
-      document.querySelectorAll('.module-container').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-      document.getElementById(modId).classList.add('active');
-      if(element) element.classList.add('active');
-    }
+            <!-- Links Clicáveis para Abrir os Termos/Privacidade -->
+            <div class="flex items-center gap-4 text-xs font-medium">
+                <button id="btn-open-privacy" class="text-slate-400 hover:text-yellow-500 transition underline underline-offset-4 cursor-pointer">
+                    Política de Privacidade
+                </button>
+                <span class="text-slate-700">•</span>
+                <button id="btn-open-terms" class="text-slate-400 hover:text-yellow-500 transition underline underline-offset-4 cursor-pointer">
+                    Termos de Uso
+                </button>
+            </div>
 
-    function updateProgress() {
-      const checkboxes = document.querySelectorAll('.nav-item input[type="checkbox"]');
-      let checked = 0;
-      checkboxes.forEach(cb => { if(cb.checked) checked++; });
-      const pct = Math.round((checked / checkboxes.length) * 100);
-      document.getElementById('prog-bar').style.width = pct + '%';
-      document.getElementById('prog-pct').innerText = pct + '%';
-    }
+            <div class="text-[11px] text-slate-500 font-mono">
+                Criador: <a href="mailto:sistemacmtech@gmail.com" class="text-cyan-400 hover:underline">sistemacmtech@gmail.com</a>
+            </div>
 
-    /* ATUALIZAÇÃO DO NOME E CÓDIGO DO CERTIFICADO */
-    function updateCertName(val) {
-      const display = document.getElementById('cert-display-name');
-      if (val.trim() === '') {
-        display.innerText = '[ SEU NOME COMPLETO ]';
-      } else {
-        display.innerText = val.toUpperCase();
-      }
-    }
+        </div>
+    </footer>
 
-    function generateCertCode() {
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-      let code = 'CL-2026-';
-      for (let i = 0; i < 6; i++) {
-        code += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      document.getElementById('cert-code').innerText = code;
-      const today = new Date();
-      document.getElementById('cert-date').innerText = today.toLocaleDateString('pt-BR');
-    }
+    <!-- MODAL / JANELA FLUTUANTE DE POLÍTICA DE PRIVACIDADE E TERMOS DE USO -->
+    <div id="modal-policy" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-slate-900 border border-brand-border rounded-2xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            
+            <!-- Modal Header -->
+            <div class="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-black/40">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-500">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm sm:text-base font-bold font-orbitron text-white">POLÍTICA DE PRIVACIDADE & TERMOS DE USO</h3>
+                        <p class="text-[10px] text-slate-400 font-mono">Tone Bass Pro Studio — CM Tech Solutions</p>
+                    </div>
+                </div>
+                <button id="btn-close-modal" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
 
-    /* QUIZ MÓDULO 1 */
-    const videoQuizData = [
-      {
-        question: "1. De acordo com o vídeo, como o termo 'hardware' é definido no contexto de computadores?",
-        options: [ "Os programas e o sistema operacional", "Tudo o que é físico no computador", "Apenas as redes de internet", "O conjunto de códigos e instruções" ],
-        correct: 1,
-        explanation: "No vídeo, é explicado expressamente que o Hardware descreve tudo o que é físico no computador."
-      },
-      {
-        question: "2. Qual dos seguintes itens é citado no vídeo como um exemplo direto de hardware?",
-        options: [ "Um jogo de computador", "O programa de edição de texto", "O mouse, CPU e a impressora", "O navegador de internet" ],
-        correct: 2,
-        explanation: "O vídeo cita o mouse, a CPU e a impressora como componentes físicos (hardware)."
-      },
-      {
-        question: "3. O que o vídeo estabelece como a principal função ou descrição do 'software'?",
-        options: [ "Representar os cabos e circuitos elétricos", "A parte lógica que descreve programas e sistemas que o computador entende como instruções", "A carcaça física do gabinete e monitor", "O suporte físico da impressora" ],
-        correct: 1,
-        explanation: "O Software descreve a parte lógica, os programas e sistemas que o computador interpreta como instruções."
-      },
-      {
-        question: "4. Como o vídeo descreve a natureza das instruções que formam o software?",
-        options: [ "Como peças plásticas encaixadas", "Como um conjunto de várias linhas de códigos", "Como componentes impressos na placa mãe", "Como conexões físicas de webcam" ],
-        correct: 1,
-        explanation: "O conjunto de instruções que compõem o software é formado por várias linhas de código."
-      },
-      {
-        question: "5. Qual exemplo prático de software é mencionado no vídeo?",
-        options: [ "Mouse e teclado", "Jogos, programas de vídeos e edições de texto", "Monitor e impressora", "Placa mãe e processador" ],
-        correct: 1,
-        explanation: "O vídeo cita jogos, programas de vídeo e edições de texto como exemplos claros de software."
-      },
-      {
-        question: "6. Qual é a relação prática explicada no vídeo entre uma webcam e seu software correspondente?",
-        options: [ "A webcam é um software e o programa é o hardware", "A webcam é o hardware e precisa do software para ser controlada (como ativar/desativar)", "Não há nenhuma relação entre hardware e software na webcam", "Ambos são peças físicas dentro do computador" ],
-        correct: 1,
-        explanation: "A webcam física é o hardware, mas ela necessita de um programa (software) para funcionar e ser controlada."
-      },
-      {
-        question: "7. Segundo o conteúdo do vídeo, qual dos seguintes elementos se enquadra na categoria de hardware?",
-        options: [ "Impressora", "Sistema operacional", "Jogo de computador", "Planilha eletrônica" ],
-        correct: 0,
-        explanation: "A impressora é um componente físico tangível, portanto é um hardware."
-      },
-      {
-        question: "8. De que maneira o computador interpreta os programas de software segundo a explicação apresentada?",
-        options: [ "Como impulsos de toque na tela", "Como instruções lógicas a serem seguidas para controlar o funcionamento de algo", "Como peças de reposição mecânicas", "Como sinais de vídeo impresso" ],
-        correct: 1,
-        explanation: "O software fornece o conjunto de instruções lógicas que o computador entende e executa."
-      },
-      {
-        question: "9. Qual dos seguintes elementos representa a parte lógica discutida no vídeo?",
-        options: [ "Processador", "Mouse", "Sistemas e Programas", "Gabinete" ],
-        correct: 2,
-        explanation: "Os programas e sistemas representam a parte lógica (intangível) do computador."
-      },
-      {
-        question: "10. Qual alternativa resume corretamente a divisão fundamental apresentada no vídeo?",
-        options: [ "Hardware é a parte lógica e software é a parte física", "Hardware é a parte física e software é a parte lógica", "Hardware e software são a mesma coisa", "Software substitui a necessidade do hardware" ],
-        correct: 1,
-        explanation: "A regra básica do vídeo é: Hardware é a parte física e Software é a parte lógica."
-      }
-    ];
+            <!-- Modal Content Body -->
+            <div class="p-5 sm:p-6 overflow-y-auto space-y-4 text-xs leading-relaxed text-slate-300">
+                
+                <div class="p-3 bg-slate-950 rounded-lg border border-slate-800/80 mb-2">
+                    <span class="block text-[10px] font-bold font-mono text-slate-500 uppercase tracking-wider">Desenvolvedor & Suporte</span>
+                    <span class="text-sm font-semibold text-yellow-500 font-mono">sistemacmtech@gmail.com</span>
+                </div>
 
-    let currentQIdx = 0;
-    let quizScore = 0;
+                <div>
+                    <h4 class="text-xs font-bold font-orbitron text-yellow-500 uppercase tracking-wider mb-1">1. Processamento e Privacidade de Áudio Local</h4>
+                    <p class="text-slate-400">O aplicativo Tone Bass Pro Studio processa todo o fluxo de entrada e saída de áudio (incluindo captura via microfone, instrumentos ou interfaces) exclusivamente em tempo real no seu próprio dispositivo por meio da Web Audio API. Nenhuma gravação, sinal de som, áudio processado ou informação capturada pelo microfone é enviada, armazenada ou transmitida para servidores externos.</p>
+                </div>
 
-    function renderQuestion() {
-      const q = videoQuizData[currentQIdx];
-      document.getElementById('q-curr-num').innerText = currentQIdx + 1;
-      document.getElementById('q-text').innerText = q.question;
-   
-      const optContainer = document.getElementById('q-options');
-      optContainer.innerHTML = '';
+                <div>
+                    <h4 class="text-xs font-bold font-orbitron text-yellow-500 uppercase tracking-wider mb-1">2. Armazenamento de Dados e PWA</h4>
+                    <p class="text-slate-400">Arquivos exportados (gravações MP3/WebM) e faixas de acompanhamento (Backing Tracks) permanecem sob o controle exclusivo e armazenamento temporário do seu próprio navegador ou sistema operacional. O sistema PWA (Progressive Web App) utiliza cache local unicamente para possibilitar a execução offline de todas as ferramentas de áudio do estúdio.</p>
+                </div>
 
-      q.options.forEach((optText, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'opt-btn';
-        btn.innerText = optText;
-        btn.onclick = () => handleAnswer(idx);
-        optContainer.appendChild(btn);
-      });
+                <div>
+                    <h4 class="text-xs font-bold font-orbitron text-yellow-500 uppercase tracking-wider mb-1">3. Permissões do Sistema</h4>
+                    <p class="text-slate-400">A solicitação de acesso ao microfone é estritamente necessária para a execução do monitoramento ao vivo, afinador cromático de baixo e rack de efeitos DSP. O acesso pode ser concedido ou revogado a qualquer momento nas configurações de privacidade do seu navegador.</p>
+                </div>
 
-      const fb = document.getElementById('q-feedback');
-      fb.className = 'feedback-box';
-      fb.style.display = 'none';
+                <div>
+                    <h4 class="text-xs font-bold font-orbitron text-yellow-500 uppercase tracking-wider mb-1">4. Isenção de Responsabilidade</h4>
+                    <p class="text-slate-400">O software é disponibilizado "como está". O desenvolvedor não se responsabiliza por eventuais danos aos equipamentos de áudio, alto-falantes ou fones de ouvido decorrentes do uso de níveis excessivos de ganho, volume ou distorção acionados pelo usuário.</p>
+                </div>
 
-      document.getElementById('btn-retry-q').style.display = 'none';
-      document.getElementById('btn-next-q').style.display = 'none';
-    }
+                <div>
+                    <h4 class="text-xs font-bold font-orbitron text-yellow-500 uppercase tracking-wider mb-1">5. Contato e Suporte</h4>
+                    <p class="text-slate-400">Dúvidas, sugestões ou suporte técnico sobre esta plataforma digital podem ser encaminhados diretamente ao desenvolvedor responsável pelo e-mail: <a href="mailto:sistemacmtech@gmail.com" class="text-cyan-400 hover:underline font-mono">sistemacmtech@gmail.com</a>.</p>
+                </div>
 
-    function handleAnswer(selectedIdx) {
-      const q = videoQuizData[currentQIdx];
-      const optButtons = document.querySelectorAll('#mod1 .opt-btn');
-   
-      optButtons.forEach(btn => btn.disabled = true);
+            </div>
 
-      const fb = document.getElementById('q-feedback');
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-slate-800 bg-black/40 flex justify-end">
+                <button id="btn-close-modal-bottom" class="px-5 py-2 bg-yellow-500 hover:bg-yellow-400 text-black font-bold text-xs font-orbitron rounded-lg transition">
+                    FECHAR
+                </button>
+            </div>
 
-      if (selectedIdx === q.correct) {
-        optButtons[selectedIdx].classList.add('correct');
-        fb.className = 'feedback-box show-correct';
-        fb.innerHTML = `<strong>✨ Resposta Correta!</strong><br>${q.explanation}`;
-        quizScore++;
-        document.getElementById('q-score').innerText = quizScore;
-        document.getElementById('btn-next-q').style.display = 'inline-block';
-      } else {
-        optButtons[selectedIdx].classList.add('incorrect');
-        optButtons[q.correct].classList.add('correct');
-        fb.className = 'feedback-box show-incorrect';
-        fb.innerHTML = `<strong>❌ Resposta Incorreta!</strong><br>${q.explanation}<br><em>Não se preocupe! Clique no botão abaixo para tentar novamente esta pergunta.</em>`;
-        document.getElementById('btn-retry-q').style.display = 'inline-block';
-      }
-    }
+        </div>
+    </div>
 
-    function retryQuestion() { renderQuestion(); }
+    <!-- AUDIO ENGINE, DSP MODELS, PLATFORM LOGIC & PWA REGISTRATION -->
+    <script>
+        // Lógica de Abertura/Fechamento do Modal de Política de Privacidade e Termos
+        const modalPolicy = document.getElementById('modal-policy');
+        const btnOpenPrivacy = document.getElementById('btn-open-privacy');
+        const btnOpenTerms = document.getElementById('btn-open-terms');
+        const btnCloseModal = document.getElementById('btn-close-modal');
+        const btnCloseModalBottom = document.getElementById('btn-close-modal-bottom');
 
-    function nextQuestion() {
-      currentQIdx++;
-      if (currentQIdx < videoQuizData.length) {
-        renderQuestion();
-      } else {
-        document.getElementById('quiz-question-box').innerHTML = `
-          <div style="text-align:center; padding: 20px;">
-            <h3 style="color:#10b981; font-size: 22px; margin-bottom: 12px;">🎉 Parabéns! Quiz Concluído!</h3>
-            <p>Você completou todas as 10 perguntas do primeiro vídeo com sucesso!</p>
-            <button class="btn-action" style="margin-top:15px;" onclick="resetFullQuiz()">🔄 Refazer Todo o Quiz</button>
-          </div>
-        `;
-        document.getElementById('btn-next-q').style.display = 'none';
-        document.getElementById('btn-retry-q').style.display = 'none';
-        document.getElementById('chk-mod1').checked = true;
-        updateProgress();
-      }
-    }
+        const openModal = () => modalPolicy.classList.remove('hidden');
+        const closeModal = () => modalPolicy.classList.add('hidden');
 
-    function resetFullQuiz() {
-      currentQIdx = 0;
-      quizScore = 0;
-      document.getElementById('q-score').innerText = 0;
-      document.getElementById('quiz-question-box').className = 'q-box';
-      renderQuestion();
-    }
+        btnOpenPrivacy.addEventListener('click', openModal);
+        btnOpenTerms.addEventListener('click', openModal);
+        btnCloseModal.addEventListener('click', closeModal);
+        btnCloseModalBottom.addEventListener('click', closeModal);
 
+        modalPolicy.addEventListener('click', (e) => {
+            if (e.target === modalPolicy) closeModal();
+        });
 
-    /* QUIZ MÓDULO 2 */
-    const videoQuizData2 = [
-      {
-        question: "1. O que o vídeo define como o software mais importante e essencial logo ao ligar o computador?",
-        options: [ "O navegador de internet", "O editor de textos Word", "O sistema operacional", "O antivírus" ],
-        correct: 2,
-        explanation: "O vídeo aponta o sistema operacional como o software mais importante e a principal ponte entre o usuário e a máquina."
-      },
-      {
-        question: "2. Como o sistema operacional é descrito em termos de sua função para o usuário?",
-        options: [ "Uma ponte que liga o usuário ao computador", "Uma peça física de substituição da placa-mãe", "Um cabo de rede de alta velocidade", "Um dispositivo de armazenamento externo" ],
-        correct: 0,
-        explanation: "O sistema operacional é entendido como uma ponte que liga o usuário ao computador."
-      },
-      {
-        question: "3. Qual é a função descrita para o sistema operacional em relação às linguagens?",
-        options: [ "Traduzir a linguagem do computador para uma linguagem que os humanos consigam entender", "Traduzir apenas idiomas estrangeiros para o português", "Imprimir documentos em formato PDF", "Criar códigos de programação avançados automaticamente" ],
-        correct: 0,
-        explanation: "Ele é responsável por traduzir a linguagem do computador em algo compreensível para os humanos, gerenciando recursos."
-      },
-      {
-        question: "4. Quais exemplos de sistemas operacionais para computadores pessoais são citados no vídeo?",
-        options: [ "Android e iOS", "Windows, Linux e Mac OS", "Google Chrome e Mozilla Firefox", "Word, Excel e PowerPoint" ],
-        correct: 1,
-        explanation: "O vídeo cita o Windows, o Linux e o Mac OS como sistemas operacionais para computadores pessoais."
-      },
-      {
-        question: "5. Quais sistemas operacionais móveis voltados para smartphones são mencionados no vídeo?",
-        options: [ "Windows Phone e MS-DOS", "iOS e Android", "Linux Ubuntu e Fedora", "Mac OS e Windows 11" ],
-        correct: 1,
-        explanation: "O vídeo menciona o iOS (Apple) e o Android (Google) para smartphones."
-      },
-      {
-        question: "6. Quais são os dois objetivos básicos fundamentais dos sistemas operacionais citados no vídeo?",
-        options: [ "Impressão e digitalização", "Abstração e gerência de recursos", "Formatação e particionamento", "Navegação e segurança web" ],
-        correct: 1,
-        explanation: "Os sistemas operacionais possuem dois objetivos básicos: abstração e gerência de recursos."
-      },
-      {
-        question: "7. O que o conceito de 'Abstração' resolve dentro do sistema operacional segundo o vídeo?",
-        options: [ "A grande variedade de hardwares diferentes no mercado (como múltiplos mouses, telas e teclados)", "A falta de espaço no disco rígido", "A lentidão da conexão com a internet", "A quantidade de vírus no sistema" ],
-        correct: 0,
-        explanation: "A abstração resolve o problema de lidar com a enorme variedade de hardwares diferentes existentes no mercado."
-      },
-      {
-        question: "8. Por que não é possível instalar o sistema operacional iOS da Apple em um celular da Samsung?",
-        options: [ "Porque o iOS é desenvolvido para uma configuração específica de hardware da Apple", "Porque a bateria do celular Samsung iria descarregar", "Porque o Android bloqueia qualquer outra instalação", "Porque a tela da Samsung é sensível ao toque" ],
-        correct: 0,
-        explanation: "O iOS é desenvolvido para uma configuração específica de hardware, o que impede sua instalação direta em hardwares diferentes."
-      },
-      {
-        question: "9. O que é o 'Driver' mencionado no vídeo?",
-        options: [ "Um programa antivírus", "Um manual fornecido pelos desenvolvedores de hardware para que o sistema operacional entenda como ele funciona", "O cabo de alimentação da fonte", "Um jogo de corrida para computador" ],
-        correct: 1,
-        explanation: "O driver é a espécie de manual fornecida pelos fabricantes de hardware para que o sistema operacional saiba operar o componente."
-      },
-      {
-        question: "10. Qual é a diferença na forma de trabalho entre o sistema operacional e aplicativos como o Word ou Excel?",
-        options: [ "O sistema operacional trabalha de forma assíncrona (ligado todo o tempo de uso), enquanto aplicativos são abertos e fechados conforme a necessidade", "O Word gerencia a memória RAM e o sistema operacional digita textos", "Não há diferença operacional entre eles", "Os aplicativos rodam sem precisar de energia elétrica" ],
-        correct: 0,
-        explanation: "O sistema operacional opera de forma contínua/assíncrona desde que o computador é ligado até ser desligado, diferentemente dos aplicativos específicos."
-      }
-    ];
-
-    let currentQ2Idx = 0;
-    let quiz2Score = 0;
-
-    function renderQuestion2() {
-      const q = videoQuizData2[currentQ2Idx];
-      document.getElementById('q2-curr-num').innerText = currentQ2Idx + 1;
-      document.getElementById('q2-text').innerText = q.question;
-   
-      const optContainer = document.getElementById('q2-options');
-      optContainer.innerHTML = '';
-
-      q.options.forEach((optText, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'opt-btn';
-        btn.innerText = optText;
-        btn.onclick = () => handleAnswer2(idx);
-        optContainer.appendChild(btn);
-      });
-
-      const fb = document.getElementById('q2-feedback');
-      fb.className = 'feedback-box';
-      fb.style.display = 'none';
-
-      document.getElementById('btn2-retry-q').style.display = 'none';
-      document.getElementById('btn2-next-q').style.display = 'none';
-    }
-
-    function handleAnswer2(selectedIdx) {
-      const q = videoQuizData2[currentQ2Idx];
-      const optButtons = document.querySelectorAll('#mod2 .opt-btn');
-   
-      optButtons.forEach(btn => btn.disabled = true);
-
-      const fb = document.getElementById('q2-feedback');
-
-      if (selectedIdx === q.correct) {
-        optButtons[selectedIdx].classList.add('correct');
-        fb.className = 'feedback-box show-correct';
-        fb.innerHTML = `<strong>✨ Resposta Correta!</strong><br>${q.explanation}`;
-        quiz2Score++;
-        document.getElementById('q2-score').innerText = quiz2Score;
-        document.getElementById('btn2-next-q').style.display = 'inline-block';
-      } else {
-        optButtons[selectedIdx].classList.add('incorrect');
-        optButtons[q.correct].classList.add('correct');
-        fb.className = 'feedback-box show-incorrect';
-        fb.innerHTML = `<strong>❌ Resposta Incorreta!</strong><br>${q.explanation}<br><em>Não se preocupe! Clique no botão abaixo para tentar novamente esta pergunta.</em>`;
-        document.getElementById('btn2-retry-q').style.display = 'inline-block';
-      }
-    }
-
-    function retryQuestion2() { renderQuestion2(); }
-
-    function nextQuestion2() {
-      currentQ2Idx++;
-      if (currentQ2Idx < videoQuizData2.length) {
-        renderQuestion2();
-      } else {
-        document.getElementById('quiz2-question-box').innerHTML = `
-          <div style="text-align:center; padding: 20px;">
-            <h3 style="color:#10b981; font-size: 22px; margin-bottom: 12px;">🎉 Parabéns! Quiz do Vídeo 02 Concluído!</h3>
-            <p>Você completou todas as 10 perguntas do segundo vídeo com sucesso!</p>
-            <button class="btn-action" style="margin-top:15px;" onclick="resetFullQuiz2()">🔄 Refazer Todo o Quiz</button>
-          </div>
-        `;
-        document.getElementById('btn2-next-q').style.display = 'none';
-        document.getElementById('btn2-retry-q').style.display = 'none';
-        document.getElementById('chk-mod2').checked = true;
-        updateProgress();
-      }
-    }
-
-    function resetFullQuiz2() {
-      currentQ2Idx = 0;
-      quiz2Score = 0;
-      document.getElementById('q2-score').innerText = 0;
-      document.getElementById('quiz2-question-box').className = 'q-box';
-      renderQuestion2();
-    }
-
-
-    /* LÓGICA DO JOGO DE DIGITAÇÃO (MÓDULO 06) */
-    const typingWordBanks = {
-      easy: [ "computador", "teclado", "mouse", "janela", "pasta", "sistema", "arquivo", "internet", "programa", "aluno", "curso", "pratica", "tela", "dados" ],
-      tech: [ "Processador", "Memoria RAM", "Placa-Mae", "Placa de Video", "Gabinete", "Driver de Video", "Sistema Operacional", "Windows Eleven", "Rede Sem Fio", "Antivirus", "Hardware", "Software", "Navegador Web" ],
-      phrases: [
-        "Ctrl + C serve para copiar um texto selecionado.",
-        "O sistema operacional gerencia todos os recursos de hardware.",
-        "Segurança digital exige a criação de senhas fortes.",
-        "O Excel e uma ferramenta excelente para planilhas e relatorios.",
-        "Ctrl + Z desfaz a ultima acao realizada no sistema."
-      ]
-    };
-
-    let currentTypingMode = 'easy';
-    let currentTargetWord = '';
-    let tgScore = 0;
-    let tgCompletedCount = 0;
-    let tgTotalStrokes = 0;
-    let tgErrorStrokes = 0;
-    let tgStartTime = null;
-
-    function setTypingMode(mode, btnElement) {
-      currentTypingMode = mode;
-      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-      if(btnElement) btnElement.classList.add('active');
-      resetTypingGame();
-    }
-
-    function nextTypingTarget() {
-      const bank = typingWordBanks[currentTypingMode];
-      const randomIndex = Math.floor(Math.random() * bank.length);
-      currentTargetWord = bank[randomIndex];
-      document.getElementById('tg-target').innerText = currentTargetWord;
-      const inputEl = document.getElementById('tg-input');
-      inputEl.value = '';
-      inputEl.className = 'typing-input';
-    }
-
-    function handleTypingInput() {
-      const inputEl = document.getElementById('tg-input');
-      const val = inputEl.value;
-
-      if (!tgStartTime && val.length > 0) {
-        tgStartTime = new Date();
-      }
-
-      tgTotalStrokes++;
-
-      if (currentTargetWord.startsWith(val)) {
-        inputEl.className = 'typing-input correct';
-      } else {
-        inputEl.className = 'typing-input error';
-        tgErrorStrokes++;
-      }
-
-      if (val === currentTargetWord) {
-        tgScore += currentTargetWord.length * 10;
-        tgCompletedCount++;
-       
-        updateTypingStats();
-        nextTypingTarget();
-
-        if (tgCompletedCount >= 5) {
-          document.getElementById('chk-mod6').checked = true;
-          updateProgress();
+        // Registrador do Service Worker para PWA (Instalação no Celular)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker PWA Registrado com Sucesso:', reg.scope))
+                    .catch(err => console.error('Falha ao Registrar Service Worker PWA:', err));
+            });
         }
-      } else {
-        updateTypingStats();
-      }
-    }
 
-    function updateTypingStats() {
-      document.getElementById('tg-score').innerText = tgScore;
-      document.getElementById('tg-count').innerText = tgCompletedCount;
+        // Web Audio API State
+        let audioCtx = null;
+        let micStream = null;
+        let micSourceNode = null;
 
-      let accuracy = 100;
-      if (tgTotalStrokes > 0) {
-        accuracy = Math.max(0, Math.round(((tgTotalStrokes - tgErrorStrokes) / tgTotalStrokes) * 100));
-      }
-      document.getElementById('tg-accuracy').innerText = accuracy + '%';
+        // Gains & Analysers
+        let masterInputGain = null;
+        let masterOutputGain = null;
+        let mainAnalyserNode = null;
 
-      let wpm = 0;
-      if (tgStartTime) {
-        const elapsedMinutes = (new Date() - tgStartTime) / 60000;
-        if (elapsedMinutes > 0) {
-          wpm = Math.round((tgScore / 10) / elapsedMinutes);
+        // SansAmp Preamp DSP
+        let sansampEnabled = true;
+        let sansampDriveNode = null;
+        let sansampPresenceNode = null;
+        let sansampBassNode = null;
+        let sansampTrebleNode = null;
+        let sansampLevelNode = null;
+        let sansampDryGain = null;
+        let sansampWetGain = null;
+        let midShiftFreq = 500;
+
+        // 10-Band EQ
+        let eqEnabled = true;
+        const eqFrequencies = [31.25, 62.5, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+        let eqFilters = [];
+
+        // Pedals DSP
+        let compEnabled = false, compNode = null;
+        let filterEnabled = false, filterNode = null;
+        
+        // True Stereo Chorus DSP Nodes
+        let chorusEnabled = false;
+        let chorusSplitter = null;
+        let chorusMerger = null;
+        let chorusDelayLeft = null;
+        let chorusDelayRight = null;
+        let chorusLfoLeft = null;
+        let chorusLfoRight = null;
+        let chorusLfoGainLeft = null;
+        let chorusLfoGainRight = null;
+        let chorusDryGain = null;
+        let chorusWetGain = null;
+
+        let octaveEnabled = false, octaveGainNode = null, octaveSubGainNode = null;
+        let cabEnabled = true, cabFilterNode = null;
+
+        // Recorder & Looper State
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let looperBuffer = null;
+        let looperSource = null;
+        let isLooperRecording = false;
+
+        // Metronome State
+        let isMetronomeRunning = false;
+        let metronomeInterval = null;
+        let tapTimes = [];
+
+        // SansAmp Model Parameters
+        const sansampParams = {
+            drive: 45,
+            presence: 55,
+            blend: 85,
+            bass: 3,
+            treble: 2,
+            level: 70
+        };
+
+        /* --- Render 10-Band EQ Faders UI --- */
+        const eqContainer = document.getElementById('eq-faders-container');
+        eqFrequencies.forEach((freq, idx) => {
+            const freqText = freq >= 1000 ? `${freq / 1000}k` : `${Math.round(freq)}`;
+            const faderHTML = `
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-[9px] font-mono font-bold text-cyan-400" id="eq-val-${idx}">0dB</span>
+                    <div class="eq-fader-track" id="fader-track-${idx}">
+                        <div class="eq-fader-thumb" id="fader-thumb-${idx}" style="bottom: 67px;"></div>
+                    </div>
+                    <span class="text-[9px] font-orbitron font-bold text-slate-300">${freqText}</span>
+                </div>
+            `;
+            eqContainer.insertAdjacentHTML('beforeend', faderHTML);
+        });
+
+        /* --- Audio Context Engine Initialization --- */
+        async function initAudioEngine() {
+            if (audioCtx) return;
+
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContext({ latencyHint: 'interactive' });
+
+            masterInputGain = audioCtx.createGain();
+            masterOutputGain = audioCtx.createGain();
+
+            mainAnalyserNode = audioCtx.createAnalyser();
+            mainAnalyserNode.fftSize = 2048;
+
+            // SansAmp Nodes
+            sansampDriveNode = audioCtx.createWaveShaper();
+            sansampPresenceNode = audioCtx.createBiquadFilter();
+            sansampPresenceNode.type = 'highshelf';
+            sansampPresenceNode.frequency.value = 3000;
+
+            sansampBassNode = audioCtx.createBiquadFilter();
+            sansampBassNode.type = 'lowshelf';
+            sansampBassNode.frequency.value = 80;
+
+            sansampTrebleNode = audioCtx.createBiquadFilter();
+            sansampTrebleNode.type = 'highshelf';
+            sansampTrebleNode.frequency.value = 3200;
+
+            sansampLevelNode = audioCtx.createGain();
+            sansampDryGain = audioCtx.createGain();
+            sansampWetGain = audioCtx.createGain();
+
+            updateSansAmpDSP();
+
+            // 10-Band EQ Filters
+            eqFilters = eqFrequencies.map(freq => {
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'peaking';
+                filter.frequency.value = freq;
+                filter.Q.value = 1.4;
+                filter.gain.value = 0;
+                return filter;
+            });
+            for (let i = 0; i < eqFilters.length - 1; i++) {
+                eqFilters[i].connect(eqFilters[i + 1]);
+            }
+
+            // Compressor
+            compNode = audioCtx.createDynamicsCompressor();
+            compNode.threshold.value = -24;
+            compNode.knee.value = 30;
+            compNode.ratio.value = 6;
+            compNode.attack.value = 0.025;
+            compNode.release.value = 0.25;
+
+            // Auto-Wah Filter
+            filterNode = audioCtx.createBiquadFilter();
+            filterNode.type = 'lowpass';
+            filterNode.frequency.value = 800;
+            filterNode.Q.value = 6;
+
+            // True Stereo Bass Chorus DSP Setup
+            chorusSplitter = audioCtx.createChannelSplitter(2);
+            chorusMerger = audioCtx.createChannelMerger(2);
+            chorusDelayLeft = audioCtx.createDelay();
+            chorusDelayRight = audioCtx.createDelay();
+            chorusDelayLeft.delayTime.value = 0.022;
+            chorusDelayRight.delayTime.value = 0.028;
+
+            chorusDryGain = audioCtx.createGain();
+            chorusWetGain = audioCtx.createGain();
+            chorusDryGain.gain.value = 0.7;
+            chorusWetGain.gain.value = 0.5;
+
+            chorusLfoLeft = audioCtx.createOscillator();
+            chorusLfoRight = audioCtx.createOscillator();
+            chorusLfoGainLeft = audioCtx.createGain();
+            chorusLfoGainRight = audioCtx.createGain();
+
+            const currentRate = parseFloat(document.getElementById('knob-chorus-rate').dataset.val) || 1.2;
+            const currentDepth = parseFloat(document.getElementById('knob-chorus-depth').dataset.val) || 50;
+
+            chorusLfoLeft.frequency.value = currentRate;
+            chorusLfoRight.frequency.value = currentRate;
+            
+            chorusLfoGainLeft.gain.value = (currentDepth / 100) * 0.006;
+            chorusLfoGainRight.gain.value = (currentDepth / 100) * 0.006;
+
+            chorusLfoLeft.connect(chorusLfoGainLeft);
+            chorusLfoRight.connect(chorusLfoGainRight);
+            chorusLfoGainLeft.connect(chorusDelayLeft.delayTime);
+            chorusLfoGainRight.connect(chorusDelayRight.delayTime);
+
+            chorusLfoLeft.start();
+            chorusLfoRight.start();
+
+            // Cabinet Simulation
+            cabFilterNode = audioCtx.createBiquadFilter();
+            applyCabSimPreset('8x10');
+
+            // Visual Loop Processors
+            requestAnimationFrame(processAudioVisuals);
+            drawEQSpectrumCanvas();
         }
-      }
-      document.getElementById('tg-wpm').innerText = wpm;
 
-      const feedbackEl = document.getElementById('tg-feedback');
-      if (wpm < 15) {
-        feedbackEl.innerHTML = '🟢 <strong>Nível Iniciante:</strong> Continue praticando para ganhar mais agilidade nos dedos!';
-      } else if (wpm >= 15 && wpm < 35) {
-        feedbackEl.innerHTML = '⚡ <strong>Nível Bom:</strong> Sua velocidade está crescendo! Mantenha a precisão.';
-      } else if (wpm >= 35 && wpm < 55) {
-        feedbackEl.innerHTML = '🚀 <strong>Nível Avançado:</strong> Excelente ritmo de digitação! Você está quase um profissional.';
-      } else {
-        feedbackEl.innerHTML = '👑 <strong>Nível Mestre:</strong> Incrível! Você digita super rápido e com muita precisão!';
-      }
-    }
+        /* --- Reconnect Web Audio Graph --- */
+        function rebuildAudioGraph() {
+            if (!audioCtx || !micSourceNode) return;
 
-    function resetTypingGame() {
-      tgScore = 0;
-      tgCompletedCount = 0;
-      tgTotalStrokes = 0;
-      tgErrorStrokes = 0;
-      tgStartTime = null;
+            micSourceNode.disconnect();
+            masterInputGain.disconnect();
+            micSourceNode.connect(masterInputGain);
 
-      document.getElementById('tg-score').innerText = '0';
-      document.getElementById('tg-wpm').innerText = '0';
-      document.getElementById('tg-accuracy').innerText = '100%';
-      document.getElementById('tg-count').innerText = '0';
-      document.getElementById('tg-feedback').innerHTML = '💡 Status: Comece a digitar no campo acima para iniciar o teste de velocidade!';
+            let current = masterInputGain;
 
-      nextTypingTarget();
-    }
+            // 1. SansAmp Preamp
+            if (sansampEnabled) {
+                current.connect(sansampDryGain);
 
-    // Inicialização
-    renderQuestion();
-    renderQuestion2();
-    resetTypingGame();
-    generateCertCode();
-  </script>
+                current.connect(sansampDriveNode);
+                sansampDriveNode.connect(sansampPresenceNode);
+                sansampPresenceNode.connect(sansampBassNode);
+                sansampBassNode.connect(sansampTrebleNode);
+                sansampTrebleNode.connect(sansampLevelNode);
+                sansampLevelNode.connect(sansampWetGain);
+
+                const merger = audioCtx.createGain();
+                sansampDryGain.connect(merger);
+                sansampWetGain.connect(merger);
+
+                current = merger;
+            }
+
+            // 2. 10-Band EQ
+            if (eqEnabled) {
+                current.connect(eqFilters[0]);
+                current = eqFilters[eqFilters.length - 1];
+            }
+
+            // 3. Compressor
+            if (compEnabled) {
+                current.connect(compNode);
+                current = compNode;
+            }
+
+            // 4. Auto-Wah Filter
+            if (filterEnabled) {
+                current.connect(filterNode);
+                current = filterNode;
+            }
+
+            // 5. Stereo Chorus (True Stereo L/R Path)
+            if (chorusEnabled) {
+                const chorusInput = current;
+                const chorusSum = audioCtx.createGain();
+
+                chorusInput.connect(chorusDryGain);
+                chorusDryGain.connect(chorusSum);
+
+                chorusInput.connect(chorusDelayLeft);
+                chorusInput.connect(chorusDelayRight);
+
+                chorusDelayLeft.connect(chorusWetGain);
+                chorusDelayRight.connect(chorusWetGain);
+
+                chorusWetGain.connect(chorusSum);
+
+                current = chorusSum;
+            }
+
+            // 6. Cabinet IR Sim
+            if (cabEnabled) {
+                current.connect(cabFilterNode);
+                current = cabFilterNode;
+            }
+
+            // Master Output & Analyser
+            current.connect(masterOutputGain);
+            masterOutputGain.connect(audioCtx.destination);
+            masterOutputGain.connect(mainAnalyserNode);
+        }
+
+        /* --- Distortion WaveShaper Engine --- */
+        function makeTubeSaturationCurve(amount) {
+            const k = amount;
+            const n_samples = 44100;
+            const curve = new Float32Array(n_samples);
+            for (let i = 0; i < n_samples; ++i) {
+                const x = (i * 2) / n_samples - 1;
+                curve[i] = (Math.PI + k) * x / (Math.PI + k * Math.abs(x));
+            }
+            return curve;
+        }
+
+        function updateSansAmpDSP() {
+            if (!audioCtx) return;
+            sansampDriveNode.curve = makeTubeSaturationCurve(sansampParams.drive * 1.8);
+            sansampPresenceNode.gain.value = (sansampParams.presence - 50) / 4;
+            sansampBassNode.gain.value = sansampParams.bass;
+            sansampTrebleNode.gain.value = sansampParams.treble;
+            sansampLevelNode.gain.value = sansampParams.level / 50;
+
+            const blendVal = sansampParams.blend / 100;
+            sansampWetGain.gain.value = blendVal;
+            sansampDryGain.gain.value = 1 - blendVal;
+        }
+
+        function applyCabSimPreset(type) {
+            if (!cabFilterNode) return;
+            if (type === '8x10') {
+                cabFilterNode.type = 'lowpass';
+                cabFilterNode.frequency.value = 4200;
+                cabFilterNode.Q.value = 1.2;
+            } else if (type === '4x10') {
+                cabFilterNode.type = 'lowpass';
+                cabFilterNode.frequency.value = 5200;
+                cabFilterNode.Q.value = 0.9;
+            } else if (type === '2x12') {
+                cabFilterNode.type = 'lowpass';
+                cabFilterNode.frequency.value = 4800;
+                cabFilterNode.Q.value = 1.1;
+            } else if (type === '1x15') {
+                cabFilterNode.type = 'lowpass';
+                cabFilterNode.frequency.value = 3400;
+                cabFilterNode.Q.value = 1.4;
+            } else {
+                cabFilterNode.type = 'allpass';
+            }
+        }
+
+        /* --- Realtime VU Meter & Chromatic Pitch Tuner Process --- */
+        const needleEl = document.getElementById('vu-needle');
+        const tunerNoteEl = document.getElementById('tuner-note');
+        const tunerFreqEl = document.getElementById('tuner-freq');
+        const tunerCentsEl = document.getElementById('tuner-cents');
+        const ledClip = document.getElementById('led-clip');
+
+        const noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+        function processAudioVisuals() {
+            if (!mainAnalyserNode) return;
+
+            const buffer = new Float32Array(mainAnalyserNode.fftSize);
+            mainAnalyserNode.getFloatTimeDomainData(buffer);
+
+            // Peak & RMS
+            let sum = 0;
+            let maxPeak = 0;
+            for (let i = 0; i < buffer.length; i++) {
+                const val = Math.abs(buffer[i]);
+                if (val > maxPeak) maxPeak = val;
+                sum += val * val;
+            }
+            const rms = Math.sqrt(sum / buffer.length);
+            const db = 20 * Math.log10(Math.max(rms, 0.0001));
+
+            // Peak Clip Warning Light
+            if (maxPeak >= 0.98) {
+                ledClip.className = 'led-indicator active-red';
+            } else {
+                ledClip.className = 'led-indicator';
+            }
+
+            // VU Meter Needle rotation
+            const clampedDb = Math.max(-40, Math.min(3, db));
+            const angle = ((clampedDb + 40) / 43) * 90 - 45;
+            needleEl.style.transform = `rotate(${angle}deg)`;
+
+            // Bass Pitch Auto-Correlation Tuner
+            if (rms > 0.015) {
+                const pitch = autoCorrelatePitch(buffer, audioCtx.sampleRate);
+                if (pitch !== -1) {
+                    const noteNum = 12 * (Math.log(pitch / 440) / Math.log(2)) + 69;
+                    const roundedNote = Math.round(noteNum);
+                    const noteName = noteNames[roundedNote % 12];
+                    const cents = Math.floor((noteNum - roundedNote) * 100);
+
+                    tunerNoteEl.innerText = noteName;
+                    tunerFreqEl.innerText = `${pitch.toFixed(1)} Hz`;
+                    tunerCentsEl.innerText = `${cents > 0 ? '+' : ''}${cents} cents`;
+
+                    // Tuning visual indicators
+                    document.getElementById('tune-flat').style.opacity = cents < -10 ? '1' : '0.2';
+                    document.getElementById('tune-sharp').style.opacity = cents > 10 ? '1' : '0.2';
+                    document.getElementById('tune-perfect').style.opacity = Math.abs(cents) <= 10 ? '1' : '0.2';
+                }
+            } else {
+                tunerNoteEl.innerText = "--";
+                tunerFreqEl.innerText = "0.0 Hz";
+                tunerCentsEl.innerText = "0 cents";
+            }
+
+            requestAnimationFrame(processAudioVisuals);
+        }
+
+        function autoCorrelatePitch(buf, sampleRate) {
+            let SIZE = buf.length;
+            let rms = 0;
+            for (let i = 0; i < SIZE; i++) rms += buf[i] * buf[i];
+            rms = Math.sqrt(rms / SIZE);
+            if (rms < 0.01) return -1;
+
+            let r1 = 0, r2 = SIZE - 1, thres = 0.2;
+            for (let i = 0; i < SIZE / 2; i++) {
+                if (Math.abs(buf[i]) < thres) { r1 = i; break; }
+            }
+            for (let i = 1; i < SIZE / 2; i++) {
+                if (Math.abs(buf[SIZE - i]) < thres) { r2 = SIZE - i; break; }
+            }
+
+            buf = buf.slice(r1, r2);
+            SIZE = buf.length;
+
+            let c = new Array(SIZE).fill(0);
+            for (let i = 0; i < SIZE; i++) {
+                for (let j = 0; j < SIZE - i; j++) {
+                    c[i] = c[i] + buf[j] * buf[j + i];
+                }
+            }
+
+            let d = 0; while (c[d] > c[d + 1]) d++;
+            let maxval = -1, maxpos = -1;
+            for (let i = d; i < SIZE; i++) {
+                if (c[i] > maxval) {
+                    maxval = c[i];
+                    maxpos = i;
+                }
+            }
+            let T0 = maxpos;
+            return sampleRate / T0;
+        }
+
+        /* --- EQ Response Spectrum Canvas Drawing --- */
+        function drawEQSpectrumCanvas() {
+            const canvas = document.getElementById('eq-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Frequency Grid
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < canvas.width; i += 30) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, canvas.height);
+                ctx.stroke();
+            }
+
+            // Draw Frequency Curve
+            ctx.beginPath();
+            ctx.strokeStyle = '#06b6d4';
+            ctx.lineWidth = 2;
+
+            for (let x = 0; x < canvas.width; x++) {
+                const freq = 20 * Math.pow(1000, x / canvas.width);
+                let totalGain = 0;
+
+                eqFilters.forEach(filter => {
+                    const fVal = filter.frequency.value;
+                    const gain = filter.gain.value;
+                    const dist = Math.abs(Math.log2(freq / fVal));
+                    if (dist < 1) {
+                        totalGain += gain * (1 - dist);
+                    }
+                });
+
+                const y = (canvas.height / 2) - (totalGain * 3);
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            requestAnimationFrame(drawEQSpectrumCanvas);
+        }
+
+        // Live Monitoring Button
+        const btnLiveMonitor = document.getElementById('btn-live-monitor');
+        const ledLiveMonitor = document.getElementById('led-live-monitor');
+        const txtLiveMonitor = document.getElementById('txt-live-monitor');
+
+        btnLiveMonitor.addEventListener('click', async () => {
+            await initAudioEngine();
+            if (audioCtx.state === 'suspended') await audioCtx.resume();
+
+            if (!micStream) {
+                try {
+                    micStream = await navigator.mediaDevices.getUserMedia({
+                        audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false }
+                    });
+                    micSourceNode = audioCtx.createMediaStreamSource(micStream);
+                    rebuildAudioGraph();
+
+                    ledLiveMonitor.className = 'led-indicator active-green';
+                    txtLiveMonitor.innerText = 'MONITORATIVO ON';
+                    btnLiveMonitor.classList.add('border-emerald-500');
+                } catch (err) {
+                    alert('Erro ao acessar a entrada de áudio: ' + err.message);
+                }
+            } else {
+                micStream.getTracks().forEach(track => track.stop());
+                micStream = null;
+                ledLiveMonitor.className = 'led-indicator';
+                txtLiveMonitor.innerText = 'MONITORAMENTO AO VIVO';
+                btnLiveMonitor.classList.remove('border-emerald-500');
+            }
+        });
+
+        // Master Volume Sliders
+        document.getElementById('master-input-gain').addEventListener('input', (e) => {
+            if (masterInputGain) masterInputGain.gain.value = parseFloat(e.target.value);
+        });
+        document.getElementById('master-output-gain').addEventListener('input', (e) => {
+            if (masterOutputGain) masterOutputGain.gain.value = parseFloat(e.target.value);
+        });
+
+        // Mid Shift Frequency Toggle
+        document.getElementById('btn-mid-shift').addEventListener('click', () => {
+            midShiftFreq = midShiftFreq === 500 ? 1000 : 500;
+            document.getElementById('txt-mid-shift').innerText = `${midShiftFreq} Hz`;
+        });
+
+        // Interactive Rotary Knobs Logic
+        document.querySelectorAll('.knob').forEach(knob => {
+            let isDragging = false;
+            let startY = 0;
+            let currentVal = parseFloat(knob.dataset.val);
+            const min = parseFloat(knob.dataset.min);
+            const max = parseFloat(knob.dataset.max);
+            const param = knob.dataset.param;
+
+            const updateVisual = (val) => {
+                const pct = (val - min) / (max - min);
+                const angle = -135 + pct * 270;
+                knob.style.transform = `rotate(${angle}deg)`;
+
+                const valLabel = document.getElementById(`val-${param}`);
+                if (valLabel) {
+                    valLabel.innerText = (param === 'bass' || param === 'treble') ? `${val > 0 ? '+' : ''}${val} dB` : `${Math.round(val)}%`;
+                }
+            };
+
+            updateVisual(currentVal);
+
+            knob.addEventListener('pointerdown', (e) => {
+                isDragging = true;
+                startY = e.clientY;
+                knob.setPointerCapture(e.pointerId);
+            });
+
+            knob.addEventListener('pointermove', (e) => {
+                if (!isDragging) return;
+                const deltaY = startY - e.clientY;
+                startY = e.clientY;
+
+                const step = (max - min) / 100;
+                currentVal = Math.min(max, Math.max(min, currentVal + deltaY * step));
+                knob.dataset.val = currentVal;
+
+                updateVisual(currentVal);
+
+                if (sansampParams.hasOwnProperty(param)) {
+                    sansampParams[param] = currentVal;
+                    updateSansAmpDSP();
+                } else if (param === 'chorus-rate') {
+                    if (chorusLfoLeft && chorusLfoRight) {
+                        chorusLfoLeft.frequency.value = currentVal;
+                        chorusLfoRight.frequency.value = currentVal;
+                    }
+                } else if (param === 'chorus-depth') {
+                    if (chorusLfoGainLeft && chorusLfoGainRight) {
+                        const depthVal = (currentVal / 100) * 0.006;
+                        chorusLfoGainLeft.gain.value = depthVal;
+                        chorusLfoGainRight.gain.value = depthVal;
+                    }
+                } else if (param === 'filter-sense') {
+                    if (filterNode) filterNode.frequency.value = currentVal;
+                } else if (param === 'filter-reso') {
+                    if (filterNode) filterNode.Q.value = currentVal;
+                }
+            });
+
+            knob.addEventListener('pointerup', () => { isDragging = false; });
+        });
+
+        // Preamp Footswitch Toggle
+        document.getElementById('switch-sansamp').addEventListener('click', () => {
+            sansampEnabled = !sansampEnabled;
+            document.getElementById('led-sansamp').className = sansampEnabled ? 'led-indicator active-red' : 'led-indicator';
+            rebuildAudioGraph();
+        });
+
+        // 10-Band EQ Interactive Faders Engine
+        eqFrequencies.forEach((freq, idx) => {
+            const track = document.getElementById(`fader-track-${idx}`);
+            const thumb = document.getElementById(`fader-thumb-${idx}`);
+            const valText = document.getElementById(`eq-val-${idx}`);
+            let isDragging = false;
+
+            const setFaderValue = (y) => {
+                const rect = track.getBoundingClientRect();
+                let relY = rect.bottom - y;
+                relY = Math.max(0, Math.min(rect.height, relY));
+
+                thumb.style.bottom = `${relY - 8}px`;
+
+                const gain = ((relY / rect.height) * 24) - 12;
+                valText.innerText = `${gain > 0 ? '+' : ''}${Math.round(gain)}dB`;
+
+                if (eqFilters[idx]) {
+                    eqFilters[idx].gain.value = gain;
+                }
+            };
+
+            track.addEventListener('pointerdown', (e) => {
+                isDragging = true;
+                track.setPointerCapture(e.pointerId);
+                setFaderValue(e.clientY);
+            });
+
+            track.addEventListener('pointermove', (e) => {
+                if (isDragging) setFaderValue(e.clientY);
+            });
+
+            track.addEventListener('pointerup', () => { isDragging = false; });
+        });
+
+        // EQ Toggle Button
+        const btnEqToggle = document.getElementById('btn-eq-toggle');
+        btnEqToggle.addEventListener('click', () => {
+            eqEnabled = !eqEnabled;
+            document.getElementById('led-eq').className = eqEnabled ? 'led-indicator active-cyan' : 'led-indicator';
+            btnEqToggle.innerText = eqEnabled ? 'EQ LIGADO' : 'EQ BYPASS';
+            btnEqToggle.className = eqEnabled ? 'ml-2 px-3 py-1 rounded bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-xs font-orbitron transition' : 'ml-2 px-3 py-1 rounded bg-slate-800 text-slate-400 font-bold text-xs font-orbitron transition';
+            rebuildAudioGraph();
+        });
+
+        // EQ Presets Definition
+        const eqPresets = {
+            flat: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            slap: [6, 4, 1, -4, -6, -3, 2, 5, 6, 4],
+            vintage: [4, 5, 3, 1, 0, -2, -3, -4, -5, -6],
+            modern: [5, 3, 0, -2, -3, 0, 3, 5, 4, 2],
+            sub: [8, 7, 5, 1, -2, -4, -5, -6, -6, -6]
+        };
+
+        document.querySelectorAll('.eq-preset-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const presetKey = btn.dataset.preset;
+                const values = eqPresets[presetKey];
+                values.forEach((val, idx) => {
+                    if (eqFilters[idx]) eqFilters[idx].gain.value = val;
+                    const thumb = document.getElementById(`fader-thumb-${idx}`);
+                    const valText = document.getElementById(`eq-val-${idx}`);
+
+                    const rectHeight = 150;
+                    const relY = ((val + 12) / 24) * rectHeight;
+                    thumb.style.bottom = `${relY - 8}px`;
+                    valText.innerText = `${val > 0 ? '+' : ''}${val}dB`;
+                });
+            });
+        });
+
+        // Modular Pedals Switches
+        document.getElementById('switch-comp').addEventListener('click', () => {
+            compEnabled = !compEnabled;
+            document.getElementById('led-comp').className = compEnabled ? 'led-indicator active-cyan' : 'led-indicator';
+            rebuildAudioGraph();
+        });
+
+        document.getElementById('switch-filter').addEventListener('click', () => {
+            filterEnabled = !filterEnabled;
+            document.getElementById('led-filter').className = filterEnabled ? 'led-indicator active-green' : 'led-indicator';
+            rebuildAudioGraph();
+        });
+
+        document.getElementById('switch-chorus').addEventListener('click', () => {
+            chorusEnabled = !chorusEnabled;
+            document.getElementById('led-chorus').className = chorusEnabled ? 'led-indicator active-cyan' : 'led-indicator';
+            rebuildAudioGraph();
+        });
+
+        document.getElementById('switch-octave').addEventListener('click', () => {
+            octaveEnabled = !octaveEnabled;
+            document.getElementById('led-octave').className = octaveEnabled ? 'led-indicator active-amber' : 'led-indicator';
+            rebuildAudioGraph();
+        });
+
+        document.getElementById('switch-cab').addEventListener('click', () => {
+            cabEnabled = !cabEnabled;
+            document.getElementById('led-cab').className = cabEnabled ? 'led-indicator active-red' : 'led-indicator';
+            rebuildAudioGraph();
+        });
+
+        document.getElementById('select-cab').addEventListener('change', (e) => {
+            applyCabSimPreset(e.target.value);
+        });
+
+        // Audio Recorder Logic
+        const btnRecordMaster = document.getElementById('btn-record-master');
+        const btnStopMaster = document.getElementById('btn-stop-master');
+        const downloadLink = document.getElementById('download-recording');
+
+        btnRecordMaster.addEventListener('click', () => {
+            if (!audioCtx) return;
+            const dest = audioCtx.createMediaStreamDestination();
+            masterOutputGain.connect(dest);
+
+            let options = { mimeType: 'audio/webm;codecs=opus' };
+            if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                options = { mimeType: 'audio/mp4' };
+                if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                    options = {};
+                }
+            }
+
+            mediaRecorder = new MediaRecorder(dest.stream, options);
+            recordedChunks = [];
+
+            mediaRecorder.ondataavailable = (e) => {
+                if (e.data.size > 0) recordedChunks.push(e.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                const blob = new Blob(recordedChunks, { type: options.mimeType || 'audio/mp3' });
+                const url = URL.createObjectURL(blob);
+                downloadLink.href = url;
+                downloadLink.download = `ToneBassPro_Take_${Date.now()}.mp3`;
+                downloadLink.classList.remove('hidden');
+            };
+
+            mediaRecorder.start();
+            btnRecordMaster.disabled = true;
+            btnStopMaster.disabled = false;
+            btnRecordMaster.classList.add('animate-pulse');
+        });
+
+        btnStopMaster.addEventListener('click', () => {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                btnRecordMaster.disabled = false;
+                btnStopMaster.disabled = true;
+                btnRecordMaster.classList.remove('animate-pulse');
+            }
+        });
+
+        // Jam Track Player
+        document.getElementById('jam-file-input').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const player = document.getElementById('jam-player');
+                player.src = URL.createObjectURL(file);
+                player.play();
+            }
+        });
+
+        document.getElementById('jam-speed').addEventListener('input', (e) => {
+            const val = parseFloat(e.target.value);
+            document.getElementById('jam-player').playbackRate = val;
+            document.getElementById('txt-jam-speed').innerText = `${val.toFixed(1)}x`;
+        });
+
+        // Metronome Engine
+        const metronomeBpmInput = document.getElementById('metronome-bpm');
+        const metronomeBpmVal = document.getElementById('metronome-bpm-val');
+        const btnToggleMetronome = document.getElementById('btn-toggle-metronome');
+
+        metronomeBpmInput.addEventListener('input', (e) => {
+            metronomeBpmVal.innerText = `${e.target.value} BPM`;
+            if (isMetronomeRunning) {
+                restartMetronome();
+            }
+        });
+
+        btnToggleMetronome.addEventListener('click', () => {
+            if (!isMetronomeRunning) {
+                startMetronome();
+                btnToggleMetronome.innerText = "PARAR METRÔNOMO";
+                btnToggleMetronome.className = "w-full py-2 bg-red-600 hover:bg-red-500 text-white font-bold text-xs font-orbitron rounded transition";
+            } else {
+                stopMetronome();
+                btnToggleMetronome.innerText = "INICIAR METRÔNOMO";
+                btnToggleMetronome.className = "w-full py-2 bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-xs font-orbitron rounded transition";
+            }
+        });
+
+        function playClickSound() {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.frequency.value = 1000;
+            gain.gain.value = 0.3;
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.05);
+        }
+
+        function startMetronome() {
+            isMetronomeRunning = true;
+            const intervalMs = (60 / parseInt(metronomeBpmInput.value)) * 1000;
+            metronomeInterval = setInterval(playClickSound, intervalMs);
+        }
+
+        function stopMetronome() {
+            isMetronomeRunning = false;
+            clearInterval(metronomeInterval);
+        }
+
+        function restartMetronome() {
+            stopMetronome();
+            startMetronome();
+        }
+
+        // Tap Tempo Logic
+        document.getElementById('btn-tap-tempo').addEventListener('click', () => {
+            const now = Date.now();
+            tapTimes.push(now);
+            if (tapTimes.length > 4) tapTimes.shift();
+
+            if (tapTimes.length > 1) {
+                const intervals = [];
+                for (let i = 1; i < tapTimes.length; i++) {
+                    intervals.push(tapTimes[i] - tapTimes[i - 1]);
+                }
+                const avgInterval = intervals.reduce((a, b) => a + b) / intervals.length;
+                const bpm = Math.round(60000 / avgInterval);
+                if (bpm >= 40 && bpm <= 220) {
+                    metronomeBpmInput.value = bpm;
+                    metronomeBpmVal.innerText = `${bpm} BPM`;
+                    if (isMetronomeRunning) restartMetronome();
+                }
+            }
+        });
+    </script>
 </body>
 </html>
-
- 
-Área de anexos
-Visualizar o vídeo Aprenda a usar o Windows para INICIANTES do YouTubeVisualizar o vídeo Aprenda a usar o Windows para INICIANTES do YouTube
 
